@@ -65,14 +65,14 @@ git clone https://github.com/polynimbus/polynimbus /opt/polynimbus
 ```
 
 where:
-- `yourvendor` is one of: `alibaba`, `aws`, `azure`, `e24`, `google`, `hetzner` or `rackspace`
+- `yourvendor` is one of: `alibaba`, `aws`, `azure`, `e24`, `google`, `hetzner`, `oracle` or `rackspace`
 - `youraccount` is the name of your configured account (or region name in case of `azure`)
 
-After you finished the initial setup, you can always manually edit files inside `/etc/polynimbus` directory to make sure that your vendor is properly configured.
+Once you finished the initial setup, you can always manually edit files inside `/etc/polynimbus` directory to make sure that your vendor is properly configured.
 
 Additional notes:
 
-1. `azure` and `google` vendor drivers support having only one account configured at the same time, however `azure` allows operating on each region as separate pseudo-account.
+1. `azure`, `google` and `oracle` vendor drivers support having only one account configured at the same time, however `azure` allows operating on each region as separate pseudo-account.
 
 2. For `azure` and `google`, the setup process needs browser interaction.
 
