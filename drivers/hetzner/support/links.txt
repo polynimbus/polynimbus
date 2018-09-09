@@ -1,0 +1,2 @@
+https://github.com/hetznercloud/cli/releases
+https://github.com/hetznercloud/cli/releases/download/v1.6.0/hcloud-linux-amd64-v1.6.0.tar.gz
