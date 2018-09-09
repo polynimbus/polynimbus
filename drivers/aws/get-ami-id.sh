@@ -9,7 +9,7 @@ fi
 region=$1
 distro=$2
 
-path=/var/cache/polynimbus
+path=/var/cache/polynimbus/aws
 table=ubuntu-ec2-images.json
 
 if [ ! -s $path/$table ] || [ `stat -c %Y $path/$table` -le `date -d yesterday +%s` ]; then

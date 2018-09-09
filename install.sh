@@ -8,8 +8,8 @@ if [ "`which php 2>/dev/null`" = "" ]; then
 fi
 
 echo "setting up polynimbus base directory"
-mkdir -p   /etc/polynimbus
-chmod 0700 /etc/polynimbus
+mkdir -p   /etc/polynimbus /var/cache/polynimbus
+chmod 0700 /etc/polynimbus /var/cache/polynimbus
 
 /opt/polynimbus/drivers/alibaba/install.sh
 /opt/polynimbus/drivers/aws/install.sh
