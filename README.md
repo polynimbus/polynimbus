@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/polynimbus/polynimbus.png?branch=master)](https://travis-ci.org/polynimbus/polynimbus)
 
 
-# Overview
+## Overview
 
 Polynimbus is a multi-cloud infrastructure management tool. It allows full lifecycle, fully automatic management of Linux-based cloud instances, using the same syntax and semantics, supporting all important cloud computing vendors:
 
