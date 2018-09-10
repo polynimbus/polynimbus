@@ -134,10 +134,10 @@ In fact, **all** fields are optional in some vendor drivers (`-` can be returned
 
 - `hostname/ip` - either IP address, or full hostname if possible (for newly created, or terminated instances, `-` can be returned instead)
 - `state` - `running` means that instance is ready for provisioning and work
-- `ssh-key-name` - name of ssh key for the instance (can be mapped into full pathname using `/opt/polynimbus/api/v1/key/get-path.sh` script)
+- `ssh-key-name` - name of ssh key for the instance (can be mapped into full pathname using `/opt/polynimbus/api/v1/key/get-path.sh` script, eg. `test1` to `/etc/polynimbus/ssh/id_aws_test1`)
 - `region` - region, in which instance is created (vendor-specific, eg. `eu-west-1`, `europe-west1-c`, `eastus`. `fsn1-dc8`)
 - `instance-type` - instance type (vendor-specific, eg. `m5.xlarge`, `f1-micro`, `Standard_H8`)
-- `instance-id` - unique instance identifier, that should be passed to other scripts operating on instances (vendor -specific)
+- `instance-id` - unique instance identifier, that should be passed to other scripts operating on instances (vendor-specific)
 - `system-id` - Ubuntu version (vendor-specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
 
 
