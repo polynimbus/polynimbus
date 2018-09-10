@@ -10,7 +10,7 @@ elif [ ! -f /etc/polynimbus/alibaba/$1.sh ]; then
 fi
 
 account=$1
-file=/root/.aliyuncli/regions.$account.cache
+file=/var/cache/polynimbus/alibaba/regions.$account.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
 	aliyuncli ecs DescribeRegions --profile $account >$file

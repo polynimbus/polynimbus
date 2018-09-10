@@ -9,7 +9,7 @@ elif [ ! -f /etc/polynimbus/alibaba/$1.sh ]; then
 fi
 
 account=$1
-file=/root/.aliyuncli/images.$account.cache
+file=/var/cache/polynimbus/alibaba/images.$account.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
 	aliyuncli ecs DescribeImages --profile $account >$file

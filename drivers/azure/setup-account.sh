@@ -5,8 +5,8 @@ if [ "`az account list |grep Enabled`" = "" ]; then
 	az login
 fi
 
-if [ ! -f /root/.azure/locations.cache ]; then
-	az account list-locations >/root/.azure/locations.cache
+if [ ! -f /var/cache/polynimbus/azure/locations.cache ]; then
+	az account list-locations >/var/cache/polynimbus/azure/locations.cache
 fi
 
 if [ -f /etc/polynimbus/azure/default.sh ]; then

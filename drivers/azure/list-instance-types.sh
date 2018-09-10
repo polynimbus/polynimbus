@@ -7,7 +7,7 @@ if [ "$1" = "" ]; then
 fi
 
 region=$1
-file=/root/.azure/sizes.$region.cache
+file=/var/cache/polynimbus/azure/sizes.$region.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
 	az vm list-sizes -l $region >$file

@@ -6,7 +6,7 @@ if [ "$1" = "" ]; then
 fi
 
 region=$1
-file=/root/.azure/instances.cache
+file=/var/cache/polynimbus/azure/instances.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-2 minutes' +%s` ]; then
 	az vm list --show-details >$file 2>&1

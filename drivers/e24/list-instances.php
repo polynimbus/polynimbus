@@ -22,7 +22,7 @@ foreach ($response->body->reservationSet->item as $item) {
 
 	$sshkey = "-ssh";
 	$region = "-region";
-	$cache  = "/var/cache/e24/$account-$id.dump";
+	$cache  = "/var/cache/polynimbus/e24/$account-$id.dump";
 
 	if (file_exists($cache)) {
 		$json = file_get_contents($cache);

@@ -3,7 +3,7 @@
 if [ "$1" = "" ]; then exit 0; fi
 instance=$1
 
-path=/root/.oci/ip
+path=/var/cache/polynimbus/oracle/ip
 mkdir -p $path
 
 file=$path/$instance.cache

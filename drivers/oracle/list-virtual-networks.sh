@@ -3,7 +3,7 @@
 region=`/opt/polynimbus/drivers/oracle/get-configured-region.sh`
 compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
 
-file=/root/.oci/vcn-$region.cache
+file=/var/cache/polynimbus/oracle/vcn-$region.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-8 hours' +%s` ]; then
 	oci network vcn list --compartment-id $compartment >$file

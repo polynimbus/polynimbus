@@ -1,7 +1,7 @@
 #!/bin/sh
 # https://docs.microsoft.com/pl-pl/cli/azure/install-azure-cli-apt?view=azure-cli-latest
 
-mkdir -p /etc/polynimbus/azure
+mkdir -p /etc/polynimbus/azure /var/cache/polynimbus/azure
 
 KEY="https://packages.microsoft.com/keys/microsoft.asc"
 echo "checking for Microsoft Azure repository"

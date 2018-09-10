@@ -12,5 +12,5 @@ list=`/opt/polynimbus/drivers/azure/list-groups.sh $region |grep -Fx $group`
 
 if [ "$list" = "" ]; then
 	az group create -l $region -n $group
-	rm -f /root/.azure/groups.$region.cache
+	rm -f /var/cache/polynimbus/azure/groups.$region.cache
 fi

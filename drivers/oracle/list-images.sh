@@ -13,10 +13,10 @@ compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
 #
 if [ "$2" != "" ] && [[ $2 =~ ^[0-9.]+$ ]]; then
 	version=$2
-	file=/root/.oci/images-$version.cache
+	file=/var/cache/polynimbus/oracle/images-$version.cache
 else
 	version=""
-	file=/root/.oci/images.cache
+	file=/var/cache/polynimbus/oracle/images.cache
 fi
 
 #
@@ -33,7 +33,7 @@ fi
 #
 # 3. add image ids to map (to allow reversing no-longer-existing ids to system version)
 #
-cat $file |/opt/polynimbus/drivers/oracle/internal/parse-images.php /root/.oci/images.map
+cat $file |/opt/polynimbus/drivers/oracle/internal/parse-images.php /var/cache/polynimbus/oracle/images.map
 
 #
 # 4. return images list

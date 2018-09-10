@@ -7,7 +7,7 @@ if [ "$1" = "" ]; then
 fi
 
 region=$1
-file=/root/.azure/skus.$region.$AZURE_PUBLISHER.$AZURE_OFFER.cache
+file=/var/cache/polynimbus/azure/skus.$region.$AZURE_PUBLISHER.$AZURE_OFFER.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
 	az vm image list-skus --publisher $AZURE_PUBLISHER --offer $AZURE_OFFER --location $region >$file

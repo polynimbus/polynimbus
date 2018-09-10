@@ -9,7 +9,7 @@ elif [ ! -f /etc/polynimbus/alibaba/$1.sh ]; then
 fi
 
 account=$1
-file=/root/.aliyuncli/instance-types.$account.cache
+file=/var/cache/polynimbus/alibaba/instance-types.$account.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
 	aliyuncli ecs DescribeInstanceTypes --profile $account >$file

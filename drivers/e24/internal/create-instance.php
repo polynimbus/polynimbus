@@ -40,7 +40,7 @@ $region = read_variable($account, "E24_REGION");
 echo "$host $state $name $region $type $id $image\n";
 
 
-$cache = "/var/cache/e24/$account-$id.dump";
+$cache = "/var/cache/polynimbus/e24/$account-$id.dump";
 $data = array(
 	"ssh" => $name,
 	"region" => $region,

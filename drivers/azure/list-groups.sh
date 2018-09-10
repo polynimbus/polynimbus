@@ -7,7 +7,7 @@ if [ "$1" = "" ]; then
 fi
 
 region=$1
-file=/root/.azure/groups.$region.cache
+file=/var/cache/polynimbus/azure/groups.$region.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
 	az group list --query "[?location=='$region']" >$file
