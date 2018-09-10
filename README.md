@@ -99,11 +99,53 @@ Additional notes:
 
 Hostname of the new instance will be written on console, as soon as it's ready for provisioning.
 
-### Listing all configured accounts and cloud instances
+### Listing all configured accounts
 
 ```
 /opt/polynimbus/api/v1/all/list.sh
 ```
+
+### Listing cloud instances for given account
+
+```
+/opt/polynimbus/api/v1/instance/list.sh aws prod_account
+```
+
+
+## Instance list format
+
+`/opt/polynimbus/api/v1/instance/list.sh` and `/opt/polynimbus/api/v1/instance/create.sh` scripts return data in common format (`list.sh` returns all instances, one per line, while `create.sh` only the created one):
+
+```
+hostname/ip state ssh-key-name region instance-type instance-id system-id [optional fields]
+```
+
+Examples:
+
+```
+187.68.205.35.bc.googleusercontent.com running test2018 europe-west1-c f1-micro test2018-109f ubuntu-1804-lts
+
+static.4.3.2.1.clients.your-server.de running - fsn1-dc8 - hosting.yourcompany.com -
+```
+
+In fact, **all** fields are optional in some vendor drivers (`-` can be returned instead of value, if there's no way to find out the proper value).
+
+##### Field descriptions
+
+`hostname/ip` - either IP address, or full hostname if possible (for newly created, or terminated instances, `-` can be returned instead)
+
+`state` - `running` means that instance is ready for provisioning and work
+
+`ssh-key-name` - name of ssh key for the instance (can be mapped into full pathname using `/opt/polynimbus/api/v1/key/get-path.sh` script)
+
+`region` - region, in which instance is created (vendor-specific, eg. `eu-west-1`, `europe-west1-c`, `eastus`. `fsn1-dc8`)
+
+`instance-type` - instance type (vendor-specific, eg. `m5.xlarge`, `f1-micro`, `Standard_H8`)
+
+`instance-id` - unique instance identifier, that should be passed to other scripts operating on instances (vendor -specific)
+
+`system-id` - OS version (vendor=specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
+
 
 ## How to contribute
 
