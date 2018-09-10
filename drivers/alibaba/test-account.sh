@@ -12,5 +12,5 @@ account=$1
 result=`aliyuncli ecs DescribeRegions --profile $account |grep southeast`
 
 if [ "$result" = "" ]; then
-	echo "error: cloud account \"$1\" has invalid credentials"
+	echo "error: Alibaba Cloud account \"$1\" has invalid credentials"
 fi

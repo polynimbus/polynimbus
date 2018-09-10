@@ -14,5 +14,5 @@ account=$1
 result=`/opt/polynimbus/drivers/hetzner/support/hcloud image list |grep ubuntu`
 
 if [ "$result" = "" ]; then
-	echo "error: cloud account \"$1\" has invalid credentials"
+	echo "error: Hetzner Cloud account \"$1\" has invalid credentials"
 fi

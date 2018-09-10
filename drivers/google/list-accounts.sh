@@ -1,3 +1,5 @@
 #!/bin/sh
 
-echo "default"
+if [ -d /root/.config/gcloud ]; then
+	echo "default"
+fi

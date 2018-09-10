@@ -28,12 +28,13 @@ Polynimbus hides all semantic differences between all supported cloud platforms 
 /opt/polynimbus/api/v1
 |
 ├── all
-|   └── list.sh           # list all configured accounts for all vendors
+|   ├── list.sh           # list all configured accounts for all vendors
+|   └── test.sh           # test all configured accounts, if they are still valid (eg. from crontab)
 |
 ├── account
 |   ├── list.sh           # list all configured accounts for given vendor, eg. aws
 |   ├── setup.sh          # configure new account
-|   └── test.sh           # test if configured account is still valid (eg. from crontab)
+|   └── test.sh           # test if configured account is still valid
 |
 ├── image
 |   ├── list.sh           # list available Linux image names (in vendor-specific format)

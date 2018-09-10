@@ -12,5 +12,5 @@ account=$1
 result=`/opt/polynimbus/drivers/rackspace/support/rack servers flavor list --profile $account |grep onmetal`
 
 if [ "$result" = "" ]; then
-	echo "error: cloud account \"$1\" has invalid credentials"
+	echo "error: Rackspace Cloud account \"$1\" has invalid credentials"
 fi

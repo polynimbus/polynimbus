@@ -9,5 +9,5 @@ account=$1
 result=`/opt/polynimbus/drivers/e24/list-available-regions.php $account |grep poznan`
 
 if [ "$result" = "" ]; then
-	echo "error: cloud account \"$1\" has invalid credentials"
+	echo "error: e24cloud.com account \"$1\" has invalid credentials"
 fi

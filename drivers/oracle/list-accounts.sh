@@ -1,3 +1,5 @@
 #!/bin/sh
 
-echo "default"
+if [ -s /root/.oci/config ]; then
+	echo "default"
+fi
