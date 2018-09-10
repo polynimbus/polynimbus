@@ -144,7 +144,7 @@ In fact, **all** fields are optional in some vendor drivers (`-` can be returned
 
 `instance-id` - unique instance identifier, that should be passed to other scripts operating on instances (vendor -specific)
 
-`system-id` - OS version (vendor=specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
+`system-id` - Ubuntu version (vendor-specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
 
 
 ## How to contribute
