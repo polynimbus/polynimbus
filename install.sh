@@ -19,3 +19,8 @@ chmod 0700 /etc/polynimbus /var/cache/polynimbus
 /opt/polynimbus/drivers/hetzner/install.sh
 /opt/polynimbus/drivers/oracle/install.sh
 /opt/polynimbus/drivers/rackspace/install.sh
+
+if ! grep -q /opt/polynimbus/api/v1/all /etc/crontab; then
+	echo "setting up crontab entry"
+	echo "36 * * * * root /opt/polynimbus/api/v1/all/test.sh" >>/etc/crontab
+fi
