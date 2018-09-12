@@ -22,6 +22,27 @@ All supported vendors are well tested with Ubuntu 14.04 LTS, 16.04 LTS and 18.04
 Polynimbus hides all semantic differences between all supported cloud platforms and provides you a simple, clean and consistent API to deploy and manage Linux cloud instances.
 
 
+## Polynimbus vs Terraform
+
+Both Polynimbus and Terraform have similar capabilities, but completely different use cases.
+
+Terraform follows Infrastructure as Code philosophy, which works very well for single, bigger projects, where users need infrastructure versioning, and tight control over what's happening in many layers, combined into single tool. On the other hand, it's not suitable for IT oursourcing environments:
+- it is hard to use many cloud accounts at once (eg. 50 different AWS accounts for 50 different customers/projects)
+- it is based on static configuration files
+- syntax and semantic details of these files are different for each supported cloud vendor (so migration to other vendor/account is not easy)
+
+Polynimbus uses totally different approach:
+
+- the whole infrastructure management model is much more thin and dynamic - it acts as a simple resource pool, and doesn't try to cover other layers like DNS management or server/application provisioning  (it should be achieved by other elements of the whole infrastructure management stack, eg. Puppet, Chef, Ansible, Server Farmer, Salt etc.)
+- it uses exactly the same syntax and semantics for all supported cloud vendors (so switching to other vendor is just a matter of changing vendor and account names, no further code changes should be required)
+- it supports many cloud vendors and accounts at the same time (it is possible to actively use eg. 50 different AWS accounts and manage infrastructure for different customers/projects)
+
+##### TL;DR:
+
+- Terraform - to manage your own infrastructure (eg. as a corporation or startup)
+- Polynimbus - to manage infrastructure for many different customers (eg. as software house, or IT oursourcing company)
+
+
 ## Operations reference
 
 ```
