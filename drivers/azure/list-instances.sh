@@ -18,7 +18,7 @@ if [ "$2" = "--fqdn" ]; then
 	echo "$input" |awk '{ print $1 }'
 elif [ "$2" = "--name" ]; then
 	echo "$input" |awk '{ print $1 }' |cut -d. -f1
-else
+elif [ "$input" != "" ]; then
 	echo "$input"
 fi
 
