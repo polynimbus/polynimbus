@@ -27,4 +27,5 @@ image="`/opt/polynimbus/drivers/rackspace/get-ubuntu-image.sh $account`"
 	--flavor-id $type \
 	--keypair $key \
 	--image-name "$image" \
-	--profile $account
+	--profile $account \
+	|grep -v ^ID |awk '{ print $2 " - - - - - -" }'

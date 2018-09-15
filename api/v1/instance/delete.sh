@@ -8,4 +8,8 @@ elif [ ! -d /opt/polynimbus/drivers/$1 ]; then
 	exit 1
 fi
 
-/opt/polynimbus/drivers/$1/delete-instance.sh $2 $3
+if [ -x /opt/polynimbus/drivers/$1/delete-instance.php ]; then
+	/opt/polynimbus/drivers/$1/delete-instance.php $2 $3
+else
+	/opt/polynimbus/drivers/$1/delete-instance.sh $2 $3
+fi

@@ -1,6 +1,12 @@
 #!/usr/bin/php
 <?php
 
+$name = $argv[1];
+$type = $argv[2];
+$key = $argv[3];
+$region = $argv[4];
+$image = $argv[5];
+
 $fp = fopen("php://stdin", "r");
 
 while ($line = fgets($fp)) {
@@ -14,7 +20,7 @@ while ($line = fgets($fp)) {
 	else
 		$host = $ip;
 
-	echo "$host\n";
+	echo "$host pending $key $region $type $name $image\n";
 }
 
 fclose($fp);

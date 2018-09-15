@@ -20,8 +20,8 @@ foreach ($response->body->reservationSet->item as $item) {
 	$image = (string)$instance->imageId;
 	$state = (string)$instance->instanceState->name;
 
-	$sshkey = "-ssh";
-	$region = "-region";
+	$sshkey = "-";
+	$region = "-";
 	$cache  = "/var/cache/polynimbus/e24/$account-$id.dump";
 
 	if (file_exists($cache)) {
@@ -33,6 +33,9 @@ foreach ($response->body->reservationSet->item as $item) {
 			$region = $data["region"];
 		}
 	}
+
+	if (empty($host))
+		$host = "-";
 
 	echo "$host $state $sshkey $region $type $id $image\n";
 }

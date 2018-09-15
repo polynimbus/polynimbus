@@ -13,5 +13,8 @@ account=$1
 if [ "$2" != "--full" ]; then
 	/opt/polynimbus/drivers/rackspace/support/rack servers instance list --profile $account --output csv |grep -v "No result" |grep -v ^ID |cut -d, -f4
 else
-	/opt/polynimbus/drivers/rackspace/support/rack servers instance list --profile $account
+	/opt/polynimbus/drivers/rackspace/support/rack servers instance list --profile $account |sed s/ACTIVE/running/g
 fi
+
+# ID        Name            Status  Public IPv4     Private IPv4    Image   Flavor
+# GUID      my_server       ACTIVE  101.130.19.31   10.208.128.233  GUID    io1-30

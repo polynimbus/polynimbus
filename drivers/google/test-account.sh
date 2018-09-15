@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# TODO: detect trial account expiration
+
 if [ ! -d /root/.config/gcloud ] || [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
 	exit 0
 fi

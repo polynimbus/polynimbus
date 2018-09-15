@@ -23,8 +23,10 @@ aws ec2 run-instances \
 	--instance-type $type \
 	--image-id $amiid \
 	--key-name $key \
-	--security-groups default \
 	--enable-api-termination \
 	--associate-public-ip-address \
 	--count 1 \
 	|/opt/polynimbus/drivers/aws/internal/parse-reservation.php
+
+# example output:
+# - pending test2018 eu-west-1c t2.micro i-055ae98a6b04078a8 ami-00035f41c82244dab vpc-cb5815ae sg-3fd0565b

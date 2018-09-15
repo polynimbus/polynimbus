@@ -10,7 +10,7 @@ function execute($script, $param)
 function decode_instance($instance)
 {
 	$states = array(
-		"PROVISIONING" => "starting",
+		"PROVISIONING" => "pending",
 		"RUNNING" => "running",
 		"TERMINATED" => "terminated",
 		"TERMINATING" => "terminated",

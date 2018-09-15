@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-function decode_create($instance)
+function decode_create($instance, $type, $sku)
 {
 	$states = array(
 		"VM running" => "running",
@@ -16,8 +16,6 @@ function decode_create($instance)
 	$ip = $instance["publicIpAddress"];
 	$fqdn = $instance["fqdns"];
 	$zone = $instance["location"];
-	$type = "-";
-	$sku = "-";
 	$key = "-";
 
 	if (!empty($fqdn)) {
@@ -45,4 +43,4 @@ $instance = json_decode($json, true);
 if (is_null($instance))
 	die("error: $json\n");
 
-decode_create($instance);
+decode_create($instance, $argv[1], $argv[2]);

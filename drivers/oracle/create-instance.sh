@@ -43,3 +43,6 @@ oci compute instance launch \
 	--assign-public-ip true \
 	--subnet-id $subnet \
 	|/opt/polynimbus/drivers/oracle/internal/parse-create.php
+
+# example output:
+# - pending test2018 us-phoenix-1 VM.Standard1.1 ocid1.instance.oc1.phx.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678 18.04

@@ -64,6 +64,8 @@ Polynimbus uses totally different approach:
 ├── instance
 |   ├── list.sh           # list created instances (also created manually)
 |   ├── create.sh         # create new cloud instance
+|   ├── launch.sh         # create new cloud instance and wait until it's ready
+|   ├── wait.sh           # wait until newly created instance is ready
 |   ├── delete.sh         # delete instance
 |   └── provision.sh      # configure new instance (works also with all other servers)
 |
@@ -112,11 +114,11 @@ Additional notes:
 
 ## Example usage
 
-### Creating new cloud instance
+### Launching new cloud instance
 
 ```
-/opt/polynimbus/api/v1/instance/create.sh aws prod_account prod_key1 m5.2xlarge
-/opt/polynimbus/api/v1/instance/create.sh azure eastus testkey2 Standard_A2
+/opt/polynimbus/api/v1/instance/launch.sh aws prod_account prod_key1 m5.2xlarge
+/opt/polynimbus/api/v1/instance/launch.sh azure eastus testkey2 Standard_A2
 ```
 
 Hostname of the new instance will be written on console, as soon as it's ready for provisioning.
@@ -136,7 +138,7 @@ Hostname of the new instance will be written on console, as soon as it's ready f
 
 ## Instance list format
 
-`/opt/polynimbus/api/v1/instance/list.sh` and `/opt/polynimbus/api/v1/instance/create.sh` scripts return data in common format (`list.sh` returns all instances, one per line, while `create.sh` only the created one):
+`/opt/polynimbus/api/v1/instance/list.sh`, `/opt/polynimbus/api/v1/instance/create.sh`, `/opt/polynimbus/api/v1/instance/wait.sh` and `/opt/polynimbus/api/v1/instance/launch.sh` scripts return data in common format (`list.sh` returns all instances, one per line, while others only the created one):
 
 ```
 hostname/ip state ssh-key-name region instance-type instance-id system-id [optional fields]
@@ -147,7 +149,7 @@ Examples:
 ```
 187.68.205.35.bc.googleusercontent.com running test2018 europe-west1-c f1-micro test2018-109f ubuntu-1804-lts
 
-static.4.3.2.1.clients.your-server.de running - fsn1-dc8 - hosting.yourcompany.com -
+static.4.3.2.1.clients.your-server.de running test2018 fsn1-dc8 cx11 hosting.yourcompany.com ubuntu-18.04
 ```
 
 In fact, **all** fields are optional in some vendor drivers (`-` can be returned instead of value, if there's no way to find out the proper value).
@@ -161,6 +163,13 @@ In fact, **all** fields are optional in some vendor drivers (`-` can be returned
 - `instance-type` - instance type (vendor-specific, eg. `m5.xlarge`, `f1-micro`, `Standard_H8`)
 - `instance-id` - unique instance identifier, that should be passed to other scripts operating on instances (vendor-specific)
 - `system-id` - Ubuntu version (vendor-specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
+- vendor-specific optional fields, eg. VPC-id and list of security groups for AWS
+
+##### Possible instance states
+
+- `pending` - just created, not ready yet
+- `running`
+- `terminated`
 
 
 ## How to contribute

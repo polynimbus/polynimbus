@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$2" = "" ]; then
-	echo "usage: $0 <unused> <ssh-key-name>"
+	echo "usage: $0 <cloud-account> <ssh-key-name>"
 	exit 1
 fi
 

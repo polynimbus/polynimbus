@@ -13,4 +13,4 @@ account=$1
 
 /opt/polynimbus/drivers/hetzner/support/hcloud server list -o columns=ipv4,status,datacenter,name \
 	|grep -v ^IPV4 \
-	|/opt/polynimbus/drivers/hetzner/internal/parse-instances.php
+	|/opt/polynimbus/drivers/hetzner/internal/parse-instances.php $account

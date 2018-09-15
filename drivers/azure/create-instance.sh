@@ -18,7 +18,7 @@ if [ ! -f $pubkey ]; then
 fi
 
 group=`/opt/polynimbus/drivers/azure/get-group-name.sh $region`
-/opt/polynimbus/drivers/azure/create-group.sh $region $group
+/opt/polynimbus/drivers/azure/create-group.sh $region $group >/dev/null
 
 if [ "$3" != "" ]; then
 	type=$3
@@ -38,7 +38,7 @@ az vm create \
 	--image $AZURE_PUBLISHER:$AZURE_OFFER:$sku:latest \
 	--ssh-key-value $pubkey \
 	--output json \
-	2>&1 |/opt/polynimbus/drivers/azure/internal/parse-create.php
+	2>&1 |/opt/polynimbus/drivers/azure/internal/parse-create.php $type $sku
 
 # example output:
-# test1-7761.eastus.cloudapp.azure.com running test1 eastus - test1-7761 -
+# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-7761 18.04-LTS

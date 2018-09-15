@@ -18,5 +18,7 @@ else
 fi
 
 ami_id=`/opt/polynimbus/drivers/e24/get-ubuntu-image.sh $account`
-
 /opt/polynimbus/drivers/e24/internal/create-instance.php $account $2 $type $ami_id
+
+# example output:
+# - pending test2018 eu-poland-1poznan m1.small 5c7254cb-5cba-42a8-a481-aaaafc6e5919 ami-00000bb7
