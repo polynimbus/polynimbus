@@ -1,7 +1,7 @@
 #!/bin/bash
 # http://docs.aws.amazon.com/cli/latest/userguide/installing.html
 
-mkdir -p /etc/polynimbus/aws /var/cache/polynimbus/aws
+mkdir -p /etc/polynimbus/aws /var/cache/polynimbus/aws/tmp /var/cache/polynimbus/aws/describe-images
 
 if ! grep -q /opt/polynimbus/drivers/aws/cron /etc/crontab; then
 	echo "setting up crontab entry"

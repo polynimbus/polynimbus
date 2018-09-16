@@ -20,8 +20,12 @@ function aws_request($profile, $request)
 
 function aws_decode_reservation($reservation)
 {
+	$states = array(
+		"shutting-down" => "terminated",
+	);
+
 	foreach ($reservation["Instances"] as $instance) {
-		$state = $instance["State"]["Name"];
+		$state = str_replace(array_keys($states), array_values($states), $instance["State"]["Name"]);
 		$zone = $instance["Placement"]["AvailabilityZone"];
 		$type = $instance["InstanceType"];
 		$id = $instance["InstanceId"];

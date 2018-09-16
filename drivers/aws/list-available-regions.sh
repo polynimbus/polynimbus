@@ -9,4 +9,10 @@ elif [ ! -f /etc/polynimbus/aws/$1.sh ]; then
 fi
 
 account=$1
-aws --profile $account ec2 describe-regions |grep RegionName |awk '{ print $2 }' |sed s/\"//g |sort
+file=/var/cache/polynimbus/aws/tmp/regions-$account.cache
+
+if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
+	aws --profile $account ec2 describe-regions >$file
+fi
+
+grep RegionName $file |awk '{ print $2 }' |sed s/\"//g |sort
