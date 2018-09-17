@@ -38,7 +38,7 @@ az vm create \
 	--image $AZURE_PUBLISHER:$AZURE_OFFER:$sku:latest \
 	--ssh-key-value $pubkey \
 	--output json \
-	2>&1 |/opt/polynimbus/drivers/azure/internal/parse-create.php $type $sku
+	|/opt/polynimbus/drivers/azure/internal/parse-create.php $type $sku
 
 # example output:
 # test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-7761 18.04-LTS

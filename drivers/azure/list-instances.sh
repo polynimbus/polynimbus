@@ -9,7 +9,7 @@ region=$1
 file=/var/cache/polynimbus/azure/instances.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-2 minutes' +%s` ]; then
-	az vm list --show-details >$file 2>&1
+	az vm list --show-details >$file
 fi
 
 input=`cat $file |/opt/polynimbus/drivers/azure/internal/parse-instances.php |grep $region`
