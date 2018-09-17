@@ -67,8 +67,7 @@ Polynimbus uses totally different approach:
 |   ├── create.sh         # create new cloud instance
 |   ├── launch.sh         # create new cloud instance and wait until it's ready
 |   ├── wait.sh           # wait until newly created instance is ready
-|   ├── delete.sh         # delete instance
-|   └── provision.sh      # configure new instance (works also with all other servers)
+|   └── delete.sh         # delete instance
 |
 ├── instance-type
 |   └── list.sh           # list instance types (in vendor-specific format, eg. m5.2xlarge)
