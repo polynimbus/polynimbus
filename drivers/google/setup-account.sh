@@ -6,9 +6,8 @@ if [ "$1" != "default" ]; then
 	exit 1
 fi
 
-if [ "`which gcloud 2>/dev/null`" = "" ]; then
-	if [ -f '/root/google-cloud-sdk/path.bash.inc' ]; then . '/root/google-cloud-sdk/path.bash.inc'; fi
-	if [ -f '/root/google-cloud-sdk/completion.bash.inc' ]; then . '/root/google-cloud-sdk/completion.bash.inc'; fi
+if [ "`which gcloud 2>/dev/null`" = "" ] && [ -f /root/google-cloud-sdk/path.bash.inc ]; then
+	. /root/google-cloud-sdk/path.bash.inc
 fi
 
 if [ ! -d /root/.config/gcloud ]; then
