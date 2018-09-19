@@ -16,5 +16,5 @@ fi
 if [ "$2" = "--full" ]; then
 	cat $file
 else
-	grep '"name"' $file |awk '{ print $2 }' |sed -e s/\"//g -e s/,//g |sort
+	grep '"name"' $file |awk '{ print $2 }' |sed -e s/\"//g -e s/,//g |sort |sed -e "s/^/$AZURE_PUBLISHER:$AZURE_OFFER:/" -e "s/$/:latest/"
 fi

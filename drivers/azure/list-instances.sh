@@ -23,6 +23,6 @@ elif [ "$input" != "" ]; then
 fi
 
 # example full output:
-# test1-0143.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-0143 16.04.0-LTS
-# test1-1e3b.eastus.cloudapp.azure.com running test1 eastus Standard_A1 test1-1e3b 16.04.0-LTS
-# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A0 test1-7761 16.04.0-LTS
+# test1-0143.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-0143 Canonical:UbuntuServer:16.04.0-LTS:latest
+# test1-1e3b.eastus.cloudapp.azure.com running test1 eastus Standard_A1 test1-1e3b Canonical:UbuntuServer:16.04.0-LTS:latest
+# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A0 test1-7761 Canonical:UbuntuServer:16.04.0-LTS:latest

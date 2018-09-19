@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-function decode_create($instance, $type, $sku)
+function decode_create($instance, $type, $image)
 {
 	$states = array(
 		"VM running" => "running",
@@ -27,7 +27,7 @@ function decode_create($instance, $type, $sku)
 	else
 		$host = "-";
 
-	echo "$host $state $key $zone $type $id $sku\n";
+	echo "$host $state $key $zone $type $id $image\n";
 }
 
 

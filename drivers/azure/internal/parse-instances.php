@@ -18,7 +18,12 @@ function decode_instance($instance)
 	$fqdn = $instance["fqdns"];
 	$ip = $instance["publicIps"];
 	$id = basename($instance["id"]);
+
 	$sku = $instance["storageProfile"]["imageReference"]["sku"];
+	$offer = $instance["storageProfile"]["imageReference"]["offer"];
+	$publisher = $instance["storageProfile"]["imageReference"]["publisher"];
+	$version = $instance["storageProfile"]["imageReference"]["version"];
+	$image = "$publisher:$offer:$sku:$version";
 
 	$tmp = explode("-", $name);
 	$key = $tmp[0];
@@ -30,7 +35,7 @@ function decode_instance($instance)
 	else
 		$host = "-";
 
-	echo "$host $state $key $zone $type $id $sku\n";
+	echo "$host $state $key $zone $type $id $image\n";
 }
 
 

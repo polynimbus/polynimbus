@@ -26,7 +26,7 @@ else
 	type=$AZURE_DEFAULT_INSTANCE_TYPE
 fi
 
-sku=`/opt/polynimbus/drivers/azure/get-ubuntu-image.sh $region`
+image=`/opt/polynimbus/drivers/azure/get-ubuntu-image.sh $region`
 
 az vm create \
 	--name $alias \
@@ -35,10 +35,10 @@ az vm create \
 	--admin-username ubuntu \
 	--public-ip-address-dns-name $alias \
 	--location $region \
-	--image $AZURE_PUBLISHER:$AZURE_OFFER:$sku:latest \
+	--image $image \
 	--ssh-key-value $pubkey \
 	--output json \
-	|/opt/polynimbus/drivers/azure/internal/parse-create.php $type $sku
+	|/opt/polynimbus/drivers/azure/internal/parse-create.php $type $image
 
 # example output:
-# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-7761 18.04-LTS
+# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-7761 Canonical:UbuntuServer:18.04-LTS:latest
