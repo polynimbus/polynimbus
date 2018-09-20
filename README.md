@@ -72,7 +72,8 @@ Polynimbus uses totally different approach:
 |   └── delete.sh         # delete instance
 |
 ├── instance-type
-|   └── list.sh           # list instance types (in vendor-specific format, eg. m5.2xlarge)
+|   ├── list.sh           # list instance types (in vendor-specific format, eg. m5.2xlarge)
+|   └── get-default.sh    # get default instance type configured for given vendor/account
 |
 ├── key
 |   ├── list.sh           # list ssh keys uploaded to given vendor/account
