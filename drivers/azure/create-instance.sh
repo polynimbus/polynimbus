@@ -1,13 +1,16 @@
 #!/bin/sh
 . /etc/polynimbus/azure/default.sh
 
-if [ "$2" = "" ]; then
-	echo "usage: $0 <region> <ssh-key-name> [instance-type]"
+if [ "$4" = "" ]; then
+	echo "usage: $0 <region> <ssh-key-name> <instance-type> <image-name>"
 	exit 1
 fi
 
 region=$1
 key=$2
+type=$3
+image=$4
+
 pubkey=/etc/polynimbus/ssh/id_azure_$key.pub
 random=`date +%s |md5sum |head -c 4`
 alias=$key-$random
@@ -19,14 +22,6 @@ fi
 
 group=`/opt/polynimbus/drivers/azure/get-group-name.sh $region`
 /opt/polynimbus/drivers/azure/create-group.sh $region $group >/dev/null
-
-if [ "$3" != "" ]; then
-	type=$3
-else
-	type=$AZURE_DEFAULT_INSTANCE_TYPE
-fi
-
-image=`/opt/polynimbus/drivers/azure/get-ubuntu-image.sh $region`
 
 az vm create \
 	--name $alias \

@@ -1,8 +1,8 @@
 #!/bin/sh
 . /etc/polynimbus/google/default.sh
 
-if [ "$2" = "" ]; then
-	echo "usage: $0 <cloud-account> <ssh-key-name> [instance-type]"
+if [ "$4" = "" ]; then
+	echo "usage: $0 <cloud-account> <ssh-key-name> <instance-type> <image-name>"
 	exit 1
 elif [ "`which gcloud 2>/dev/null`" = "" ]; then
 	echo "error: gcloud command line client not found"
@@ -13,16 +13,11 @@ elif [ "$1" != "default" ]; then
 fi
 
 key=$2
+type=$3
+osver=$4
+
 random=`date +%s |md5sum |head -c 4`
 name=$key-$random
-
-if [ "$3" != "" ]; then
-	type=$3
-else
-	type=$GCE_DEFAULT_INSTANCE_TYPE
-fi
-
-osver=`/opt/polynimbus/drivers/google/get-ubuntu-image.sh`
 
 instance="$(gcloud compute instances create $name \
 	--image-family $osver \

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ "$2" = "" ]; then
-	echo "usage: $0 <cloud-account> <ssh-key-name> [instance-type]"
+if [ "$4" = "" ]; then
+	echo "usage: $0 <cloud-account> <ssh-key-name> <instance-type> <image-name>"
 	exit 1
 elif [ ! -f /etc/polynimbus/rackspace/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
@@ -10,17 +10,11 @@ fi
 
 account=$1
 key=$2
+type=$3
+image="$4"
 random=`date +%s |md5sum |head -c 4`
 
 . /etc/polynimbus/rackspace/$account.sh
-
-if [ "$3" != "" ]; then
-	type=$3
-else
-	type=$RACKSPACE_DEFAULT_INSTANCE_TYPE
-fi
-
-image="`/opt/polynimbus/drivers/rackspace/get-ubuntu-image.sh $account`"
 
 /opt/polynimbus/drivers/rackspace/support/rack servers instance create \
 	--name $key-$random \

@@ -1,22 +1,14 @@
 #!/bin/sh
 
-if [ "$2" = "" ]; then
-	echo "usage: $0 <cloud-account> <ssh-key-name> [instance-type]"
+if [ "$4" = "" ]; then
+	echo "usage: $0 <cloud-account> <ssh-key-name> <instance-type> <ami-id>"
 	exit 1
 fi
 
 account=$1
 key=$2
-
-. /etc/polynimbus/aws/$account.sh
-
-if [ "$3" != "" ]; then
-	type=$3
-else
-	type=$EC2_DEFAULT_INSTANCE_TYPE
-fi
-
-amiid=`/opt/polynimbus/drivers/aws/get-ubuntu-image.sh $account`
+type=$3
+amiid=$4
 
 aws ec2 run-instances \
 	--profile $account \
