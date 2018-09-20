@@ -8,8 +8,11 @@ elif [ ! -d /opt/polynimbus/drivers/$1 ]; then
 	exit 1
 fi
 
-if [ -x /opt/polynimbus/drivers/$1/list-instances.php ]; then
-	/opt/polynimbus/drivers/$1/list-instances.php $2
+vendor=$1
+shift
+
+if [ -x /opt/polynimbus/drivers/$vendor/list-instances.php ]; then
+	/opt/polynimbus/drivers/$vendor/list-instances.php $@
 else
-	/opt/polynimbus/drivers/$1/list-instances.sh $2
+	/opt/polynimbus/drivers/$vendor/list-instances.sh $@
 fi
