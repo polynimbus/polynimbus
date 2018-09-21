@@ -10,6 +10,10 @@ while ($line = fgets($fp))
 	$json .= $line;
 
 fclose($fp);
+
+if (empty($json))
+	die();
+
 $data = json_decode($json, true);
 
 if (is_null($data))

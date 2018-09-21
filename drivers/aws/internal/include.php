@@ -10,6 +10,10 @@ function aws_request($profile, $request)
 {
 	$aws = aws_client($profile);
 	$json = shell_exec("$aws $request");
+
+	if (empty($json))
+		return array();
+
 	$data = json_decode($json, true);
 
 	if (is_null($data))
