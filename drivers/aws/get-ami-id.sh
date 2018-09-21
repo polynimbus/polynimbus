@@ -7,13 +7,6 @@ if [ "$2" = "" ]; then
 fi
 
 region=$1
-distro=$2
+distro="$2"
 
-path=/var/cache/polynimbus/aws
-table=ubuntu-ec2-images.json
-
-if [ ! -s $path/$table ] || [ `stat -c %Y $path/$table` -le `date -d yesterday +%s` ]; then
-	/opt/polynimbus/drivers/aws/internal/download-ami-table.sh |/opt/polynimbus/common/save.sh $path $table
-fi
-
-cat $path/$table |grep hvm:ebs-ssd |grep amd64 |grep $region |grep "$distro" |egrep -o 'ami-[0-9a-f]{8,17}' |head -n1
+/opt/polynimbus/drivers/aws/list-ami-raw-data.sh |grep $region |grep "$distro" |egrep -o 'ami-[0-9a-f]{8,17}' |head -n1
