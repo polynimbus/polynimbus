@@ -21,6 +21,18 @@ function get_image_name($vendor, $image) {
 		return basename($data["Images"][0]["Name"]);
 }
 
+function get_account_link($vendor, $account) {
+	if ($vendor != "aws")
+		return $account;
+
+	$file = "/var/cache/polynimbus/inventory/users-aws-$account.list";
+	if (!file_exists($file))
+		return $account;
+
+	$enc = urlencode($account);
+	return "<a href=\"aws-account.php?account=$enc\">$account</a>";
+}
+
 
 require "include.php";
 page_header("Polynimbus - cloud instances inventory");
@@ -46,20 +58,13 @@ foreach ($lines as $line) {
 	if (empty($line))
 		continue;
 
-	$style = false;
 	$tmp = explode(" ", $line, 10);
 	$vendor = $tmp[0];
-	$account = $tmp[1];
+	$account = get_account_link($vendor, $tmp[1]);
 	$state = $tmp[3];
 	$image = get_image_name($vendor, $tmp[8]);
 
-	if ($state != "running")
-		$style = "background-color: #f4cccc;";
-
-	if ($vendor == "aws") {
-		$enc = urlencode($account);
-		$account = "<a href=\"aws-account.php?account=$enc\">$account</a>";
-	}
+	$style = ($state != "running" ? "background-color: #f4cccc;" : false);
 
 	table_row(array(
 		$vendor,
