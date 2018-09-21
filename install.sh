@@ -8,7 +8,7 @@ if [ "`which php 2>/dev/null`" = "" ]; then
 fi
 
 echo "setting up Polynimbus directories"
-mkdir -p   /etc/polynimbus /var/cache/polynimbus/ssh
+mkdir -p   /etc/polynimbus /var/cache/polynimbus/ssh /var/cache/polynimbus/inventory
 chmod 0700 /etc/polynimbus /var/cache/polynimbus
 
 /opt/polynimbus/drivers/alibaba/install.sh
@@ -23,4 +23,9 @@ chmod 0700 /etc/polynimbus /var/cache/polynimbus
 if ! grep -q /opt/polynimbus/api/v1/all /etc/crontab; then
 	echo "setting up crontab entry"
 	echo "36 * * * * root /opt/polynimbus/api/v1/all/test.sh" >>/etc/crontab
+fi
+
+if ! grep -q /opt/polynimbus/common /etc/crontab; then
+	echo "setting up crontab entry"
+	echo "42 * * * * root /opt/polynimbus/common/cron-inventory.sh" >>/etc/crontab
 fi
