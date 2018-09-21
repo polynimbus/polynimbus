@@ -126,6 +126,14 @@ Additional notes:
 
 Hostname of the new instance will be written on console, as soon as it's ready for provisioning.
 
+Parameters:
+
+- vendor name
+- account name
+- ssh key name (key will be created if not exists yet)
+- instance type (optional, vendor-specific, eg. `m5.xlarge`, `f1-micro`, `Standard_H8`)
+- image name (optional, vendor-specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
+
 ### Listing all configured accounts
 
 ```
@@ -165,7 +173,7 @@ In fact, **all** fields are optional in some vendor drivers (`-` can be returned
 - `region` - region, in which instance is created (vendor-specific, eg. `eu-west-1`, `europe-west1-c`, `eastus`. `fsn1-dc8`)
 - `instance-type` - instance type (vendor-specific, eg. `m5.xlarge`, `f1-micro`, `Standard_H8`)
 - `instance-id` - unique instance identifier, that should be passed to other scripts operating on instances (vendor-specific)
-- `system-id` - Ubuntu version (vendor-specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
+- `image-name` - Ubuntu (or other OS) version (vendor-specific, eg. `18.04-LTS`, `18.04`, `ubuntu-1804-lts`, `ami-0ee06eb8d6eebcde0`)
 - vendor-specific optional fields, eg. VPC-id and list of security groups for AWS
 
 ##### Possible instance states
