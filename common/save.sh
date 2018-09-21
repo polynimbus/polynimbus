@@ -13,10 +13,10 @@ file=$path/$2
 
 cat - >$file.new
 
-# Don't save empty files. And treat files up to 20 bytes as empty
+# Don't save empty files. And treat files up to 14 bytes as empty
 # (eg. empty configuration files, with a few newline characters only).
 
-if [ ! -s $file.new ] || [ `stat -c %s $file.new` -lt 20 ]; then
+if [ ! -s $file.new ] || [ `stat -c %s $file.new` -lt 14 ]; then
 	exit 0
 fi
 
