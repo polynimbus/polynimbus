@@ -32,8 +32,9 @@ while ($line = fgets($fp)) {
 
 	$type = execute("get-instance-type.sh", $account, $id);
 	$os = execute("get-instance-os.sh", $account, $id);
+	$date = execute("get-instance-created-date.sh", $account, $id);
 
-	echo "$host $state $key $location $type $id $os\n";
+	echo "$host $state $key $location $type $id $os $date -\n";
 }
 
 fclose($fp);

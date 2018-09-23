@@ -42,6 +42,8 @@ table_start("instances", array(
 	"account",
 	"hostname",
 	"state",
+	"created",
+	"label",
 	"ssh-key",
 	"location",
 	"instance-type",
@@ -58,7 +60,7 @@ foreach ($lines as $line) {
 	if (empty($line))
 		continue;
 
-	$tmp = explode(" ", $line, 10);
+	$tmp = explode(" ", $line, 12);
 	$vendor = $tmp[0];
 	$account = get_account_link($vendor, $tmp[1]);
 	$state = $tmp[3];
@@ -71,12 +73,14 @@ foreach ($lines as $line) {
 		$account,
 		$tmp[2],
 		$state,
+		$tmp[9],
+		str_replace(";", "<br />", $tmp[10]),
 		$tmp[4],
 		$tmp[5],
 		$tmp[6],
 		$tmp[7],
 		$image,
-		$tmp[9],
+		$tmp[11],
 	), $style);
 }
 

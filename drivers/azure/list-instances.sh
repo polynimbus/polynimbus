@@ -12,7 +12,7 @@ if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-2 minutes' +%s` ]; then
 	az vm list --show-details >$file
 fi
 
-input=`cat $file |/opt/polynimbus/drivers/azure/internal/parse-instances.php |grep $region`
+input=`cat $file |/opt/polynimbus/drivers/azure/internal/parse-instances.php /var/cache/polynimbus/azure/created.list |grep $region`
 
 if [ "$2" = "--fqdn" ]; then
 	echo "$input" |awk '{ print $1 }'
@@ -23,6 +23,6 @@ elif [ "$input" != "" ]; then
 fi
 
 # example full output:
-# test1-0143.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-0143 Canonical:UbuntuServer:16.04.0-LTS:latest
-# test1-1e3b.eastus.cloudapp.azure.com running test1 eastus Standard_A1 test1-1e3b Canonical:UbuntuServer:16.04.0-LTS:latest
-# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A0 test1-7761 Canonical:UbuntuServer:16.04.0-LTS:latest
+# test1-0143.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-0143 Canonical:UbuntuServer:16.04.0-LTS:latest 2018-06-17 -
+# test1-1e3b.eastus.cloudapp.azure.com running test1 eastus Standard_A1 test1-1e3b Canonical:UbuntuServer:16.04.0-LTS:latest 2018-06-17 -
+# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A0 test1-7761 Canonical:UbuntuServer:16.04.0-LTS:latest 2018-06-17 -

@@ -37,7 +37,9 @@ else
 	$host = "ip-" . str_replace(".", "-", $ip) . ".e24cloud.com";
 
 $region = read_variable($account, "E24_REGION");
-echo "$host $state $name $region $type $id $image\n";
+$date = date("Y-m-d");
+
+echo "$host $state $name $region $type $id $image $date -\n";
 
 
 $cache = "/var/cache/polynimbus/e24/$account-$id.dump";

@@ -37,8 +37,10 @@ function aws_decode_reservation($reservation)
 		$key = str_replace(" ", "_", $instance["KeyName"]);
 		$host = empty($instance["PublicDnsName"]) ? "-" : $instance["PublicDnsName"];
 		$vpcid = empty($instance["VpcId"]) ? "-" : $instance["VpcId"];
+		$created = substr($instance["LaunchTime"], 0, 10);
+		$tag = empty($instance["Tags"][0]["Value"]) ? "-" : str_replace(" ", "_", $instance["Tags"][0]["Value"]);
 
-		$descr = "$host $state $key $zone $type $id $imgid $vpcid";
+		$descr = "$host $state $key $zone $type $id $imgid $created $tag $vpcid";
 
 		foreach ($instance["SecurityGroups"] as $sg)
 			$descr .= " " . $sg["GroupId"];

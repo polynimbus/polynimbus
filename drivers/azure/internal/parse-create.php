@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-function decode_create($instance, $type, $image)
+function decode_create($instance, $type, $image, $date)
 {
 	$states = array(
 		"VM running" => "running",
@@ -27,7 +27,7 @@ function decode_create($instance, $type, $image)
 	else
 		$host = "-";
 
-	echo "$host $state $key $zone $type $id $image\n";
+	echo "$host $state $key $zone $type $id $image $date -\n";
 }
 
 
@@ -43,4 +43,5 @@ $instance = json_decode($json, true);
 if (is_null($instance))
 	die("error: $json\n");
 
-decode_create($instance, $argv[1], $argv[2]);
+$date = date("Y-m-d");
+decode_create($instance, $argv[1], $argv[2], $date);

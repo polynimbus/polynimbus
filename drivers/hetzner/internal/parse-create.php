@@ -7,6 +7,7 @@ $key = $argv[3];
 $region = $argv[4];
 $image = $argv[5];
 
+$date = date("Y-m-d");
 $fp = fopen("php://stdin", "r");
 
 while ($line = fgets($fp)) {
@@ -20,7 +21,7 @@ while ($line = fgets($fp)) {
 	else
 		$host = $ip;
 
-	echo "$host pending $key $region $type $name $image\n";
+	echo "$host pending $key $region $type $name $image $date -\n";
 }
 
 fclose($fp);

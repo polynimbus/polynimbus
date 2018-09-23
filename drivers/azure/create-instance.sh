@@ -35,5 +35,8 @@ az vm create \
 	--output json \
 	|/opt/polynimbus/drivers/azure/internal/parse-create.php $type $image
 
+dt=`date +%Y-%m-%d`
+echo "$alias $dt" >>/var/cache/polynimbus/azure/created.list
+
 # example output:
-# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-7761 Canonical:UbuntuServer:18.04-LTS:latest
+# test1-7761.eastus.cloudapp.azure.com running test1 eastus Standard_A2 test1-7761 Canonical:UbuntuServer:18.04-LTS:latest 2018-06-17 test-key=test-value;test-key2=test-value2

@@ -19,6 +19,7 @@ foreach ($response->body->reservationSet->item as $item) {
 	$host  = (string)$instance->dnsName;
 	$image = (string)$instance->imageId;
 	$state = (string)$instance->instanceState->name;
+	$date  = substr((string)$instance->launchTime, 0, 10);
 
 	$sshkey = "-";
 	$region = "-";
@@ -37,5 +38,5 @@ foreach ($response->body->reservationSet->item as $item) {
 	if (empty($host))
 		$host = "-";
 
-	echo "$host $state $sshkey $region $type $id $image\n";
+	echo "$host $state $sshkey $region $type $id $image $date -\n";
 }

@@ -18,6 +18,7 @@ function decode_instance($instance)
 	$system = basename($instance["disks"][0]["licenses"][0]);
 	$id = basename($instance["selfLink"]);
 	$ip = @$instance["networkInterfaces"][0]["accessConfigs"][0]["natIP"];
+	$created = substr($instance["creationTimestamp"], 0, 10);
 
 	$tmp = explode("-", $name);
 	$key = $tmp[0];
@@ -29,10 +30,15 @@ function decode_instance($instance)
 	else
 		$host = $ip;
 
-# example output:
-# 187.68.205.35.bc.googleusercontent.com running test2018 europe-west1-c f1-micro test2018-109f ubuntu-1804-lts
+	$labels = array();
+	foreach ($instance["labels"] as $lk => $lv)
+		$labels[] = "$lk=$lv";
+	$tags = empty($labels) ? "-" : str_replace(" ", "_", implode(";", $labels));
 
-	echo "$host $state $key $zone $type $id $system\n";
+# example output:
+# 187.68.205.35.bc.googleusercontent.com running test2018 europe-west1-c f1-micro test2018-109f ubuntu-1804-lts 2018-09-23 test-key=test-value;test-key2=test-value2
+
+	echo "$host $state $key $zone $type $id $system $created $tags\n";
 }
 
 

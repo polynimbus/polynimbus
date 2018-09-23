@@ -1,7 +1,32 @@
 #!/usr/bin/php
 <?php
 
-function decode_instance($instance)
+function replace_unicode($text) {
+	$unicode = array(
+		"\u017c" => "ż",
+		"\u00f3" => "ó",
+		"\u0142" => "ł",
+		"\u0107" => "ć",
+		"\u0119" => "ę",
+		"\u015b" => "ś",
+		"\u0105" => "ą",
+		"\u017a" => "ź",
+		"\u0144" => "ń",
+		"\u017b" => "Ż",
+		"\u00d3" => "Ó",
+		"\u0141" => "Ł",
+		"\u0106" => "Ć",
+		"\u0118" => "Ę",
+		"\u015a" => "Ś",
+		"\u0104" => "Ą",
+		"\u0179" => "Ź",
+		"\u0143" => "Ń",
+		" " => "_",
+	);
+	return str_replace(array_keys($unicode), array_values($unicode), $text);
+}
+
+function decode_instance($instance, $created)
 {
 	$states = array(
 		"VM running" => "running",
@@ -35,7 +60,17 @@ function decode_instance($instance)
 	else
 		$host = "-";
 
-	echo "$host $state $key $zone $type $id $image\n";
+	if (isset($created[$name]))
+		$date = $created[$name];
+	else
+		$date = "-";
+
+	$labels = array();
+	foreach ($instance["tags"] as $lk => $lv)
+		$labels[] = "$lk=$lv";
+	$tags = empty($labels) ? "-" : replace_unicode(implode(";", $labels));
+
+	echo "$host $state $key $zone $type $id $image $date $tags\n";
 }
 
 
@@ -51,5 +86,18 @@ $data = json_decode($json, true);
 if (is_null($data))
 	die("error: $json\n");
 
+
+$lines = explode("\n", file_get_contents($argv[1]));
+$created = array();
+
+foreach ($lines as $line) {
+	$line = trim($line);
+	if (empty($line))
+		continue;
+
+	$tmp = explode(" ", $line);
+	$created[$tmp[0]] = $tmp[1];
+}
+
 foreach ($data as $instance)
-	decode_instance($instance);
+	decode_instance($instance, $created);

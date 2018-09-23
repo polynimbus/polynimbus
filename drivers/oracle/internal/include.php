@@ -32,6 +32,7 @@ function decode_instance($instance)
 	$zone = str_replace(array_keys($zones), array_values($zones), $instance["region"]);
 	$type = $instance["shape"];
 	$name = $instance["display-name"];
+	$created = substr($instance["time-created"], 0, 10);
 
 	$rawkey = $instance["metadata"]["ssh_authorized_keys"];
 	$tmp = explode(" ", $rawkey);
@@ -47,5 +48,10 @@ function decode_instance($instance)
 	if (empty($version))
 		$version = $image;
 
-	echo "$host $state $key $zone $type $id $version\n";
+	$labels = array();
+	foreach ($instance["freeform-tags"] as $lk => $lv)
+		$labels[] = "$lk=$lv";
+	$tags = empty($labels) ? "-" : str_replace(" ", "_", implode(";", $labels));
+
+	echo "$host $state $key $zone $type $id $version $created $tags\n";
 }
