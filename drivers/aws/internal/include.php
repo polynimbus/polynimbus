@@ -34,7 +34,7 @@ function aws_decode_reservation($reservation)
 		$type = $instance["InstanceType"];
 		$id = $instance["InstanceId"];
 		$imgid = $instance["ImageId"];
-		$key = str_replace(" ", "_", $instance["KeyName"]);
+		$key = empty($instance["KeyName"]) ? "-" : str_replace(" ", "_", $instance["KeyName"]);
 		$host = empty($instance["PublicDnsName"]) ? "-" : $instance["PublicDnsName"];
 		$vpcid = empty($instance["VpcId"]) ? "-" : $instance["VpcId"];
 		$created = substr($instance["LaunchTime"], 0, 10);
