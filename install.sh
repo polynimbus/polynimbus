@@ -23,11 +23,6 @@ chown www-data:www-data /var/cache/polynimbus/inventory
 /opt/polynimbus/drivers/oracle/install.sh
 /opt/polynimbus/drivers/rackspace/install.sh
 
-chmod 0700 /var/cache/polynimbus/*
-chmod 0710 /var/cache/polynimbus/aws
-chmod 0700 /var/cache/polynimbus/aws/tmp
-chown root:www-data /var/cache/polynimbus/aws
-
 if ! grep -q /opt/polynimbus/common /etc/crontab; then
 	echo "setting up crontab entries"
 	echo "36 * * * * root /opt/polynimbus/common/cron-test-accounts.sh" >>/etc/crontab
