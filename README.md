@@ -12,6 +12,7 @@ Polynimbus is a multi-cloud infrastructure management tool. It allows full lifec
 - Beyond e24cloud.com
 - Google Cloud Platform
 - Hetzner Cloud
+- Hetzner Online (classic dedicated servers)
 - Microsoft Azure
 - Oracle Cloud
 - Rackspace Cloud
@@ -97,7 +98,7 @@ git clone https://github.com/polynimbus/polynimbus /opt/polynimbus
 ```
 
 where:
-- `yourvendor` is one of: `alibaba`, `aws`, `azure`, `e24`, `google`, `hetzner`, `oracle` or `rackspace`
+- `yourvendor` is one of: `alibaba`, `aws`, `azure`, `e24`, `google`, `hetzner`, `oracle`, `rackspace` or `robot`
 - `youraccount` is the name of your configured account (or region name in case of `azure`)
 
 Once you finished the initial setup, you can always manually edit files inside `/etc/polynimbus` directory to make sure that your vendor is properly configured.
@@ -113,6 +114,8 @@ Additional notes:
 4. `alibaba` vendor driver doesn't support creating and deleting instances yet, and listing existing instances works only in full details mode.
 
 5. `oracle` vendor driver requires manual installation of OCI client software (details [here](drivers/oracle/README.md)).
+
+6. `robot` (Hetzner Online) is read-only.
 
 
 ## Example usage
