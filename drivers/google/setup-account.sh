@@ -28,9 +28,13 @@ else   # $account != default
 		exit 1
 	fi
 
-	gcloud config configurations create $account
-	gcloud init
-	gcloud config configurations activate default
+	if [ "`gcloud config configurations list |grep ^$account`" != "" ]; then
+		echo "warning: account $account already configured"
+	else
+		gcloud config configurations create $account
+		gcloud init
+		gcloud config configurations activate default
+	fi
 fi
 
 if [ -f /etc/polynimbus/google/$account.sh ]; then
