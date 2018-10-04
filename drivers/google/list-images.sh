@@ -4,4 +4,13 @@ if [ "`which gcloud 2>/dev/null`" = "" ] && [ -f /root/google-cloud-sdk/path.bas
 	. /root/google-cloud-sdk/path.bash.inc
 fi
 
-gcloud compute images list |grep -v windows-
+if [ "$1" = "" ]; then
+	echo "usage: $0 <cloud-account>"
+	exit 1
+elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
+	echo "error: cloud account \"$1\" not configured"
+	exit 1
+fi
+
+account=$1
+gcloud compute images list --configuration $account |grep -v windows-

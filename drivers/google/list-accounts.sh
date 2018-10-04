@@ -1,5 +1,5 @@
 #!/bin/sh
 
 if [ -d /root/.config/gcloud ]; then
-	echo "default"
+	ls /root/.config/gcloud/configurations |sed s/config_//g
 fi

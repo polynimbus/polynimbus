@@ -1,24 +1,39 @@
 #!/bin/bash
 . /opt/polynimbus/common/functions
 
-if [ "$1" != "default" ]; then
-	echo "error: multiple accounts are not supported by Google Cloud driver"
-	exit 1
-fi
-
 if [ "`which gcloud 2>/dev/null`" = "" ] && [ -f /root/google-cloud-sdk/path.bash.inc ]; then
 	. /root/google-cloud-sdk/path.bash.inc
 fi
 
-if [ ! -d /root/.config/gcloud ]; then
+if [ "$1" = "" ]; then
+	echo "usage: $0 <cloud-account>"
+	exit 1
+fi
+
+account=$1
+if [ "$account" = "default" ]; then
+
+	if [ ! -d /root/.config/gcloud ]; then
+		gcloud init
+	fi
+
+	if [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
+		gcloud auth login
+	fi
+
+else   # $account != default
+
+	if [ ! -d /root/.config/gcloud ] || [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
+		echo "error: first configuration profile must be called \"default\""
+		exit 1
+	fi
+
+	gcloud config configurations create $account
 	gcloud init
+	gcloud config configurations activate default
 fi
 
-if [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
-	gcloud auth login
-fi
-
-if [ -f /etc/polynimbus/google/default.sh ]; then
+if [ -f /etc/polynimbus/google/$account.sh ]; then
 	exit 0
 fi
 
@@ -27,12 +42,6 @@ DEFAULT_INSTANCE_TYPE="`input \"enter Google Compute Engine default instance typ
 
 mkdir -p /etc/polynimbus/google
 echo "#!/bin/sh
-#
-# Google Compute Engine requires \"gcloud\" command line client, a part of
-# Google Cloud SDK. This tool, as opposite to command line clients for other
-# cloud services, doesn't support multiple profiles.
-#
-############################################################################
 #
 # Default region to use:
 #
@@ -46,5 +55,5 @@ export GCE_PROJECT=ubuntu-os-cloud
 # (use list-instance-types.sh script to discover all instance types):
 #
 export GCE_DEFAULT_INSTANCE_TYPE=$DEFAULT_INSTANCE_TYPE
-" >/etc/polynimbus/google/default.sh
-chmod 0600 /etc/polynimbus/google/default.sh
+" >/etc/polynimbus/google/$account.sh
+chmod 0600 /etc/polynimbus/google/$account.sh

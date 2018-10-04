@@ -105,7 +105,7 @@ Once you finished the initial setup, you can always manually edit files inside `
 
 Additional notes:
 
-1. `azure`, `google` and `oracle` vendor drivers support having only one account configured at the same time, however `azure` allows operating on each region as separate pseudo-account.
+1. `azure` and `oracle` vendor drivers support having only one account configured at the same time, however `azure` allows operating on each region as separate pseudo-account.
 
 2. For `azure` and `google`, the setup process needs browser interaction.
 
@@ -115,7 +115,9 @@ Additional notes:
 
 5. `oracle` vendor driver requires manual installation of OCI client software (details [here](drivers/oracle/README.md)).
 
-6. `robot` (Hetzner Online) is read-only.
+6. `google` vendor driver requires that the first configured account has to be called `default`.
+
+7. `robot` (Hetzner Online) is read-only.
 
 
 ## Example usage
