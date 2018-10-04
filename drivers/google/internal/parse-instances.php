@@ -5,6 +5,7 @@ function decode_instance($instance)
 {
 	$states = array(
 		"RUNNING" => "running",
+		"TERMINATED" => "terminated",
 	);
 
 	if (empty($instance["status"]))
