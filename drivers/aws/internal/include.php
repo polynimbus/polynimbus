@@ -40,6 +40,9 @@ function aws_decode_reservation($reservation)
 		$created = substr($instance["LaunchTime"], 0, 10);
 		$tag = empty($instance["Tags"][0]["Value"]) ? "-" : str_replace(" ", "_", $instance["Tags"][0]["Value"]);
 
+		if ($key == "-" && strpos($tag, "Batch_Instance") !== false)
+			continue;
+
 		$descr = "$host $state $key $zone $type $id $imgid $created $tag $vpcid";
 
 		foreach ($instance["SecurityGroups"] as $sg)
