@@ -41,4 +41,4 @@ gcloud compute instances add-metadata $id \
 echo $instance
 
 # example output:
-# 230.201.241.35.bc.googleusercontent.com running test2018 europe-west1-c n1-standard-1 test2018-7f19 ubuntu-1804-lts
+# 230.201.241.35.bc.googleusercontent.com running test2018 europe-west1-c n1-standard-1 test2018-7f19 ubuntu-1804-lts 2018-09-23 test-key=test-value;test-key2=test-value2 my-project

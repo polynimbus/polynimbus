@@ -4,8 +4,8 @@ if [ "`which gcloud 2>/dev/null`" = "" ] && [ -f /root/google-cloud-sdk/path.bas
 	. /root/google-cloud-sdk/path.bash.inc
 fi
 
-if [ "$1" = "" ]; then
-	echo "usage: $0 <cloud-account>"
+if [ "$2" = "" ]; then
+	echo "usage: $0 <cloud-account> <project>"
 	exit 1
 elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
@@ -13,7 +13,6 @@ elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
 fi
 
 account=$1
-project=`/opt/polynimbus/drivers/google/get-configured-project.sh $account`
-
-gcloud compute instances list --configuration $account --format json \
-	|/opt/polynimbus/drivers/google/internal/parse-instances.php $project
+project=$2
+gcloud projects get-iam-policy $project --configuration $account --format json \
+	|/opt/polynimbus/drivers/google/internal/parse-iam-policy.php

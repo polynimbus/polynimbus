@@ -11,3 +11,9 @@ for account in $accounts; do
 	/opt/polynimbus/drivers/aws/list-users.php $account \
 		|/opt/polynimbus/common/save.sh /var/cache/polynimbus/inventory users-aws-$account.list
 done
+
+projects=`/opt/polynimbus/drivers/google/list-projects.sh default`
+for project in $projects; do
+	/opt/polynimbus/drivers/google/list-users.sh default $project \
+		|/opt/polynimbus/common/save.sh /var/cache/polynimbus/inventory users-google-$project.list
+done

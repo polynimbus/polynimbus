@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-function decode_instance($instance)
+function decode_instance($instance, $project)
 {
 	$states = array(
 		"RUNNING" => "running",
@@ -37,9 +37,9 @@ function decode_instance($instance)
 	$tags = empty($labels) ? "-" : str_replace(" ", "_", implode(";", $labels));
 
 # example output:
-# 187.68.205.35.bc.googleusercontent.com running test2018 europe-west1-c f1-micro test2018-109f ubuntu-1804-lts 2018-09-23 test-key=test-value;test-key2=test-value2
+# 187.68.205.35.bc.googleusercontent.com running test2018 europe-west1-c f1-micro test2018-109f ubuntu-1804-lts 2018-09-23 test-key=test-value;test-key2=test-value2 my-project
 
-	echo "$host $state $key $zone $type $id $system $created $tags\n";
+	echo "$host $state $key $zone $type $id $system $created $tags $project\n";
 }
 
 
@@ -56,4 +56,4 @@ if (is_null($data))
 	die("error: $json\n");
 
 foreach ($data as $instance)
-	decode_instance($instance);
+	decode_instance($instance, $argv[1]);
