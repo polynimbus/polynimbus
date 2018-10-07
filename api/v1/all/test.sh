@@ -6,6 +6,6 @@
 for vendor in `ls /opt/polynimbus/drivers |egrep -v "(azure|google)"`; do
 	ACCS=`/opt/polynimbus/api/v1/account/list.sh $vendor`
 	for account in $ACCS; do
-		/opt/polynimbus/drivers/$vendor/test-account.sh $account
+		/opt/polynimbus/api/v1/account/test.sh $vendor $account
 	done
 done
