@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # don't try to install php-cli automatically - there are
 # too many different versions and possible configurations
@@ -27,4 +27,5 @@ if ! grep -q /opt/polynimbus/common /etc/crontab; then
 	echo "setting up crontab entries"
 	echo "36 * * * * root /opt/polynimbus/common/cron-test-accounts.sh" >>/etc/crontab
 	echo "42 * * * * root /opt/polynimbus/common/cron-inventory.sh" >>/etc/crontab
+	echo "$((RANDOM%60)) 8 * * * root /opt/polynimbus/common/cron-daily.sh" >>/etc/crontab
 fi
