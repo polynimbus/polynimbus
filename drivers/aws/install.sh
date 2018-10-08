@@ -5,6 +5,7 @@ mkdir -p /etc/polynimbus/aws /var/cache/polynimbus/aws/tmp /var/cache/polynimbus
 chown root:www-data /var/cache/polynimbus/aws
 chmod 0710 /var/cache/polynimbus/aws
 chmod 0700 /var/cache/polynimbus/aws/tmp
+touch      /var/cache/polynimbus/aws/list-users.blacklist
 
 # TODO: this will work on Debian/Ubuntu only
 REL=`lsb_release -cs`

@@ -6,13 +6,13 @@
 /opt/polynimbus/drivers/aws/internal/download-instance-types.sh \
 	|/opt/polynimbus/common/save.sh /var/cache/polynimbus/aws ec2-instance-types.html
 
-accounts=`/opt/polynimbus/drivers/aws/list-accounts.sh`
+accounts=`/opt/polynimbus/drivers/aws/list-accounts.sh |grep -vxFf /var/cache/polynimbus/aws/list-users.blacklist`
 for account in $accounts; do
 	/opt/polynimbus/drivers/aws/list-users.php $account \
 		|/opt/polynimbus/common/save.sh /var/cache/polynimbus/inventory users-aws-$account.list
 done
 
-projects=`/opt/polynimbus/drivers/google/list-projects.sh default`
+projects=`/opt/polynimbus/drivers/google/list-projects.sh default |grep -vxFf /var/cache/polynimbus/google/get-iam-policy.blacklist`
 for project in $projects; do
 	/opt/polynimbus/drivers/google/list-users.sh default $project \
 		|/opt/polynimbus/common/save.sh /var/cache/polynimbus/inventory users-google-$project.list
