@@ -26,5 +26,6 @@ if [ ! -f $file ]; then
 fi
 
 if [ -s $file ] && [ "$3" != "--quiet" ]; then
-	basename `grep '"Name":' $file |awk '{ print $2 }' |sed -e s/\"//g -e s/,//g`
+	image=`grep '"Name":' $file |awk '{ print $2 }' |sed -e s/\"//g -e s/,//g`
+	echo ${image##*/}
 fi
