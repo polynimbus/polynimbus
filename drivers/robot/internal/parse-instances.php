@@ -12,6 +12,18 @@ function execute($script, $account, $param)
 
 $account = $argv[1];
 
+$lines = explode("\n", file_get_contents($argv[2]));
+$created = array();
+
+foreach ($lines as $line) {
+	$line = trim($line);
+	if (empty($line))
+		continue;
+
+	$tmp = explode(" ", $line);
+	$created[$tmp[0]] = $tmp[1];
+}
+
 $fp = fopen("php://stdin", "r");
 
 while ($line = fgets($fp)) {
@@ -37,6 +49,9 @@ while ($line = fgets($fp)) {
 
 	if ($label == "")
 		$label = "-";
+
+	if (isset($created[$id]))
+		$date = $created[$id];
 
 	echo "$host $state $key $location $type $id $os $date $label\n";
 }
