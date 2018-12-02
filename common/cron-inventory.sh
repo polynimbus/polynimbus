@@ -5,6 +5,9 @@ out=/var/cache/polynimbus/inventory
 /opt/polynimbus/api/v1/all/list-instances.sh 2>/dev/null \
 	|/opt/polynimbus/common/save.sh $out instances.list
 
+/opt/polynimbus/api/v1/all/list-databases.sh 2>/dev/null \
+	|/opt/polynimbus/common/save.sh $out databases.list
+
 
 # stderr is NOT redirected to /dev/null, so expect to receive a lot of errors like that:
 #
