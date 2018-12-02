@@ -1,9 +1,5 @@
 <?php
 
-$file = "/var/cache/polynimbus/inventory/instances.list";
-$date = date("Y-m-d H:i:s", filemtime($file));
-
-
 function get_image_name($vendor, $image) {
 	if ($vendor != "aws")
 		return $image;
@@ -21,20 +17,12 @@ function get_image_name($vendor, $image) {
 		return basename($data["Images"][0]["Name"]);
 }
 
-function get_account_link($vendor, $account) {
-	if ($vendor != "aws")
-		return $account;
 
-	$file = "/var/cache/polynimbus/inventory/users-aws-$account.list";
-	if (!file_exists($file))
-		return $account;
-
-	$enc = urlencode($account);
-	return "<a href=\"aws-account.php?account=$enc\">$account</a>";
-}
-
+$file = "/var/cache/polynimbus/inventory/instances.list";
+$date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include.php";
+require "include-acl.php";
 page_header("Polynimbus - cloud instances inventory");
 echo "<strong>List of all cloud instances as of $date</strong><br />\n";
 table_start("instances", array(
@@ -49,7 +37,8 @@ table_start("instances", array(
 	"instance-type",
 	"instance-id",
 	"image-name",
-	"optional",
+	"net",
+	"ssh-acl",
 ));
 
 $data = file_get_contents($file);
@@ -60,7 +49,7 @@ foreach ($lines as $line) {
 	if (empty($line))
 		continue;
 
-	$tmp = explode(" ", $line, 12);
+	$tmp = explode(" ", $line, 13);
 	$vendor = $tmp[0];
 	$account = get_account_link($vendor, $tmp[1]);
 	$state = $tmp[3];
@@ -81,6 +70,7 @@ foreach ($lines as $line) {
 		$tmp[7],
 		$image,
 		$tmp[11],
+		map_acl_to_ranges($vendor, $tmp[1], 22, $tmp[12]),
 	), $style);
 }
 
