@@ -1,13 +1,13 @@
 <?php
 
-function get_aws_sg_link($account, $text) {
+function get_aws_sg_link($account, $sg) {
 	$file = "/var/cache/polynimbus/inventory/acl-aws-$account.json";
 	if (!file_exists($file))
-		return $account;
+		return $sg;
 
 	$enc1 = urlencode($account);
-	$enc2 = urlencode($text);
-	return "<a href=\"aws-security-group.php?account=$enc1&group=$enc2\">$text</a>";
+	$enc2 = urlencode($sg);
+	return "<a href=\"aws-security-group.php?account=$enc1&group=$enc2\">$sg</a>";
 }
 
 function aws_load_acls($account, $port) {

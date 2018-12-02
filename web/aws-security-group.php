@@ -17,7 +17,7 @@ $json = file_get_contents($file);
 $data = json_decode($json, true);
 
 
-require "include.php";
+require "include/page.php";
 page_header("Polynimbus - AWS security group details");
 echo "AWS account <a href=\"aws-account.php?account=$enc\"><strong>$account</strong></a>, security group <strong>$group</strong> as of $date:<br />\n";
 

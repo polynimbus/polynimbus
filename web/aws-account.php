@@ -11,7 +11,7 @@ if (!file_exists($file))
 	die("Invalid account...");
 
 
-require "include.php";
+require "include/page.php";
 page_header("Polynimbus - AWS account details");
 echo "AWS account <strong>$account</strong> user list:<br />\n";
 table_start("users", array("username", "created"));

@@ -21,8 +21,8 @@ function get_image_name($vendor, $image) {
 $file = "/var/cache/polynimbus/inventory/instances.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
-require "include.php";
-require "include-acl.php";
+require "include/page.php";
+require "include/acl.php";
 page_header("Polynimbus - cloud instances inventory");
 echo "<strong>List of all cloud instances as of $date</strong><br />\n";
 table_start("instances", array(

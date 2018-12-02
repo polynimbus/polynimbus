@@ -3,8 +3,8 @@
 $file = "/var/cache/polynimbus/inventory/databases.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
-require "include.php";
-require "include-acl.php";
+require "include/page.php";
+require "include/acl.php";
 page_header("Polynimbus - cloud databases inventory");
 echo "<strong>List of all cloud databases as of $date</strong><br />\n";
 table_start("databases", array(
