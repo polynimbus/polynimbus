@@ -19,9 +19,13 @@ foreach ($data["ResourceRecordSets"] as $set) {
 	$name = substr($set["Name"], 0, -1);
 	$name = str_replace("\\052", "*", $name);
 
-	foreach ($set["ResourceRecords"] as $record)
-		if ($ttl == 300)
-			echo sprintf("%-69s %-10s%s\n", $name, $type, $record["Value"]);
-		else
-			echo sprintf("%-62s %6s %-10s%s\n", $name, $ttl, $type, $record["Value"]);
+	if (isset($set["AliasTarget"]))
+		echo sprintf("%-69s %-10s%s\n", $name, "CNAME", $set["AliasTarget"]["DNSName"]);
+
+	else if (isset($set["ResourceRecords"]))
+		foreach ($set["ResourceRecords"] as $record)
+			if ($ttl == 300)
+				echo sprintf("%-69s %-10s%s\n", $name, $type, $record["Value"]);
+			else
+				echo sprintf("%-62s %6s %-10s%s\n", $name, $ttl, $type, $record["Value"]);
 }
