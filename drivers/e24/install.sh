@@ -1,5 +1,7 @@
 #!/bin/sh
 
+/opt/polynimbus/common/install-packages.sh php-curl php-simplexml
+
 mkdir -p /etc/polynimbus/e24 /var/cache/polynimbus/e24
 chmod 0700 /var/cache/polynimbus/e24
 
