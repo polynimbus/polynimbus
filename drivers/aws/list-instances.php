@@ -7,6 +7,9 @@ if ($argc < 2)
 
 $data = aws_request($argv[1], "ec2 describe-instances");
 
+if (empty($data["Reservations"]))
+	die();
+
 foreach ($data["Reservations"] as $reservation) {
 	aws_decode_reservation($reservation);
 }

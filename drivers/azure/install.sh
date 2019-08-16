@@ -3,6 +3,7 @@
 
 mkdir -p /etc/polynimbus/azure /var/cache/polynimbus/azure
 chmod 0700 /var/cache/polynimbus/azure
+touch /var/cache/polynimbus/azure/created.list
 
 KEY="https://packages.microsoft.com/keys/microsoft.asc"
 echo "checking for Microsoft Azure repository"

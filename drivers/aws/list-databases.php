@@ -7,10 +7,13 @@ if ($argc < 2)
 
 $data = aws_request($argv[1], "rds describe-db-instances");
 
+if (empty($data["DBInstances"]))
+	die();
+
 foreach ($data["DBInstances"] as $instance) {
 	$id = $instance["DBInstanceIdentifier"];
 	$dbuser = $instance["MasterUsername"];
-	$dbname = $instance["DBName"];
+	$dbname = isset($instance["DBName"]) ? $instance["DBName"] : "-";
 	$dbhost = $instance["Endpoint"]["Address"];
 	$dbport = $instance["Endpoint"]["Port"];
 	$vpcid = $instance["DBSubnetGroup"]["VpcId"];
