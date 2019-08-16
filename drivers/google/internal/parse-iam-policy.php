@@ -10,7 +10,7 @@ while ($line = fgets($fp))
 fclose($fp);
 $data = json_decode($json, true);
 
-if (is_null($data))
+if (is_null($data) || !isset($data["bindings"]) || !is_array($data["bindings"]))
 	die();
 
 foreach ($data["bindings"] as $binding) {
