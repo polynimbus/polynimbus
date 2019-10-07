@@ -16,7 +16,7 @@ account=$1
 . /etc/polynimbus/google/$account.sh
 
 if [ "$2" = "--full" ]; then
-	gcloud compute machine-types list --configuration $account |egrep "($GCE_REGION|DEPRECATED)"
+	gcloud compute machine-types list --configuration $account --quiet |egrep "($GCE_REGION|DEPRECATED)"
 else
-	gcloud compute machine-types list --configuration $account |grep $GCE_REGION |awk '{ print $1 }'
+	gcloud compute machine-types list --configuration $account --quiet |grep $GCE_REGION |awk '{ print $1 }'
 fi

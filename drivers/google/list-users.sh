@@ -14,5 +14,5 @@ fi
 
 account=$1
 project=$2
-gcloud projects get-iam-policy $project --configuration $account --format json \
+gcloud projects get-iam-policy $project --configuration $account --format json --quiet \
 	|/opt/polynimbus/drivers/google/internal/parse-iam-policy.php

@@ -50,10 +50,14 @@ while ($line = fgets($fp))
 	$json .= $line;
 
 fclose($fp);
+
+if (empty($json))
+	die();
+
 $data = json_decode($json, true);
 
 if (is_null($data))
-	die("error: $json\n");
+	die("$json\n");
 
 foreach ($data as $instance)
 	decode_instance($instance, $argv[1]);

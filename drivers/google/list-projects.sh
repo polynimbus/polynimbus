@@ -15,7 +15,7 @@ fi
 account=$1
 
 if [ "$2" = "--full" ]; then
-	gcloud projects list --configuration $account |grep -v PROJECT_ID
+	gcloud projects list --configuration $account --quiet |grep -v PROJECT_ID
 else
-	gcloud projects list --configuration $account |grep -v PROJECT_ID |awk '{ print $1 }'
+	gcloud projects list --configuration $account --quiet |grep -v PROJECT_ID |awk '{ print $1 }'
 fi

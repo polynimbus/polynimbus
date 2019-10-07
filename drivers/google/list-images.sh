@@ -13,4 +13,4 @@ elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
 fi
 
 account=$1
-gcloud compute images list --configuration $account |grep -v windows-
+gcloud compute images list --configuration $account --quiet |grep -v windows-

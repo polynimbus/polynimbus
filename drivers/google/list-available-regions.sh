@@ -15,7 +15,7 @@ fi
 account=$1
 
 if [ "$2" = "--full" ]; then
-	gcloud compute regions list --configuration $account
+	gcloud compute regions list --configuration $account --quiet
 else
-	gcloud compute regions list --configuration $account |awk '{ print $1 }' |grep -v ^NAME
+	gcloud compute regions list --configuration $account --quiet |awk '{ print $1 }' |grep -v ^NAME
 fi
