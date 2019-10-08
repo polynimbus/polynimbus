@@ -13,13 +13,24 @@ for account in $accounts; do
 	for G in `cat $out/groups-aws-$account.list |cut -d' ' -f1`; do
 		/opt/polynimbus/drivers/aws/list-policies.php $account group $G \
 			|/opt/polynimbus/common/save.sh 0 $out policies-aws-$account-group-$G.list
+
+		for D in `grep ^: $out/policies-aws-$account-group-$G.list |cut -d: -f2-`; do
+			/opt/polynimbus/drivers/aws/get-policy-document.php $account group $G $D \
+				|/opt/polynimbus/common/save.sh 0 $out policy-aws-$account-group-$G-$D.list
+		done
 	done
 
 	for U in `cat $out/users-aws-$account.list |cut -d' ' -f1`; do
-		/opt/polynimbus/drivers/aws/list-policies.php $account user $U \
-			|/opt/polynimbus/common/save.sh 0 $out policies-aws-$account-user-$U.list
 		/opt/polynimbus/drivers/aws/list-iam-groups.php $account $U \
 			|/opt/polynimbus/common/save.sh 0 $out groups-aws-$account-$U.list
+
+		/opt/polynimbus/drivers/aws/list-policies.php $account user $U \
+			|/opt/polynimbus/common/save.sh 0 $out policies-aws-$account-user-$U.list
+
+		for D in `grep ^: $out/policies-aws-$account-user-$U.list |cut -d: -f2-`; do
+			/opt/polynimbus/drivers/aws/get-policy-document.php $account user $U $D \
+				|/opt/polynimbus/common/save.sh 0 $out policy-aws-$account-user-$U-$D.list
+		done
 	done
 done
 
