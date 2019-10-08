@@ -1,22 +1,23 @@
 #!/bin/sh
 
-if [ "$2" = "" ]; then
-	echo "usage: save.sh <base-directory> <filename>"
+if [ "$3" = "" ]; then
+	echo "usage: save.sh <minimal-size> <base-directory> <filename>"
 	exit 1
 fi
 
-path=$1
-file=$path/$2
+size=$1
+path=$2
+file=$path/$3
 
 # First write new file as *.new - so the previous version is still in
 # place and will be overwritten only if the new version is not empty.
 
 cat - >$file.new
 
-# Don't save empty files. And treat files up to 14 bytes as empty
+# Don't save empty files. And treat files up to $size bytes as empty
 # (eg. empty configuration files, with a few newline characters only).
 
-if [ ! -s $file.new ] || [ `stat -c %s $file.new` -lt 14 ]; then
+if [ $size != 0 ] && [ ! -s $file.new ] || [ `stat -c %s $file.new` -lt $size ]; then
 	exit 0
 fi
 
@@ -32,5 +33,5 @@ copy=$path/$year/${year}${mon}/${year}${mon}${day}
 # all previous) are stored inside the directory structure.
 
 mkdir -p $copy
-ln -f $file.new $copy/$2
+ln -f $file.new $copy/$3
 mv -f $file.new $file 2>/dev/null
