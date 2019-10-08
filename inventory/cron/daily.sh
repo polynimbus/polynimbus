@@ -11,12 +11,12 @@ for account in $accounts; do
 		|/opt/polynimbus/common/save.sh 0 $out groups-aws-$account.list
 
 	for G in `cat $out/groups-aws-$account.list |cut -d' ' -f1`; do
-		/opt/polynimbus/drivers/aws/list-attached-policies.php $account group $G \
+		/opt/polynimbus/drivers/aws/list-policies.php $account group $G \
 			|/opt/polynimbus/common/save.sh 0 $out policies-aws-$account-group-$G.list
 	done
 
 	for U in `cat $out/users-aws-$account.list |cut -d' ' -f1`; do
-		/opt/polynimbus/drivers/aws/list-attached-policies.php $account user $U \
+		/opt/polynimbus/drivers/aws/list-policies.php $account user $U \
 			|/opt/polynimbus/common/save.sh 0 $out policies-aws-$account-user-$U.list
 		/opt/polynimbus/drivers/aws/list-iam-groups.php $account $U \
 			|/opt/polynimbus/common/save.sh 0 $out groups-aws-$account-$U.list
