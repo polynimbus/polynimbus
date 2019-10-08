@@ -8,11 +8,7 @@ if [ "`which php 2>/dev/null`" = "" ]; then
 fi
 
 echo "setting up Polynimbus directories"
-mkdir -p   /etc/polynimbus /var/cache/polynimbus/ssh /var/cache/polynimbus/inventory
-chmod 0700 /etc/polynimbus
-chmod 0710 /var/cache/polynimbus
-chown root:www-data /var/cache/polynimbus
-chown www-data:www-data /var/cache/polynimbus/inventory
+mkdir -p -m 0700 /etc/polynimbus /var/cache/polynimbus/ssh
 
 /opt/polynimbus/drivers/alibaba/install.sh
 /opt/polynimbus/drivers/aws/install.sh
@@ -25,7 +21,6 @@ chown www-data:www-data /var/cache/polynimbus/inventory
 
 if ! grep -q /opt/polynimbus/common /etc/crontab; then
 	echo "setting up crontab entries"
-	echo "36 * * * * root /opt/polynimbus/common/cron-test-accounts.sh" >>/etc/crontab
-	echo "42 * * * * root /opt/polynimbus/common/cron-inventory.sh" >>/etc/crontab
+	echo "$((RANDOM%60)) */8 * * * root /opt/polynimbus/common/cron-test-accounts.sh" >>/etc/crontab
 	echo "$((RANDOM%60)) 8 * * * root /opt/polynimbus/common/cron-daily.sh" >>/etc/crontab
 fi
