@@ -33,6 +33,7 @@ foreach ($lines as $line) {
 	$permissions = array();
 
 	$data2 = file_get_contents("$path/policies-aws-$account-user-$username.list");
+	$data2 = str_replace("IAMUserChangePassword\n", "", $data2);
 	if (!empty($data2))
 		$permissions[] = str_replace("\n", "<br />", $data2);
 
