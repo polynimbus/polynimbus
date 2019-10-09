@@ -43,7 +43,7 @@ foreach ($lines as $line) {
 		$data2 = file_get_contents("$path/policies-aws-$account-group-$groupname.list");
 		if (!empty($data2)) {
 			$data2 = get_aws_inline_policy_link($data2, $account, "group", $groupname);
-			$permissions[] = "<b>[$groupname]</b><br />\n".str_replace("\n", "<br />", $data2);
+			$permissions[] = "<b>[$groupname]</b><br />".str_replace("\n", "<br />", $data2);
 		}
 	}
 
