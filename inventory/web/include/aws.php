@@ -9,8 +9,10 @@ function highlight_critical_aws_policies($text) {
 		"Billing",
 	);
 
-	foreach ($highlight as $word)
+	foreach ($highlight as $word) {
+		$text = preg_replace("#>$word<#", "><font color=\"red\">$word</font><", $text);
 		$text = preg_replace("#^$word<#", "<font color=\"red\">$word</font><", $text);
+	}
 	return $text;
 }
 
