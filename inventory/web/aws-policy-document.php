@@ -7,10 +7,10 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 } else
 	die("Missing arguments...");
 
-if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["user"], $tmp)) {
+if (preg_match('/^([a-zA-Z0-9.@_-]+)$/', $_GET["user"], $tmp)) {
 	$type = "user";
 	$name = $tmp[1];
-} else if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["group"], $tmp)) {
+} else if (preg_match('/^([a-zA-Z0-9.@_-]+)$/', $_GET["group"], $tmp)) {
 	$type = "group";
 	$name = $tmp[1];
 } else

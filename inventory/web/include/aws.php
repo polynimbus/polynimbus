@@ -6,6 +6,7 @@ function highlight_critical_aws_policies($text) {
 		"AmazonEC2FullAccess",
 		"EC2InstanceConnect",
 		"AWSKeyManagementServicePowerUser",
+		"IAMFullAccess",
 		"Billing",
 	);
 
