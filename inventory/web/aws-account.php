@@ -5,8 +5,6 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp))
 else
 	die("Missing arguments...");
 
-$highlight = array("AdministratorAccess", "AmazonEC2FullAccess", "EC2InstanceConnect", "AWSKeyManagementServicePowerUser", "Billing");
-
 $path = "/var/cache/polynimbus/inventory";
 $file = "$path/users-aws-$account.list";
 
@@ -17,6 +15,7 @@ $date = date("Y-m-d H:i:s", filemtime($file));
 $data = file_get_contents($file);
 $lines = explode("\n", $data);
 
+require "include/aws.php";
 require "include/page.php";
 page_header("Polynimbus - AWS account details");
 echo "AWS account <strong>$account</strong> user list as of $date:<br />\n";
@@ -34,28 +33,22 @@ foreach ($lines as $line) {
 
 	$data2 = file_get_contents("$path/policies-aws-$account-user-$username.list");
 	$data2 = str_replace("IAMUserChangePassword\n", "", $data2);
-	if (!empty($data2))
-		$permissions[] = str_replace("\n", "<br />", $data2);
-
-	$data2 = file_get_contents("$path/groups-aws-$account-$username.list");
 	if (!empty($data2)) {
-		$lines2 = explode("\n", $data2);
-		foreach ($lines2 as $line2) {
-			$tmp = explode(" ", $line2);
-			$groupname = $tmp[0];
+		$data2 = get_aws_inline_policy_link($data2, $account, "user", $username);
+		$permissions[] = str_replace("\n", "<br />", $data2);
+	}
 
-			$data3 = file_get_contents("$path/policies-aws-$account-group-$groupname.list");
-			if (!empty($data3)) {
-				$lines3 = explode("\n", $data3);
-				array_unshift($lines3, "<b>[$groupname]</b>");
-				$permissions[] = implode("<br />", $lines3);
-			}
+	$groups = first_column_as_list("$path/groups-aws-$account-$username.list");
+	foreach ($groups as $groupname) {
+		$data2 = file_get_contents("$path/policies-aws-$account-group-$groupname.list");
+		if (!empty($data2)) {
+			$data2 = get_aws_inline_policy_link($data2, $account, "group", $groupname);
+			$permissions[] = "<b>[$groupname]</b><br />\n".str_replace("\n", "<br />", $data2);
 		}
 	}
 
 	$permissions_text = implode("<br />", $permissions);
-	foreach ($highlight as $word)
-		$permissions_text = preg_replace("#$word#", "<font color=\"red\">$word</font>", $permissions_text);
+	$permissions_text = highlight_critical_aws_policies($permissions_text);
 	table_row(array($username, $created, $permissions_text));
 }
 

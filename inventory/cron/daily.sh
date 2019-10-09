@@ -16,7 +16,7 @@ for account in $accounts; do
 
 		for D in `grep ^: $out/policies-aws-$account-group-$G.list |cut -d: -f2-`; do
 			/opt/polynimbus/drivers/aws/get-policy-document.php $account group $G $D \
-				|/opt/polynimbus/common/save.sh 0 $out policy-aws-$account-group-$G-$D.list
+				|/opt/polynimbus/common/save.sh 2 $out policy-aws-$account-group-$G-$D.json
 		done
 	done
 
@@ -29,7 +29,7 @@ for account in $accounts; do
 
 		for D in `grep ^: $out/policies-aws-$account-user-$U.list |cut -d: -f2-`; do
 			/opt/polynimbus/drivers/aws/get-policy-document.php $account user $U $D \
-				|/opt/polynimbus/common/save.sh 0 $out policy-aws-$account-user-$U-$D.list
+				|/opt/polynimbus/common/save.sh 2 $out policy-aws-$account-user-$U-$D.json
 		done
 	done
 done
