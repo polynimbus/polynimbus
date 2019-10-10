@@ -10,10 +10,8 @@ function highlight_critical_aws_policies($text) {
 		"Billing",
 	);
 
-	foreach ($highlight as $word) {
+	foreach ($highlight as $word)
 		$text = preg_replace("#>$word<#", "><font color=\"red\">$word</font><", $text);
-		$text = preg_replace("#^$word<#", "<font color=\"red\">$word</font><", $text);
-	}
 	return $text;
 }
 
@@ -37,5 +35,14 @@ function first_column_as_list($file) {
 function get_aws_inline_policy_link($text, $account, $type, $name) {
 	$enc1 = urlencode($account);
 	$enc2 = urlencode($name);
-	return preg_replace("#:(.*)#", "<a href=\"aws-policy-document.php?account=$enc1&$type=$enc2&policy=\\1\">\\1</a>", $text);
+	$out = array();
+	$lines = explode("\n", $text);
+	foreach ($lines as $line) {
+		if (substr($line, 0, 1) == ":") {
+			$out[] = preg_replace("#:(.*)#", "<a href=\"aws-policy-document.php?account=$enc1&$type=$enc2&policy=\\1\">\\1</a>*", $line);
+		} else {
+			$out[] = preg_replace("#(.*)#", "<a href=\"aws-policy-document.php?account=$enc1&policy=\\1\">\\1</a>", $line);
+		}
+	}
+	return implode("\n", $out);
 }

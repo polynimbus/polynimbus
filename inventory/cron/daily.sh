@@ -10,26 +10,48 @@ for account in $accounts; do
 	/opt/polynimbus/drivers/aws/list-iam-groups.php $account \
 		|/opt/polynimbus/common/save.sh 0 $out groups-aws-$account.list
 
-	for G in `cat $out/groups-aws-$account.list |cut -d' ' -f1`; do
-		/opt/polynimbus/drivers/aws/list-policies.php $account group $G \
-			|/opt/polynimbus/common/save.sh 0 $out policies-aws-$account-group-$G.list
+	/opt/polynimbus/drivers/aws/list-managed-policies.sh $account >/dev/null
 
-		for D in `grep ^: $out/policies-aws-$account-group-$G.list |cut -d: -f2-`; do
+	for G in `cat $out/groups-aws-$account.list |cut -d' ' -f1`; do
+		policies=policies-aws-$account-group-$G.list
+
+		/opt/polynimbus/drivers/aws/list-policies.php $account group $G \
+			|/opt/polynimbus/common/save.sh 0 $out $policies
+
+		for D in `grep ^: $out/$policies |cut -d: -f2-`; do
 			/opt/polynimbus/drivers/aws/get-policy-document.php $account group $G $D \
 				|/opt/polynimbus/common/save.sh 2 $out policy-aws-$account-group-$G-$D.json
+		done
+
+		for D in `grep -v ^: $out/$policies`; do
+			file=policy-aws-$account-managed-$D.json
+			if [ ! -s $out/$file ] || [ `stat -c %Y $out/$file` -le `date -d '-4 hours' +%s` ]; then
+				/opt/polynimbus/drivers/aws/get-policy-document.php $account managed - $D \
+					|/opt/polynimbus/common/save.sh 2 $out $file
+			fi
 		done
 	done
 
 	for U in `cat $out/users-aws-$account.list |cut -d' ' -f1`; do
+		policies=policies-aws-$account-user-$U.list
+
 		/opt/polynimbus/drivers/aws/list-iam-groups.php $account $U \
 			|/opt/polynimbus/common/save.sh 0 $out groups-aws-$account-$U.list
 
 		/opt/polynimbus/drivers/aws/list-policies.php $account user $U \
-			|/opt/polynimbus/common/save.sh 0 $out policies-aws-$account-user-$U.list
+			|/opt/polynimbus/common/save.sh 0 $out $policies
 
-		for D in `grep ^: $out/policies-aws-$account-user-$U.list |cut -d: -f2-`; do
+		for D in `grep ^: $out/$policies |cut -d: -f2-`; do
 			/opt/polynimbus/drivers/aws/get-policy-document.php $account user $U $D \
 				|/opt/polynimbus/common/save.sh 2 $out policy-aws-$account-user-$U-$D.json
+		done
+
+		for D in `grep -v ^: $out/$policies`; do
+			file=policy-aws-$account-managed-$D.json
+			if [ ! -s $out/$file ] || [ `stat -c %Y $out/$file` -le `date -d '-4 hours' +%s` ]; then
+				/opt/polynimbus/drivers/aws/get-policy-document.php $account managed - $D \
+					|/opt/polynimbus/common/save.sh 2 $out $file
+			fi
 		done
 	done
 done
