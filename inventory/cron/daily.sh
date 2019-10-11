@@ -76,8 +76,11 @@ for account in $accounts; do
 done
 
 
-projects=`/opt/polynimbus/drivers/google/list-projects.sh default |grep -vxFf /var/cache/polynimbus/google/get-iam-policy.blacklist`
-for project in $projects; do
+/opt/polynimbus/drivers/google/list-projects.sh default \
+	|grep -vxFf /var/cache/polynimbus/google/get-iam-policy.blacklist \
+	|/opt/polynimbus/common/save.sh 0 $out projects-google.list
+
+for project in `cat $out/projects-google.list`; do
 	/opt/polynimbus/drivers/google/list-users.sh default $project \
 		|/opt/polynimbus/common/save.sh 14 $out users-google-$project.list
 done
