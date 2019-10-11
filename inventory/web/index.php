@@ -8,7 +8,7 @@ page_header("Polynimbus: the future of the cloud");
 
 ?>
 <div style="font-size:13px;">
-<img src="assets/logo.png" alt="Polynimbus" style="max-width:20%;"></a>
+<img src="assets/logo.png" alt="Polynimbus" style="max-width:20%;">
 <br />
 <br />
 Available resources:
