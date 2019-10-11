@@ -2,8 +2,11 @@
 
 out=/var/cache/polynimbus/inventory
 
-accounts=`/opt/polynimbus/drivers/aws/list-accounts.sh |grep -vxFf /var/cache/polynimbus/aws/list-users.blacklist`
-for account in $accounts; do
+/opt/polynimbus/drivers/aws/list-accounts.sh \
+	|grep -vxFf /var/cache/polynimbus/aws/list-users.blacklist \
+	|/opt/polynimbus/common/save.sh 0 $out projects-aws.list
+
+for account in `cat $out/projects-aws.list`; do
 	/opt/polynimbus/drivers/aws/list-users.php $account \
 		|/opt/polynimbus/common/save.sh 14 $out users-aws-$account.list
 
