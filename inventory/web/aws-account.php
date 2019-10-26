@@ -15,6 +15,9 @@ $date = date("Y-m-d H:i:s", filemtime($file));
 $data = file_get_contents($file);
 $lines = explode("\n", $data);
 
+$policies = file_get_contents("$path/policies-aws-$account.list");
+$policies = preg_replace("#(.*) IAMUserChangePassword#", "", $policies);
+
 require "include/aws.php";
 require "include/page.php";
 page_header("Polynimbus - AWS account details");
@@ -31,20 +34,15 @@ foreach ($lines as $line) {
 	$created = $tmp[1];
 	$permissions = array();
 
-	$data2 = file_get_contents("$path/policies-aws-$account-user-$username.list");
-	$data2 = str_replace("IAMUserChangePassword\n", "", $data2);
-	if (!empty($data2)) {
-		$data2 = get_aws_inline_policy_link($data2, $account, "user", $username);
+	$data2 = get_aws_policy_link($policies, $account, "user", $username);
+	if (!empty($data2))
 		$permissions[] = str_replace("\n", "<br />", $data2);
-	}
 
-	$groups = first_column_as_list("$path/groups-aws-$account-$username.list");
+	$groups = get_aws_groups_for_user("$path/membership-aws-$account.list", $username);
 	foreach ($groups as $groupname) {
-		$data2 = file_get_contents("$path/policies-aws-$account-group-$groupname.list");
-		if (!empty($data2)) {
-			$data2 = get_aws_inline_policy_link($data2, $account, "group", $groupname);
-			$permissions[] = "<b>[$groupname]</b><br />".str_replace("\n", "<br />", $data2);
-		}
+		$data2 = get_aws_policy_link($policies, $account, "group", $groupname);
+		$space = empty($permissions) ? "" : "<br />";
+		$permissions[] = "$space<b>[$groupname]</b><br />".str_replace("\n", "<br />", $data2);
 	}
 
 	$permissions_text = implode("<br />", $permissions);

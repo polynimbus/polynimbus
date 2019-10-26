@@ -27,9 +27,12 @@ $data = file_get_contents($file);
 $lines = explode("\n", $data);
 
 foreach ($lines as $line) {
-	$account = trim($line);
-	if (empty($account))
+	$line = trim($line);
+	if (empty($line))
 		continue;
+
+	$tmp = explode(" ", $line, 2);
+	$account = $tmp[0];
 
 	$link = get_account_link("aws", $account);
 	echo "<li>$link</li>\n";
