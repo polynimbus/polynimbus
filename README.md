@@ -52,8 +52,8 @@ Polynimbus uses totally different approach:
 /opt/polynimbus/api/v1
 |
 ├── all
+|   ├── list-vendors.sh   # list all vendors
 |   ├── list-accounts.sh  # list all configured accounts for all vendors
-|   ├── list-instances.sh # list all launched instances for all vendors and accounts
 |   └── test.sh           # test all configured accounts, if they are still valid (eg. from crontab)
 |
 ├── account

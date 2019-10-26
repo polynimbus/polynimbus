@@ -10,14 +10,9 @@ fi
 echo "setting up Polynimbus directories"
 mkdir -p -m 0700 /etc/polynimbus /var/cache/polynimbus/ssh
 
-/opt/polynimbus/drivers/alibaba/install.sh
-/opt/polynimbus/drivers/aws/install.sh
-/opt/polynimbus/drivers/azure/install.sh
-/opt/polynimbus/drivers/e24/install.sh
-/opt/polynimbus/drivers/google/install.sh
-/opt/polynimbus/drivers/hetzner/install.sh
-/opt/polynimbus/drivers/oracle/install.sh
-/opt/polynimbus/drivers/rackspace/install.sh
+for vendor in `ls /opt/polynimbus/drivers`; do
+	/opt/polynimbus/drivers/$vendor/install.sh
+done
 
 if ! grep -q /opt/polynimbus/common /etc/crontab; then
 	echo "setting up crontab entries"
