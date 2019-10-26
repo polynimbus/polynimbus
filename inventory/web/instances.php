@@ -70,7 +70,7 @@ foreach ($lines as $line) {
 		$tmp[7],
 		$image,
 		$tmp[11],
-		map_acl_to_ranges($vendor, $tmp[1], 22, $tmp[12]),
+		map_acl_to_ranges($vendor, $tmp[1], $tmp[5], 22, $tmp[12]),
 	), $style);
 }
 

@@ -43,8 +43,9 @@ foreach ($lines as $line) {
 	$engine = $tmp[7];
 	$dbport = $tmp[3];
 
-	// TODO: more conditions for mysql, aurora and possibly other cases
 	if ($engine == "postgres" && $dbport == 5432)
+		$dbhost = $tmp[2];
+	else if (($engine == "mysql" || $engine == "aurora-mysql") && $dbport == 3306)
 		$dbhost = $tmp[2];
 	else
 		$dbhost = $tmp[2].":$dbport";
@@ -57,14 +58,14 @@ foreach ($lines as $line) {
 		$tmp[5],  // user
 		$state,
 		$tmp[7],  // engine
-		$tmp[8],  // version
+		str_replace("mysql_aurora", "ma", $tmp[8]),  // version
 		$tmp[9],  // storage
 		$tmp[10], // size
 		$tmp[11], // zone
 		$tmp[12], // type
 		$tmp[13], // id
 		$tmp[14], // created
-		map_acl_to_ranges($vendor, $tmp[1], $dbport, $tmp[16]),
+		map_acl_to_ranges($vendor, $tmp[1], $tmp[11], $dbport, $tmp[16]),
 	), $style);
 }
 

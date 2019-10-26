@@ -3,11 +3,16 @@
 require_once "/opt/polynimbus/drivers/aws/internal/include.php";
 
 if ($argc < 2)
-	die("usage: $argv[0] <cloud-account> [--raw]\n");
+	die("usage: $argv[0] <cloud-account> [region] [--raw]\n");
 
-$data = aws_request($argv[1], "ec2 describe-security-groups");
+if ($argc > 2 && $argv[2] != "--raw") {
+	$_region = escapeshellarg($argv[2]);
+	$data = aws_request($argv[1], "ec2 describe-security-groups --region $_region");
+} else {
+	$data = aws_request($argv[1], "ec2 describe-security-groups");
+}
 
-if ($argc > 2 && $argv[2] == "--raw") {
+if (@$argv[2] == "--raw" || @$argv[3] == "--raw") {
 	echo json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)."\n";
 	die();
 }

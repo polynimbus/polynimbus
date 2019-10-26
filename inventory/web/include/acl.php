@@ -1,19 +1,20 @@
 <?php
 
-function get_aws_sg_link($account, $sg) {
-	$file = "/var/cache/polynimbus/inventory/acl-aws-$account.json";
+function get_aws_sg_link($account, $region, $sg) {
+	$file = "/var/cache/polynimbus/inventory/acl-aws-$account-$region.json";
 	if (!file_exists($file))
 		return $sg;
 
 	$enc1 = urlencode($account);
-	$enc2 = urlencode($sg);
-	return "<a href=\"aws-security-group.php?account=$enc1&group=$enc2\">$sg</a>";
+	$enc2 = urlencode($region);
+	$enc3 = urlencode($sg);
+	return "<a href=\"aws-security-group.php?account=$enc1&region=$enc2&group=$enc3\">$sg</a>";
 }
 
-function aws_load_acls($account, $port) {
+function aws_load_acls($account, $region, $port) {
 	$out = array();
 
-	$file = "/var/cache/polynimbus/inventory/acl-aws-$account.json";
+	$file = "/var/cache/polynimbus/inventory/acl-aws-$account-$region.json";
 	$json = file_get_contents($file);
 	$data = json_decode($json, true);
 
@@ -39,14 +40,14 @@ function aws_load_acls($account, $port) {
 	return $out;
 }
 
-function aws_map_acl_to_ranges($account, $port, $acl_raw) {
+function aws_map_acl_to_ranges($account, $region, $port, $acl_raw) {
 	$out = array();
 	$acls = explode(" ", $acl_raw);
-	$sg = aws_load_acls($account, $port);
+	$sg = aws_load_acls($account, $region, $port);
 
 	foreach ($acls as $acl) {
 		$list = $sg[$acl];
-		$tmp = get_aws_sg_link($account, $acl);
+		$tmp = get_aws_sg_link($account, $region, $acl);
 		foreach ($list as $ip)
 			$tmp .= "<br />$ip";
 		$out[] = $tmp;
@@ -55,9 +56,9 @@ function aws_map_acl_to_ranges($account, $port, $acl_raw) {
 	return implode("<br /><br />", $out);
 }
 
-function map_acl_to_ranges($vendor, $account, $port, $acl_raw) {
+function map_acl_to_ranges($vendor, $account, $region, $port, $acl_raw) {
 	if ($vendor != "aws")
 		return str_replace(" ", "<br />", $acl_raw);
 	else
-		return aws_map_acl_to_ranges($account, $port, $acl_raw);
+		return aws_map_acl_to_ranges($account, substr($region, 0, -1), $port, $acl_raw);
 }

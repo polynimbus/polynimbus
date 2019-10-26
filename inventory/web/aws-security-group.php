@@ -1,13 +1,15 @@
 <?php
 
-if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('/^(sg-[a-fA-F0-9]+)$/', $_GET["group"], $tmp2)) {
+if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('/^([a-z]{2}-[a-z]{4,9}-[0-9]{1})$/', $_GET["region"], $tmp2) && preg_match('/^(sg-[a-fA-F0-9]+)$/', $_GET["group"], $tmp3)) {
 	$account = $tmp1[1];
-	$group = $tmp2[1];
-	$enc = urlencode($account);
+	$region = $tmp2[1];
+	$group = $tmp3[1];
+	$enc1 = urlencode($account);
+	$enc2 = urlencode($region);
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/inventory/acl-aws-$account.json";
+$file = "/var/cache/polynimbus/inventory/acl-aws-$account-$region.json";
 
 if (!file_exists($file))
 	die("Invalid account...");
@@ -19,12 +21,12 @@ $data = json_decode($json, true);
 
 require "include/page.php";
 page_header("Polynimbus - AWS security group details");
-echo "AWS account <a href=\"aws-account.php?account=$enc\"><strong>$account</strong></a>, security group <strong>$group</strong> as of $date:<br />\n";
+echo "AWS account <a href=\"aws-account.php?account=$enc1\"><strong>$account</strong></a>, security group <strong>$group</strong> in region <strong>$region</strong> as of $date:<br />\n";
 
 foreach ($data["SecurityGroups"] as $sg) {
 	if ($sg["GroupId"] == $group) {
 		$descr = json_encode($sg, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
-		$descr = preg_replace("/(sg-[a-fA-F0-9]+)/", "<a href=\"aws-security-group.php?account=$enc&group=\\1\">\\1</a>", $descr);
+		$descr = preg_replace("/(sg-[a-fA-F0-9]+)/", "<a href=\"aws-security-group.php?account=$enc1&region=$enc2&group=\\1\">\\1</a>", $descr);
 		echo "<pre>$descr</pre>\n";
 	}
 }
