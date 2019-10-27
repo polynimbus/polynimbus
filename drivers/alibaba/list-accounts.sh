@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ls /etc/polynimbus/alibaba |sed s/.sh//g
+grep "\[profile " /root/.aliyuncli/credentials |sed -e 's/\[profile\ //g' -e 's/\]//g'

@@ -3,7 +3,7 @@
 if [ "$1" = "" ]; then
 	echo "usage: $0 <cloud-account>"
 	exit 1
-elif [ ! -f /etc/polynimbus/alibaba/$1.sh ]; then
+elif ! grep -q "\[profile $1\]" /root/.aliyuncli/credentials; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
