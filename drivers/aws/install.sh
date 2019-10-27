@@ -1,10 +1,13 @@
 #!/bin/sh
 # http://docs.aws.amazon.com/cli/latest/userguide/installing.html
 
-mkdir -p /var/cache/polynimbus/aws/tmp /var/cache/polynimbus/aws/describe-images
+mkdir -p /var/cache/polynimbus/aws/tmp /var/cache/polynimbus/aws/describe-images /root/.aws
 chown root:www-data /var/cache/polynimbus/aws
 chmod 0710 /var/cache/polynimbus/aws
 chmod 0700 /var/cache/polynimbus/aws/tmp
+
+touch /root/.aws/credentials
+chmod 0600 /root/.aws/credentials
 
 # TODO: this will work on Debian/Ubuntu only
 REL=`lsb_release -cs`
