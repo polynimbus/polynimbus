@@ -13,6 +13,11 @@ elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
 fi
 
 account=$1
+
+if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+	exit 0
+fi
+
 . /etc/polynimbus/google/$account.sh
 
 if [ "$2" = "--full" ]; then

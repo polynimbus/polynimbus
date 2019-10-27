@@ -15,6 +15,11 @@ fi
 account=$1
 name=$2
 
+if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+	echo "error: API disabled for account $account"
+	exit 0
+fi
+
 . /etc/polynimbus/google/$account.sh
 
 gcloud compute instances delete $name --configuration $account --zone $GCE_REGION --quiet

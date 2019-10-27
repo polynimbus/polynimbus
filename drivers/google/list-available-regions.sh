@@ -14,6 +14,10 @@ fi
 
 account=$1
 
+if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+	exit 0
+fi
+
 if [ "$2" = "--full" ]; then
 	gcloud compute regions list --configuration $account --quiet
 else

@@ -17,6 +17,11 @@ key=$2
 type=$3
 osver=$4
 
+if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+	echo "error: API disabled for account $account"
+	exit 0
+fi
+
 . /etc/polynimbus/google/$account.sh
 
 random=`date +%s |md5sum |head -c 4`

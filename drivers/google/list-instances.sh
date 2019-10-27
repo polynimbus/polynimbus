@@ -15,5 +15,9 @@ fi
 account=$1
 project=`/opt/polynimbus/drivers/google/get-configured-project.sh $account`
 
+if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+	exit 0
+fi
+
 gcloud compute instances list --configuration $account --format json --quiet \
 	|/opt/polynimbus/drivers/google/internal/parse-instances.php $project
