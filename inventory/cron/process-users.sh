@@ -11,7 +11,7 @@ for account in `cat $out/projects-aws.list |cut -d' ' -f1`; do
 done
 
 
-/opt/polynimbus/inventory/helpers/list-encryption-keys.sh 2>/dev/null \
+/opt/polynimbus/inventory/helpers/list-encryption-keys.sh \
 	|/opt/polynimbus/common/save.sh 0 $out encryption-keys.list
 
 

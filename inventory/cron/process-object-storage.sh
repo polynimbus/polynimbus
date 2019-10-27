@@ -2,9 +2,7 @@
 
 out=/var/cache/polynimbus/inventory
 
-# TODO: use list-storage.blacklist file again
-
-/opt/polynimbus/inventory/helpers/list-object-storage.sh 2>/dev/null \
+/opt/polynimbus/inventory/helpers/list-object-storage.sh \
 	|/opt/polynimbus/common/save.sh 0 $out object-storage.list
 
 

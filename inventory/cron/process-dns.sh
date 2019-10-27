@@ -2,7 +2,7 @@
 
 out=/var/cache/polynimbus/inventory
 
-/opt/polynimbus/inventory/helpers/list-zones.sh 2>/dev/null \
+/opt/polynimbus/inventory/helpers/list-zones.sh \
 	|/opt/polynimbus/common/save.sh 0 $out zones.list
 
 
