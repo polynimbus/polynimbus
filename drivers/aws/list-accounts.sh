@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ls /etc/polynimbus/aws |sed s/.sh//g
+grep "^\[" /root/.aws/credentials |sed -e 's/\[//g' -e 's/\]//g'

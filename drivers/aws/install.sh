@@ -1,7 +1,7 @@
 #!/bin/sh
 # http://docs.aws.amazon.com/cli/latest/userguide/installing.html
 
-mkdir -p /etc/polynimbus/aws /var/cache/polynimbus/aws/tmp /var/cache/polynimbus/aws/describe-images
+mkdir -p /var/cache/polynimbus/aws/tmp /var/cache/polynimbus/aws/describe-images
 chown root:www-data /var/cache/polynimbus/aws
 chmod 0710 /var/cache/polynimbus/aws
 chmod 0700 /var/cache/polynimbus/aws/tmp

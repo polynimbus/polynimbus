@@ -3,10 +3,9 @@
 if [ "$1" = "" ]; then
 	echo "usage: $0 <cloud-account>"
 	exit 1
-elif [ ! -f /etc/polynimbus/aws/$1.sh ]; then
+elif ! grep -q "\[$1\]" /root/.aws/credentials; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
 
-. /etc/polynimbus/aws/$1.sh
-echo $EC2_DEFAULT_INSTANCE_TYPE
+echo "t2.micro"

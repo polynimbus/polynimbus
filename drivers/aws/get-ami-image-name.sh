@@ -3,7 +3,7 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <ami-id> [--quiet]"
 	exit 1
-elif [ ! -f /etc/polynimbus/aws/$1.sh ]; then
+elif ! grep -q "\[$1\]" /root/.aws/credentials; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 elif ! [[ $2 =~ ^ami-[0-9a-f]+$ ]]; then
