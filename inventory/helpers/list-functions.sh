@@ -1,8 +1,11 @@
 #!/bin/sh
 
-accounts=`/opt/polynimbus/drivers/aws/list-accounts.sh |grep -vxFf /var/cache/polynimbus/aws/list-serverless.blacklist`
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-serverless.blacklist`
 for account in $accounts; do
-	/opt/polynimbus/api/v1/function/list.sh aws $account |sort |sed -e "s/^/aws $account /"
+	regions=`/opt/polynimbus/api/v1/region/list-available.sh aws $account`
+	for region in $regions; do
+		/opt/polynimbus/api/v1/function/list.sh aws $account $region |sort |sed -e "s/^/aws $account $region /"
+	done
 done
 
 for vendor in `ls /opt/polynimbus/drivers |grep -v aws`; do

@@ -3,13 +3,13 @@
 require_once "/opt/polynimbus/drivers/aws/internal/include.php";
 
 if ($argc < 2)
-	die("usage: $argv[0] <cloud-account> [--raw]\n");
+	die("usage: $argv[0] <cloud-account> [region]\n");
 
-$data = aws_request($argv[1], "lambda list-functions");
-
-if (@$argv[2] == "--raw") {
-	echo json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)."\n";
-	die();
+if ($argc > 2) {
+	$_region = escapeshellarg($argv[2]);
+	$data = aws_request($argv[1], "lambda list-functions --region $_region");
+} else {
+	$data = aws_request($argv[1], "lambda list-functions");
 }
 
 foreach ($data["Functions"] as $function) {

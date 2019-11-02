@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 out=/var/cache/polynimbus/inventory
 
@@ -6,12 +6,19 @@ out=/var/cache/polynimbus/inventory
 	|/opt/polynimbus/common/save.sh 0 $out functions.list
 
 
-accounts=`/opt/polynimbus/drivers/aws/list-accounts.sh |grep -vxFf /var/cache/polynimbus/aws/list-serverless.blacklist`
+entries=`cat $out/functions.list |grep ^aws |awk '{ print $2 ":" $3 }' |sort |uniq`
+for entry in $entries; do
+
+	account="${entry%:*}"
+	region="${entry##*:}"
+
+	/opt/polynimbus/drivers/aws/get-raw.sh $account --region $region lambda list-functions \
+		|/opt/polynimbus/common/save.sh 0 $out raw-aws-functions-$account-$region.json
+done
+
+
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-serverless.blacklist`
 for account in $accounts; do
-
-	/opt/polynimbus/drivers/aws/list-functions.php $account --raw \
-		|/opt/polynimbus/common/save.sh 20 $out functions-aws-$account.json
-
-	/opt/polynimbus/drivers/aws/list-network.sh $account cloudfront list-distributions \
+	/opt/polynimbus/drivers/aws/get-raw.sh $account cloudfront list-distributions \
 		|/opt/polynimbus/common/save.sh 0 $out cloudfront-$account.json
 done
