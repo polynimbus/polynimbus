@@ -6,10 +6,10 @@ out=/var/cache/polynimbus/inventory
 	|/opt/polynimbus/common/save.sh 0 $out zones.list
 
 
-accounts=`/opt/polynimbus/drivers/aws/list-accounts.sh |grep -vxFf /var/cache/polynimbus/aws/list-zones.blacklist`
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-zones.blacklist`
 for account in $accounts; do
 
-	map=`/opt/polynimbus/drivers/aws/list-zones.php $account --map`
+	map=`cat $out/zones.list |grep "^aws $account " |awk '{ print $3 ":" $4 }'`
 	for entry in $map; do
 
 		domain="${entry%:*}"
