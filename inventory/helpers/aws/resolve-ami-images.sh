@@ -10,7 +10,7 @@
 #
 # TODO: use proper region instead of default from aws-cli configuration
 #
-account=`/opt/polynimbus/drivers/aws/list-accounts.sh |head -n1`
+account=`/opt/polynimbus/api/v1/account/list.sh aws |head -n1`
 AMIS1=`/opt/polynimbus/drivers/aws/list-ami-raw-data.sh --all |egrep -o 'ami-[0-9a-f]{8,17}' |uniq`
 AMIS2=`grep ^aws /var/cache/polynimbus/inventory/instances.list |awk '{ print $9 }' |sort |uniq`
 for amiid in $AMIS1 $AMIS2; do
