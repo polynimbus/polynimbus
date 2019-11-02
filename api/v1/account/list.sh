@@ -11,4 +11,4 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/list-accounts.sh $@
+/opt/polynimbus/drivers/$vendor/list-accounts.sh $@ |sort
