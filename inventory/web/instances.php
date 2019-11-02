@@ -17,6 +17,21 @@ function get_image_name($vendor, $image) {
 		return basename($data["Images"][0]["Name"]);
 }
 
+function get_instance_link($vendor, $account, $region, $id) {
+	if ($vendor != "aws")
+		return $id;
+
+	$region = substr($region, 0, -1);
+	$file = "/var/cache/polynimbus/inventory/raw-aws-instances-$account-$region.json";
+	if (!file_exists($file) || filesize($file) < 30)
+		return $id;
+
+	$enc1 = urlencode($account);
+	$enc2 = urlencode($region);
+	$enc3 = urlencode($id);
+	return "<a href=\"aws-instance.php?account=$enc1&region=$enc2&id=$enc3\">$id</a>";
+}
+
 
 $file = "/var/cache/polynimbus/inventory/instances.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
@@ -67,7 +82,7 @@ foreach ($lines as $line) {
 		$tmp[4],
 		$tmp[5],
 		$tmp[6],
-		$tmp[7],
+		get_instance_link($vendor, $tmp[1], $tmp[5], $tmp[7]),
 		$image,
 		$tmp[11],
 		map_acl_to_ranges($vendor, $tmp[1], $tmp[5], 22, $tmp[12]),

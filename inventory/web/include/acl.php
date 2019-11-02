@@ -1,7 +1,7 @@
 <?php
 
 function get_aws_sg_link($account, $region, $sg) {
-	$file = "/var/cache/polynimbus/inventory/acl-aws-$account-$region.json";
+	$file = "/var/cache/polynimbus/inventory/raw-aws-sg-$account-$region.json";
 	if (!file_exists($file))
 		return $sg;
 
@@ -14,7 +14,7 @@ function get_aws_sg_link($account, $region, $sg) {
 function aws_load_acls($account, $region, $port) {
 	$out = array();
 
-	$file = "/var/cache/polynimbus/inventory/acl-aws-$account-$region.json";
+	$file = "/var/cache/polynimbus/inventory/raw-aws-sg-$account-$region.json";
 	$json = file_get_contents($file);
 	$data = json_decode($json, true);
 

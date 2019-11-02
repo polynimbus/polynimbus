@@ -9,7 +9,7 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/inventory/acl-aws-$account-$region.json";
+$file = "/var/cache/polynimbus/inventory/raw-aws-sg-$account-$region.json";
 
 if (!file_exists($file))
 	die("Invalid account...");
@@ -20,13 +20,14 @@ $data = json_decode($json, true);
 
 
 require "include/page.php";
+require "include/raw.php";
 page_header("Polynimbus - AWS security group details");
 echo "AWS account <a href=\"aws-account.php?account=$enc1\"><strong>$account</strong></a>, security group <strong>$group</strong> in region <strong>$region</strong> as of $date:<br />\n";
 
 foreach ($data["SecurityGroups"] as $sg) {
 	if ($sg["GroupId"] == $group) {
 		$descr = json_encode($sg, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
-		$descr = preg_replace("/(sg-[a-fA-F0-9]+)/", "<a href=\"aws-security-group.php?account=$enc1&region=$enc2&group=\\1\">\\1</a>", $descr);
+		$descr = aws_apply_raw_links($account, $region, $descr);
 		echo "<pre>$descr</pre>\n";
 	}
 }

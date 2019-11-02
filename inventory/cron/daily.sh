@@ -5,19 +5,14 @@ out=/var/cache/polynimbus/inventory
 /opt/polynimbus/inventory/helpers/aws/list-trails.sh \
 	|/opt/polynimbus/common/save.sh 0 $out trails.list
 
+/opt/polynimbus/inventory/helpers/list-encryption-keys.sh \
+	|/opt/polynimbus/common/save.sh 0 $out encryption-keys.list
 
-accounts=`/opt/polynimbus/drivers/aws/list-accounts.sh |grep -vxFf /var/cache/polynimbus/aws/list-sg.blacklist`
+
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-compute.blacklist`
 for account in $accounts; do
-
 	regions=`/opt/polynimbus/inventory/helpers/aws/list-active-regions.sh $account`
 	for region in $regions; do
-		/opt/polynimbus/drivers/aws/list-security-groups.php $account $region --raw \
-			|/opt/polynimbus/common/save.sh 14 $out acl-aws-$account-$region.json
+		/opt/polynimbus/inventory/helpers/aws/process-raw-data.sh $account $region
 	done
-
-	/opt/polynimbus/drivers/aws/list-network.sh $account elb describe-load-balancers \
-		|/opt/polynimbus/common/save.sh 0 $out elb-$account.json
-
-	/opt/polynimbus/drivers/aws/list-network.sh $account elbv2 describe-load-balancers \
-		|/opt/polynimbus/common/save.sh 0 $out elbv2-$account.json
 done
