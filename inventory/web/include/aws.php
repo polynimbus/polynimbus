@@ -51,3 +51,16 @@ function get_aws_policy_link($text, $account, $type, $name) {
 	}
 	return implode("\n", $out);
 }
+
+function get_s3_bucket_link($vendor, $category, $account, $bucket) {
+	if ($vendor != "aws" || $category != "s3")
+		return $bucket;
+
+	$file = "/var/cache/polynimbus/inventory/s3-$account-$bucket.list";
+	if (!file_exists($file) || filesize($file) < 1)
+		return $bucket;
+
+	$enc1 = urlencode($account);
+	$enc2 = urlencode($bucket);
+	return "<a href=\"aws-s3-bucket.php?account=$enc1&bucket=$enc2\">$bucket</a>";
+}

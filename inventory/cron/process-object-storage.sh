@@ -13,5 +13,5 @@ for entry in $buckets; do
 	bucket="${entry##*:}"
 
 	/opt/polynimbus/drivers/aws/list-s3-objects.php $account $bucket \
-		|/opt/polynimbus/common/save.sh 0 $out s3-$account-$bucket.json
+		|/opt/polynimbus/common/save.sh 0 $out s3-$account-$bucket.list
 done
