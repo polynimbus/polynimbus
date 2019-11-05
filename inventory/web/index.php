@@ -16,7 +16,7 @@ page_header("Polynimbus: the future of the cloud");
 Available resources:
 <br />
 <ul>
-	<li><a href="instances.php">AWS - list of cloud instances (on all providers and configured accounts)</a></li>
+	<li><a href="instances.php">list of cloud instances (on all providers and configured accounts)</a></li>
 	<li><a href="databases.php">AWS - list of RDS databases</a></li>
 	<li><a href="object-storage.php">AWS - list of S3 buckets</a></li>
 	<li><a href="functions.php">AWS - list of Lambda functions</a></li>
