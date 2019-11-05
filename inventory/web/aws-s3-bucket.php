@@ -1,6 +1,6 @@
 <?php
 
-if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('/^([a-z0-9.-]+)$/', $_GET["bucket"], $tmp2)) {
+if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('/^([a-zA-Z0-9.-]+)$/', $_GET["bucket"], $tmp2)) {
 	$account = $tmp1[1];
 	$bucket = $tmp2[1];
 	$enc = urlencode($account);
