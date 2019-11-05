@@ -13,6 +13,10 @@ out=/var/cache/polynimbus/inventory
 /opt/polynimbus/inventory/helpers/aws/list-iam-memberships.sh $account $out/users-aws-$account.list \
 	|/opt/polynimbus/common/save.sh 0 $out membership-aws-$account.list
 
+/opt/polynimbus/inventory/helpers/aws/list-access-keys.sh $account $out/users-aws-$account.list \
+	|/opt/polynimbus/common/save.sh 0 $out keys-aws-$account.list
+
+
 
 # analyze policies - start with cache warm-up
 /opt/polynimbus/drivers/aws/list-managed-policies.sh $account >/dev/null

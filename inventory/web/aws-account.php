@@ -22,7 +22,7 @@ require "include/aws.php";
 require "include/page.php";
 page_header("Polynimbus - AWS account details");
 echo "AWS account <strong>$account</strong> user list as of $date:<br />\n";
-table_start("users", array("username", "created", "attached policies"));
+table_start("users", array("username", "created", "password last used", "access keys", "attached policies"));
 
 foreach ($lines as $line) {
 	$line = trim($line);
@@ -32,6 +32,7 @@ foreach ($lines as $line) {
 	$tmp = explode(" ", $line);
 	$username = $tmp[0];
 	$created = $tmp[1];
+	$lastused = $tmp[2];
 	$permissions = array();
 
 	$data2 = get_aws_policy_link($policies, $account, "user", $username);
@@ -45,9 +46,12 @@ foreach ($lines as $line) {
 		$permissions[] = "$space<b>[$groupname]</b><br />".str_replace("\n", "<br />", $data2);
 	}
 
+	$keys = get_aws_keys_for_user("$path/keys-aws-$account.list", $username);
+	$keys_text = implode("<br /><br />", $keys);
+
 	$permissions_text = implode("<br />", $permissions);
 	$permissions_text = highlight_critical_aws_policies($permissions_text);
-	table_row(array($username, $created, $permissions_text));
+	table_row(array($username, $created, $lastused, $keys_text, $permissions_text));
 }
 
 table_end("users");

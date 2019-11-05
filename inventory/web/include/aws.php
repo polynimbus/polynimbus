@@ -33,6 +33,37 @@ function get_aws_groups_for_user($file, $username) {
 	return $out;
 }
 
+function get_aws_keys_for_user($file, $username) {
+	if (!file_exists($file))
+		return array();
+	$data = file_get_contents($file);
+	if (empty($data))
+		return array();
+
+	$out = array();
+	$lines = explode("\n", $data);
+	foreach ($lines as $line) {
+		$tmp = explode(" ", $line);
+		if ($tmp[0] == $username) {
+			$keyid = $tmp[1];
+			$created = $tmp[2];
+			$lastused = $tmp[3];
+			$service = $tmp[4];
+			$region = $tmp[5];
+			$text = "<tt>$keyid</tt>\n- created $created";
+
+			if ($region != "N/A" && $region != "-")
+				$text .= "\n- last used $lastused for $service in $region";
+			else if ($lastused != "-")
+				$text .= "\n- last used $lastused for $service";
+
+			$out[] = str_replace("\n", "<br />", $text);
+		}
+	}
+
+	return $out;
+}
+
 function get_aws_policy_link($text, $account, $type, $name) {
 	$enc1 = urlencode($account);
 	$enc2 = urlencode($name);

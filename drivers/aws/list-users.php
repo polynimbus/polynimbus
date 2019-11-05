@@ -10,5 +10,6 @@ $data = aws_request($argv[1], "iam list-users");
 foreach ($data["Users"] as $user) {
 	$username = $user["UserName"];
 	$created = substr($user["CreateDate"], 0, 10);
-	echo "$username $created\n";
+	$lastused = isset($user["PasswordLastUsed"]) ? substr($user["PasswordLastUsed"], 0, 10) : "-";
+	echo "$username $created $lastused\n";
 }
