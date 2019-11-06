@@ -1,8 +1,18 @@
 #!/bin/sh
-. /opt/polynimbus/common/functions
+# This script can only create "default" account. If you want to create
+# more accounts, you have to do it manually - just copy default.sh file
+# and replace $AZURE_SUBSCRIPTION variable with any other ID (which has
+# to be already configured using "az" tool).
 
 if [ "`az account list |grep Enabled`" = "" ]; then
 	az login
+fi
+
+SUBSCRIPTION=`az account show |/opt/polynimbus/drivers/azure/internal/parse-subscription.php`
+
+if [ "$SUBSCRIPTION" = "" ]; then
+	echo "error: something is wrong with your Azure subscription configuration"
+	exit 1
 fi
 
 if [ ! -f /var/cache/polynimbus/azure/locations.cache ]; then
@@ -10,28 +20,25 @@ if [ ! -f /var/cache/polynimbus/azure/locations.cache ]; then
 fi
 
 if [ -f /etc/polynimbus/azure/default.sh ]; then
-	exit 0
+	echo "error: cloud account \"default\" already configured"
+	exit 1
 fi
-
-DEFAULT_INSTANCE_TYPE="`input \"enter azure default instance type\" Standard_A2`"
 
 mkdir -p /etc/polynimbus/azure
 echo "#!/bin/sh
-#
-# Azure requires \"az\" command line client (Azure 2.0). This tool, as
-# opposite to version 1.0, supports only one configured Azure account.
-# But Polynimbus treats each Azure region as separate account.
-#
-############################################################################
 #
 # Ubuntu publisher and offer keys (mostly you don't need to change them):
 #
 export AZURE_PUBLISHER=Canonical
 export AZURE_OFFER=UbuntuServer
 #
-# Default instance type to use, when type isn't explicitely specified
-# (use list-instance-types.sh script to discover all instance types):
+# Default region to use.
 #
-export AZURE_DEFAULT_INSTANCE_TYPE=$DEFAULT_INSTANCE_TYPE
+export AZURE_LOCATION=westeurope
+#
+# Azure subscription ID - configured as default \"az\" profile at the time
+# of configuring this account. Use \"az account list\" to see all profiles.
+#
+export AZURE_SUBSCRIPTION=$SUBSCRIPTION
 " >/etc/polynimbus/azure/default.sh
 chmod 0600 /etc/polynimbus/azure/default.sh

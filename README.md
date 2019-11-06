@@ -99,13 +99,13 @@ git clone https://github.com/polynimbus/polynimbus /opt/polynimbus
 
 where:
 - `yourvendor` is one of: `alibaba`, `aws`, `azure`, `e24`, `google`, `hetzner`, `oracle`, `rackspace` or `robot`
-- `youraccount` is the name of your configured account (or region name in case of `azure`)
+- `youraccount` is the name of your configured account
 
 Once you finished the initial setup, you can always manually edit files inside `/etc/polynimbus` directory to make sure that your vendor is properly configured.
 
 Additional notes:
 
-1. `azure` and `oracle` vendor drivers support having only one account configured at the same time, however `azure` allows operating on each region as separate pseudo-account.
+1. `oracle` vendor driver supports having only one account configured at the same time.
 
 2. For `azure` and `google`, the setup process needs browser interaction.
 
@@ -126,7 +126,7 @@ Additional notes:
 
 ```
 /opt/polynimbus/api/v1/instance/launch.sh aws prod_account prod_key1 m5.2xlarge
-/opt/polynimbus/api/v1/instance/launch.sh azure eastus testkey2 Standard_A2
+/opt/polynimbus/api/v1/instance/launch.sh azure default testkey2 Standard_A2
 ```
 
 Hostname of the new instance will be written on console, as soon as it's ready for provisioning.

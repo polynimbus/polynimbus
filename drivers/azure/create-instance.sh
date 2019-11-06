@@ -1,15 +1,23 @@
 #!/bin/sh
-. /etc/polynimbus/azure/default.sh
 
 if [ "$4" = "" ]; then
-	echo "usage: $0 <region> <ssh-key-name> <instance-type> <image-name>"
+	echo "usage: $0 <cloud-account> <ssh-key-name> <instance-type> <image-name> [region]"
+	exit 1
+elif [ ! -f /etc/polynimbus/azure/$1.sh ]; then
+	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
 
-region=$1
+account=$1
 key=$2
 type=$3
 image=$4
+region=$5
+. /etc/polynimbus/azure/$account.sh
+
+if [ "$region" = "" ]; then
+	region=$AZURE_LOCATION
+fi
 
 pubkey=/etc/polynimbus/ssh/id_azure_$key.pub
 random=`date +%s |md5sum |head -c 4`
@@ -21,9 +29,10 @@ if [ ! -f $pubkey ]; then
 fi
 
 group=`/opt/polynimbus/drivers/azure/get-group-name.sh $region`
-/opt/polynimbus/drivers/azure/create-group.sh $region $group >/dev/null
+/opt/polynimbus/drivers/azure/create-group.sh $account $group $region >/dev/null
 
 az vm create \
+	--subscription $AZURE_SUBSCRIPTION \
 	--name $alias \
 	--size $type \
 	--resource-group $group \

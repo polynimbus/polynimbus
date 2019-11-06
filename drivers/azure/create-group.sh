@@ -1,16 +1,25 @@
 #!/bin/sh
-. /etc/polynimbus/azure/default.sh
 
 if [ "$2" = "" ]; then
-	echo "usage: $0 <region> <group-name>"
+	echo "usage: $0 <cloud-account> <group-name> [region]"
+	exit 1
+elif [ ! -f /etc/polynimbus/azure/$1.sh ]; then
+	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
 
-region=$1
+account=$1
 group=$2
-list=`/opt/polynimbus/drivers/azure/list-groups.sh $region |grep -Fx $group`
+region=$3
+. /etc/polynimbus/azure/$account.sh
+
+if [ "$region" = "" ]; then
+	region=$AZURE_LOCATION
+fi
+
+list=`/opt/polynimbus/drivers/azure/list-groups.sh $account $region |grep -Fx $group`
 
 if [ "$list" = "" ]; then
-	az group create -l $region -n $group
-	rm -f /var/cache/polynimbus/azure/groups.$region.cache
+	az group create --subscription $AZURE_SUBSCRIPTION --location $region --name $group
+	rm -f /var/cache/polynimbus/azure/groups-$account-$region.cache
 fi

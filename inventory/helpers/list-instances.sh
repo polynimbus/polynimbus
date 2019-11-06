@@ -8,9 +8,16 @@ for account in $accounts; do
 	done
 done
 
-for vendor in `ls /opt/polynimbus/drivers |grep -v aws`; do
+
+for vendor in `ls /opt/polynimbus/drivers |egrep -v "(aws|azure)"`; do
 	accounts=`/opt/polynimbus/api/v1/account/list.sh $vendor`
 	for account in $accounts; do
 		/opt/polynimbus/api/v1/instance/list.sh $vendor $account |sed -e "s/^/$vendor $account /"
 	done
+done
+
+
+accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
+for account in $accounts; do
+	/opt/polynimbus/api/v1/instance/list.sh azure $account all |sed -e "s/^/azure $account /"
 done
