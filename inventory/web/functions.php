@@ -19,6 +19,7 @@ $file = "/var/cache/polynimbus/inventory/functions.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";
+require "include/account.php";
 page_header("Polynimbus - serverless functions inventory");
 echo "<strong>List of all serverless functions as of $date</strong><br />\n";
 table_start("functions", array(
@@ -40,14 +41,14 @@ foreach ($lines as $line) {
 
 	$tmp = explode(" ", $line, 6);
 	$vendor = $tmp[0];
-	$account = get_account_link($vendor, $tmp[1]);
+	$account = $tmp[1];
 	$region = $tmp[2];
 
 	table_row(array(
 		$vendor,
-		$account,
+		get_account_link($vendor, $account),
 		$region,
-		get_function_link($vendor, $tmp[1], $region, $tmp[3]),
+		get_function_link($vendor, $account, $region, $tmp[3]),
 		$tmp[4],  // runtime
 		$tmp[5],  // modified
 	), false);

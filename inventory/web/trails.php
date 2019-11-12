@@ -5,6 +5,8 @@ $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";
 require "include/aws.php";
+require "include/account.php";
+require "include/storage.php";
 page_header("Polynimbus - trails inventory");
 echo "<strong>List of all trails as of $date</strong><br />\n";
 table_start("trails", array(
@@ -26,13 +28,14 @@ foreach ($lines as $line) {
 
 	$tmp = explode(" ", $line, 6);
 	$vendor = $tmp[0];
+	$account = $tmp[1];
 
 	table_row(array(
 		$vendor,
-		get_account_link($vendor, $tmp[1]),
+		get_account_link($vendor, $account),
 		$tmp[2],  // trail name
 		$tmp[3],  // region
-		get_s3_bucket_link($vendor, "s3", $tmp[1], $tmp[4]),
+		get_storage_link($vendor, "s3", $account, false, $tmp[4]),
 		$tmp[5],  // multi-region flag (or not)
 	), false);
 }

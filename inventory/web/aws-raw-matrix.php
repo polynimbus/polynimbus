@@ -4,6 +4,7 @@ require "include/page.php";
 require "include/acl.php";
 require "include/aws.php";
 require "include/raw.php";
+require "include/account.php";
 page_header("Polynimbus - AWS raw data matrix");
 echo "<strong>List of all AWS raw data dumps</strong><br />\n";
 

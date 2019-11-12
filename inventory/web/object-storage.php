@@ -5,13 +5,17 @@ $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";
 require "include/aws.php";
+require "include/account.php";
+require "include/storage.php";
 page_header("Polynimbus - object storage buckets inventory");
 echo "<strong>List of all object storage buckets as of $date</strong><br />\n";
 table_start("buckets", array(
 	"vendor",
 	"account",
+	"region",
 	"name",
 	"created",
+	"contract",
 ));
 
 $data = file_get_contents($file);
@@ -22,16 +26,18 @@ foreach ($lines as $line) {
 	if (empty($line))
 		continue;
 
-	$tmp = explode(" ", $line, 5);
+	$tmp = explode(" ", $line, 7);
 	$vendor = $tmp[0];
+	$account = $tmp[1];
 	$category = $tmp[2];
-	$account = get_account_link($vendor, $tmp[1]);
 
 	table_row(array(
 		"$vendor-$category",
-		$account,
-		get_s3_bucket_link($vendor, $category, $tmp[1], $tmp[3]),
-		$tmp[4],  // created
+		get_account_link($vendor, $account),
+		$tmp[3],  // region
+		get_storage_link($vendor, $category, $account, $tmp[6], $tmp[4]),
+		$tmp[5],  // created
+		$tmp[6],  // contract, storage account etc.
 	), false);
 }
 

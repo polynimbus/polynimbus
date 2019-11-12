@@ -5,6 +5,7 @@ $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";
 require "include/acl.php";
+require "include/account.php";
 page_header("Polynimbus - cloud databases inventory");
 echo "<strong>List of all cloud databases as of $date</strong><br />\n";
 table_start("databases", array(
@@ -36,7 +37,7 @@ foreach ($lines as $line) {
 
 	$tmp = explode(" ", $line, 17);
 	$vendor = $tmp[0];
-	$account = get_account_link($vendor, $tmp[1]);
+	$account = $tmp[1];
 	$state = $tmp[6];
 	$style = ($state != "available" ? "background-color: #f4cccc;" : false);
 
@@ -52,7 +53,7 @@ foreach ($lines as $line) {
 
 	table_row(array(
 		$vendor,
-		$account,
+		get_account_link($vendor, $account),
 		$dbhost,
 		$tmp[4],  // db
 		$tmp[5],  // user
@@ -65,7 +66,7 @@ foreach ($lines as $line) {
 		$tmp[12], // type
 		$tmp[13], // id
 		$tmp[14], // created
-		map_acl_to_ranges($vendor, $tmp[1], $tmp[11], $dbport, $tmp[16]),
+		map_acl_to_ranges($vendor, $account, $tmp[11], $dbport, $tmp[16]),
 	), $style);
 }
 

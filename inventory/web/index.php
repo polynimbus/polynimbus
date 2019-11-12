@@ -6,6 +6,7 @@ $date = date("Y-m-d H:i:s", filemtime($file));
 require "include/page.php";
 require "include/aws.php";
 require "include/raw.php";
+require "include/account.php";
 page_header("Polynimbus: the future of the cloud");
 
 ?>
@@ -18,7 +19,7 @@ Available resources:
 <ul>
 	<li><a href="instances.php">list of cloud instances (on all providers and configured accounts)</a></li>
 	<li><a href="databases.php">AWS - list of RDS databases</a></li>
-	<li><a href="object-storage.php">AWS - list of S3 buckets</a></li>
+	<li><a href="object-storage.php">AWS/Azure - list of object storage buckets/shares/blobs/etc.</a></li>
 	<li><a href="functions.php">AWS - list of Lambda functions</a></li>
 	<li><a href="zones.php">AWS - list of Route53 hosted zones (domains)</a></li>
 	<li><a href="trails.php">AWS - list of CloudTrail log trails</a></li>

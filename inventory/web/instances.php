@@ -38,6 +38,7 @@ $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";
 require "include/acl.php";
+require "include/account.php";
 page_header("Polynimbus - cloud instances inventory");
 echo "<strong>List of all cloud instances as of $date</strong><br />\n";
 table_start("instances", array(
