@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ "$1" = "" ]; then
 	echo "usage: $0 <cloud-account> [region|all|raw] [--fqdn]"
