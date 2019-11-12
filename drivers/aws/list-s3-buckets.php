@@ -7,8 +7,8 @@ if ($argc < 2)
 
 $data = aws_request($argv[1], "s3api list-buckets");
 
-foreach ($data["Buckets"] as $user) {
-	$name = $user["Name"];
-	$created = substr($user["CreationDate"], 0, 10);
-	echo "$name $created\n";
+foreach ($data["Buckets"] as $bucket) {
+	$name = $bucket["Name"];
+	$created = substr($bucket["CreationDate"], 0, 10);
+	echo "- $name $created -\n";
 }
