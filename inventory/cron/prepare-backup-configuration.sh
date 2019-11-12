@@ -13,7 +13,7 @@ for account in $accounts; do
 	access=`/opt/polynimbus/drivers/aws/get-account-credentials.sh $account access`
 	secret=`/opt/polynimbus/drivers/aws/get-account-credentials.sh $account secret`
 
-	buckets=`cat $out/object-storage.list |grep "^aws $account s3 " |cut -d' ' -f4`
+	buckets=`cat $out/object-storage.list |grep "^aws $account s3 " |cut -d' ' -f5`
 	for bucket in $buckets; do
 
 		file="$path/$account-$bucket.ini"

@@ -4,10 +4,10 @@
 /opt/polynimbus/install.sh
 
 echo "setting up Polynimbus Inventory directories and files"
-mkdir -p -m 0700 /var/cache/polynimbus/inventory
+mkdir -p -m 0700 /var/cache/polynimbus/inventory /var/cache/polynimbus/storage
 chmod 0710 /var/cache/polynimbus
 chown root:www-data /var/cache/polynimbus
-chown www-data:www-data /var/cache/polynimbus/inventory
+chown www-data:www-data /var/cache/polynimbus/inventory /var/cache/polynimbus/storage
 
 touch \
 	/var/cache/polynimbus/aws/list-nosql.blacklist \
