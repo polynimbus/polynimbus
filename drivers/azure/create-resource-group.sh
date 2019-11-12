@@ -17,7 +17,7 @@ if [ "$region" = "" ]; then
 	region=$AZURE_LOCATION
 fi
 
-list=`/opt/polynimbus/drivers/azure/list-groups.sh $account $region |grep -Fx $group`
+list=`/opt/polynimbus/drivers/azure/list-resource-groups.sh $account $region |grep -Fx $group`
 
 if [ "$list" = "" ]; then
 	az group create --subscription $AZURE_SUBSCRIPTION --location $region --name $group

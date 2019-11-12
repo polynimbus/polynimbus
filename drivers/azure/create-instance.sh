@@ -28,8 +28,8 @@ if [ ! -f $pubkey ]; then
 	exit 0
 fi
 
-group=`/opt/polynimbus/drivers/azure/get-group-name.sh $region`
-/opt/polynimbus/drivers/azure/create-group.sh $account $group $region >/dev/null
+group=`/opt/polynimbus/drivers/azure/get-resource-group-name.sh $region`
+/opt/polynimbus/drivers/azure/create-resource-group.sh $account $group $region >/dev/null
 
 az vm create \
 	--subscription $AZURE_SUBSCRIPTION \

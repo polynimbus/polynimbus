@@ -18,6 +18,6 @@ if [ "$region" = "" ]; then
 	region=$AZURE_LOCATION
 fi
 
-group=`/opt/polynimbus/drivers/azure/get-group-name.sh $region`
+group=`/opt/polynimbus/drivers/azure/get-resource-group-name.sh $region`
 
 az vm resize --subscription $AZURE_SUBSCRIPTION --resource-group $group --name $name --size $type --output json
