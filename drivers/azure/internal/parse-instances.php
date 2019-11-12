@@ -1,5 +1,6 @@
 #!/usr/bin/php
 <?php
+require_once "/opt/polynimbus/drivers/azure/internal/include.php";
 
 function replace_unicode($text) {
 	$unicode = array(
@@ -74,19 +75,6 @@ function decode_instance($instance, $created)
 }
 
 
-$json = "";
-$fp = fopen("php://stdin", "r");
-
-while ($line = fgets($fp))
-	$json .= $line;
-
-fclose($fp);
-$data = json_decode($json, true);
-
-if (is_null($data))
-	die("error: $json\n");
-
-
 $lines = explode("\n", file_get_contents($argv[1]));
 $created = array();
 
@@ -99,5 +87,6 @@ foreach ($lines as $line) {
 	$created[$tmp[0]] = $tmp[1];
 }
 
+$data = parse_stdin_json_data();
 foreach ($data as $instance)
 	decode_instance($instance, $created);
