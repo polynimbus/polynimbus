@@ -11,6 +11,12 @@ for account in `cat $out/projects-aws.list |cut -d' ' -f1`; do
 done
 
 
+accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
+for account in $accounts; do
+	/opt/polynimbus/inventory/helpers/azure/process-ad-data.sh $account
+done
+
+
 /opt/polynimbus/drivers/google/list-projects.sh default \
 	|/opt/polynimbus/common/save.sh 0 $out projects-google.list
 
