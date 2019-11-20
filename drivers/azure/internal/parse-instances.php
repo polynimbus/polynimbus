@@ -61,8 +61,10 @@ function decode_instance($instance, $created)
 	else
 		$host = "-";
 
-	if (isset($created[$name]))
-		$date = $created[$name];
+	if (isset($created[$name])) {
+		$date = $created[$name][0];
+		$key = $created[$name][1];
+	}
 	else
 		$date = "-";
 
@@ -84,7 +86,7 @@ foreach ($lines as $line) {
 		continue;
 
 	$tmp = explode(" ", $line);
-	$created[$tmp[0]] = $tmp[1];
+	$created[$tmp[0]] = array($tmp[1], $tmp[2]);
 }
 
 $data = parse_stdin_json_data();
