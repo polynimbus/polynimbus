@@ -47,6 +47,15 @@ foreach ($lines as $line) {
 	echo link_aws_global_raw_content($account, "cloudfront");
 	echo "</li>\n";
 }
+echo "</ul>";
 
-echo "</ul></div>";
+$account = "default";
+$file = "/var/cache/polynimbus/inventory/users-azure-$account.list";
+if (file_exists($file)) {
+	echo "Configured Azure accounts:<br /><ul>\n";
+	$link = get_account_link("azure", $account);
+	echo "<li style=\"margin-bottom: 10px;\"><strong>$link</strong></li>\n";
+	echo "</ul>";
+}
+echo "</div>";
 page_end();

@@ -67,26 +67,24 @@ foreach ($lines as $line) {
 
 	$tmp = explode(" ", $line, 13);
 	$vendor = $tmp[0];
-	$account = get_account_link($vendor, $tmp[1]);
+	$account = $tmp[1];
 	$state = $tmp[3];
-	$image = get_image_name($vendor, $tmp[8]);
-
 	$style = ($state != "running" ? "background-color: #f4cccc;" : false);
 
 	table_row(array(
 		$vendor,
-		$account,
+		get_account_link($vendor, $account),
 		$tmp[2],
 		$state,
 		$tmp[9],
 		str_replace(";", "<br />", $tmp[10]),
 		$tmp[4],
-		$tmp[5],
+		get_region_link($vendor, $account, $tmp[5]),
 		$tmp[6],
-		get_instance_link($vendor, $tmp[1], $tmp[5], $tmp[7]),
-		$image,
+		get_instance_link($vendor, $account, $tmp[5], $tmp[7]),
+		get_image_name($vendor, $tmp[8]),
 		$tmp[11],
-		map_acl_to_ranges($vendor, $tmp[1], $tmp[5], 22, $tmp[12]),
+		map_acl_to_ranges($vendor, $account, $tmp[5], 22, $tmp[12]),
 	), $style);
 }
 

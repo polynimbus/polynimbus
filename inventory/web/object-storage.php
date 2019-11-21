@@ -34,7 +34,7 @@ foreach ($lines as $line) {
 	table_row(array(
 		"$vendor-$category",
 		get_account_link($vendor, $account),
-		$tmp[3],  // region
+		get_region_link($vendor, $account, $tmp[3]),
 		get_storage_link($vendor, $category, $account, $tmp[6], $tmp[4]),
 		$tmp[5],  // created
 		$tmp[6],  // contract, storage account etc.

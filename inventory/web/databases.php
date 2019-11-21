@@ -40,11 +40,12 @@ foreach ($lines as $line) {
 	$account = $tmp[1];
 	$state = $tmp[6];
 	$style = ($state != "available" ? "background-color: #f4cccc;" : false);
-
 	$engine = $tmp[7];
 	$dbport = $tmp[3];
 
-	if ($engine == "postgres" && $dbport == 5432)
+	if ($dbport == "-")
+		$dbhost = $tmp[2];
+	else if ($engine == "postgres" && $dbport == 5432)
 		$dbhost = $tmp[2];
 	else if (($engine == "mysql" || $engine == "aurora-mysql") && $dbport == 3306)
 		$dbhost = $tmp[2];
@@ -58,11 +59,11 @@ foreach ($lines as $line) {
 		$tmp[4],  // db
 		$tmp[5],  // user
 		$state,
-		$tmp[7],  // engine
+		$engine,
 		str_replace("mysql_aurora", "ma", $tmp[8]),  // version
 		$tmp[9],  // storage
 		$tmp[10], // size
-		$tmp[11], // zone
+		get_region_link($vendor, $tmp[1], $tmp[11]),
 		$tmp[12], // type
 		$tmp[13], // id
 		$tmp[14], // created
