@@ -30,7 +30,7 @@ function get_region_link($vendor, $account, $region)
 {
 	if ($vendor == "azure")
 	{
-		$file = "/var/cache/polynimbus/inventory/usage-azure-$account-$region.list";
+		$file = "/var/cache/polynimbus/inventory/usage-azure-$account.list";
 		if (!file_exists($file))
 			return $region;
 

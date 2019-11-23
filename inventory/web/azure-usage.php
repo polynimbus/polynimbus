@@ -1,13 +1,13 @@
 <?php
 
-if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('/^([a-z0-9]+)$/', $_GET["region"], $tmp2)) {
+if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('/^([a-z0-9]{5,25})$/', $_GET["region"], $tmp2)) {
 	$account = $tmp1[1];
 	$region = $tmp2[1];
 	$enc = urlencode($account);
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/inventory/usage-azure-$account-$region.list";
+$file = "/var/cache/polynimbus/inventory/usage-azure-$account.list";
 
 if (!file_exists($file))
 	die("Invalid account...");
@@ -33,13 +33,15 @@ foreach ($lines as $line) {
 		continue;
 
 	$tmp = explode(" ", $line);
-	$name = str_replace("_", " ", $tmp[0]);
-	$value = $tmp[1];
-	$limit = $tmp[2];
-	$unit = $tmp[3];
+	if ($tmp[0] == $region) {
+		$name = str_replace("_", " ", $tmp[1]);
+		$value = $tmp[2];
+		$limit = $tmp[3];
+		$unit = $tmp[4];
 
-	$style = ($value > 0 ? "background-color: #fcf3cf;" : false);
-	table_row(array($name, $value, $limit, $unit), $style);
+		$style = ($value > 0 ? "background-color: #fcf3cf;" : false);
+		table_row(array($name, $value, $limit, $unit), $style);
+	}
 }
 
 table_end("usage");
