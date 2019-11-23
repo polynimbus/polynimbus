@@ -7,6 +7,5 @@ fi
 
 account=$1
 region=$2
-osver="18.04"
 
-/opt/polynimbus/drivers/azure/list-images.sh $account $region |grep -v DAILY |grep $osver |tail -n1
+/opt/polynimbus/drivers/azure/list-images.sh $account $region |grep -i ubuntu |tail -n1

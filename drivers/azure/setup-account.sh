@@ -27,11 +27,6 @@ fi
 mkdir -p /etc/polynimbus/azure
 echo "#!/bin/sh
 #
-# Ubuntu publisher and offer keys (mostly you don't need to change them):
-#
-export AZURE_PUBLISHER=Canonical
-export AZURE_OFFER=UbuntuServer
-#
 # Default region to use.
 #
 export AZURE_LOCATION=westeurope
