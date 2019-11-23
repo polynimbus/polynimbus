@@ -16,7 +16,5 @@ foreach ($data["Functions"] as $function) {
 	$name = $function["FunctionName"];
 	$runtime = $function["Runtime"];
 	$modified = substr($function["LastModified"], 0, 10);
-
-	$descr = "$name $runtime $modified";
-	echo "$descr\n";
+	echo "$name $runtime $modified -\n";
 }

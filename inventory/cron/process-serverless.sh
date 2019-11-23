@@ -6,6 +6,12 @@ out=/var/cache/polynimbus/inventory
 	|/opt/polynimbus/common/save.sh 0 $out functions.list
 
 
+accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
+for account in $accounts; do
+	/opt/polynimbus/inventory/helpers/azure/process-functions.sh $account
+done
+
+
 entries=`cat $out/functions.list |grep ^aws |awk '{ print $2 ":" $3 }' |sort |uniq`
 for entry in $entries; do
 
