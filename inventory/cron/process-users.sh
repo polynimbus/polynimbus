@@ -11,8 +11,10 @@ for account in `cat $out/projects-aws.list |cut -d' ' -f1`; do
 done
 
 
-accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
-for account in $accounts; do
+/opt/polynimbus/inventory/helpers/azure/list-accounts.sh \
+	|/opt/polynimbus/common/save.sh 0 $out projects-azure.list
+
+for account in `cat $out/projects-azure.list |cut -d' ' -f1`; do
 	/opt/polynimbus/inventory/helpers/azure/process-ad-data.sh $account
 done
 

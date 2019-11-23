@@ -5,6 +5,24 @@ if [ "`which az 2>/dev/null`" = "" ]; then
 	exit 0
 fi
 
-if [ -f /root/.azure/accessTokens.json ] && [ "`az account list-locations`" = "" ]; then
-	echo "error: Azure account not configured, or without active subscriptions"
+if [ ! -f /root/.azure/accessTokens.json ]; then
+	exit 0
+fi
+
+if [ "$1" != "" ]; then
+	account=$1
+else
+	account=default
+fi
+
+if [ ! -f /etc/polynimbus/azure/$account.sh ]; then
+	echo "error: cloud account \"$account\" not configured"
+	exit 1
+fi
+
+. /etc/polynimbus/azure/$account.sh
+az account set --subscription $AZURE_SUBSCRIPTION
+
+if [ "`az account list-locations`" = "" ]; then
+	echo "error: Azure account \"$account\" has expired access token, or without active subscriptions"
 fi

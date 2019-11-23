@@ -1,12 +1,13 @@
 #!/bin/sh
 
 account=$1
+. /etc/polynimbus/azure/$account.sh
+
 out=/var/cache/polynimbus/inventory
 SAVE=/opt/polynimbus/common/save.sh
 
 
-# Assume "default" account for now, since, the below
-# 4 commands don't accept --subscription argument.
+az account set --subscription $AZURE_SUBSCRIPTION
 
 az ad user list           |$SAVE 0 $out raw-azure-users-$account.json
 az ad group list          |$SAVE 0 $out raw-azure-groups-$account.json
