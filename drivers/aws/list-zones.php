@@ -14,5 +14,5 @@ foreach ($data["HostedZones"] as $zone) {
 	$id = basename($zone["Id"]);
 	$name = substr($zone["Name"], 0, -1);
 	$records = $zone["ResourceRecordSetCount"];
-	echo "$name $id $records\n";
+	echo "$name $id $records -\n";
 }

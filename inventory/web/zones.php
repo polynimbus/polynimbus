@@ -1,16 +1,24 @@
 <?php
 
-function get_records_link($vendor, $account, $domain) {
-	if ($vendor != "aws")
-		return $domain;
+function get_records_link($vendor, $account, $domain)
+{
+	if ($vendor == "aws") {
+		$file = "/var/cache/polynimbus/inventory/zone-aws-$account-$domain.zone";
+		if (!file_exists($file)) return $domain;
+		$enc1 = urlencode($account);
+		$enc2 = urlencode($domain);
+		return "<a href=\"aws-domain.php?account=$enc1&domain=$enc2\">$domain</a>";
+	}
 
-	$file = "/var/cache/polynimbus/inventory/zone-aws-$account-$domain.zone";
-	if (!file_exists($file))
-		return $domain;
+	if ($vendor == "azure") {
+		$file = "/var/cache/polynimbus/inventory/raw-azure-zone-$account-$domain.export";
+		if (!file_exists($file)) return $domain;
+		$enc1 = urlencode($account);
+		$enc2 = urlencode($domain);
+		return "<a href=\"azure-domain.php?account=$enc1&domain=$enc2\">$domain</a>";
+	}
 
-	$enc1 = urlencode($account);
-	$enc2 = urlencode($domain);
-	return "<a href=\"aws-domain.php?account=$enc1&domain=$enc2\">$domain</a>";
+	return $domain;
 }
 
 
@@ -38,7 +46,7 @@ foreach ($lines as $line) {
 	if (empty($line))
 		continue;
 
-	$tmp = explode(" ", $line, 5);
+	$tmp = explode(" ", $line, 6);
 	$vendor = $tmp[0];
 
 	table_row(array(
