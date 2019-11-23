@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$3" = "" ]; then
-	echo "usage: $0 <vendor> <cloud-account> <ssh-key-name> [instance-type] [image-name]"
+	echo "usage: $0 <vendor> <cloud-account> <ssh-key-name> [instance-type] [image-name] [region]"
 	exit 1
 elif [ ! -d /opt/polynimbus/drivers/$1 ]; then
 	echo "error: invalid cloud vendor \"$1\" specified"
@@ -11,6 +11,7 @@ fi
 vendor=$1
 account=$2
 key=$3
+region=$6
 path=/opt/polynimbus/api/v1
 
 if [ "$4" != "" ]; then
@@ -27,7 +28,7 @@ fi
 
 $path/key/create.sh $vendor $account $key >/dev/null
 
-instance=`$path/instance/create.sh $vendor $account $key $type $image`
+instance=`$path/instance/create.sh $vendor $account $key $type $image $region`
 
 host=`echo $instance |cut -d' ' -f1`
 state=`echo $instance |cut -d' ' -f2`
