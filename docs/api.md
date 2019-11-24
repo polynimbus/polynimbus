@@ -101,7 +101,7 @@ Polynimbus has to be installed exactly into `/opt/polynimbus` directory. Basic i
 git clone https://github.com/polynimbus/polynimbus /opt/polynimbus
 /opt/polynimbus/install.sh
 ```
-This script will guide you through installation of required software dependencies. Note that it can be safely executed multiple times - each time it will try do update the dependencies.
+This script will guide you through installation of required software dependencies. It can be safely run multiple times - each time it will try to update the dependencies.
 
 
 ### Account setup:
@@ -171,7 +171,11 @@ Parameters:
 `/opt/polynimbus/api/v1/instance/list.sh`, `/opt/polynimbus/api/v1/instance/create.sh`, `/opt/polynimbus/api/v1/instance/wait.sh` and `/opt/polynimbus/api/v1/instance/launch.sh` scripts return data in common format (`list.sh` returns all instances, one per line, while others only the created one):
 
 ```
+# generic
 hostname/ip state ssh-key-name region instance-type instance-id system-id [optional fields]
+
+# aws-specific
+hostname/ip state ssh-key-name region instance-type instance-id system-id created-date tags vpc-id security-groups-list
 ```
 
 Examples:
@@ -202,3 +206,16 @@ In fact, **all** fields are optional in some vendor drivers (`-` can be returned
 - `pending` - just created, not ready yet
 - `running`
 - `terminated`
+
+
+## Database list format
+
+```
+hostname/ip port dbname dbuser state engine engine-version storage-type storage-size region instance-type instance-id created-date vpc-id [optional fields]
+```
+
+Example:
+
+```
+prod.cugvjdos0ihl.eu-central-1.rds.amazonaws.com 5432 prod yourname available postgres 10.6 gp2 20 eu-central-1b t2.small prod 2018-11-29 vpc-0c212345 sg-0123456789abcdef0
+```
