@@ -11,8 +11,5 @@ function parse_stdin_json_data()
 	fclose($fp);
 	$data = json_decode($json, true);
 
-	if (is_null($data))
-		die("error: $json\n");
-
 	return $data;
 }
