@@ -4,7 +4,12 @@
 /opt/polynimbus/install.sh
 
 echo "setting up Polynimbus Inventory directories and files"
-mkdir -p -m 0700 /var/cache/polynimbus/inventory /var/cache/polynimbus/storage
+mkdir -p -m 0700 \
+	/var/cache/polynimbus/inventory \
+	/var/cache/polynimbus/storage \
+	/var/cache/polynimbus/aws/s3cmd \
+	/var/cache/polynimbus/azure/storage-accounts
+
 chmod 0710 /var/cache/polynimbus
 chown root:www-data /var/cache/polynimbus
 chown www-data:www-data /var/cache/polynimbus/inventory /var/cache/polynimbus/storage
