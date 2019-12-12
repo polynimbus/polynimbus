@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$1" = "" ]; then
+if [ "$3" = "" ]; then
 	echo "usage: $0 <cloud-account> <storage-account> <share-name> [path]"
 	exit 1
 elif [ ! -f /etc/polynimbus/azure/$1.sh ]; then

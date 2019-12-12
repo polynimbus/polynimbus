@@ -11,7 +11,12 @@ echo "checking for Microsoft Azure repository"
 if [ -f /etc/redhat-release ] && [ ! -f /etc/yum.repos.d/azure-cli.repo ]; then
 	echo "setting up Microsoft yum repository"
 	rpm --import $KEY
-	echo "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=$KEY" >/etc/yum.repos.d/azure-cli.repo
+	echo "[azure-cli]
+name=Azure CLI
+baseurl=https://packages.microsoft.com/yumrepos/azure-cli
+enabled=1
+gpgcheck=1
+gpgkey=$KEY" >/etc/yum.repos.d/azure-cli.repo
 
 elif [ -f /etc/debian_version ] && [ ! -f /etc/apt/sources.list.d/azure-cli.list ]; then
 	/opt/polynimbus/common/install-packages.sh apt-transport-https
@@ -24,4 +29,4 @@ elif [ -f /etc/debian_version ] && [ ! -f /etc/apt/sources.list.d/azure-cli.list
 	fi
 fi
 
-/opt/polynimbus/common/install-packages.sh azure-cli
+/opt/polynimbus/common/install-packages.sh keyutils azure-cli

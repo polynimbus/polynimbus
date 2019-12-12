@@ -31,6 +31,7 @@ function decode_instance($instance, $created)
 {
 	$states = array(
 		"VM running" => "running",
+		"VM deallocated" => "terminated",
 	);
 
 	if (empty($instance["powerState"]))
