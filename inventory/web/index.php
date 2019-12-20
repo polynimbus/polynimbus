@@ -44,7 +44,7 @@ if (file_exists($file)) {
 
 		$link = get_account_link("aws", $account);
 		echo "<li style=\"margin-bottom: 10px;\"><strong>$link</strong>";
-		echo link_aws_global_raw_content($account, "cloudfront");
+		echo link_global_raw_content("aws", $account, "cloudfront");
 		echo "</li>\n";
 	}
 	echo "</ul>";
@@ -67,7 +67,9 @@ if (file_exists($file)) {
 		$account = $tmp[0];
 
 		$link = get_account_link("azure", $account);
-		echo "<li style=\"margin-bottom: 10px;\"><strong>$link</strong></li>\n";
+		echo "<li style=\"margin-bottom: 10px;\"><strong>$link</strong>";
+		echo link_global_raw_content("azure", $account, "kubernetes");
+		echo "</li>\n";
 	}
 	echo "</ul>";
 }

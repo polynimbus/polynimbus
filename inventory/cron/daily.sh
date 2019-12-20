@@ -22,4 +22,8 @@ accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
 for account in $accounts; do
 	/opt/polynimbus/inventory/helpers/azure/list-usage.sh $account \
 		|/opt/polynimbus/common/save.sh 200 $out usage-azure-$account.list
+
+	. /etc/polynimbus/azure/$account.sh
+	az aks list --subscription $AZURE_SUBSCRIPTION \
+		|/opt/polynimbus/common/save.sh 0 $out raw-azure-kubernetes-$account.json
 done

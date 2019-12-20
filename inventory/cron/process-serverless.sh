@@ -26,5 +26,5 @@ done
 accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-serverless.blacklist`
 for account in $accounts; do
 	/opt/polynimbus/drivers/aws/get-raw.sh $account cloudfront list-distributions \
-		|/opt/polynimbus/common/save.sh 0 $out cloudfront-$account.json
+		|/opt/polynimbus/common/save.sh 0 $out raw-aws-cloudfront-$account.json
 done

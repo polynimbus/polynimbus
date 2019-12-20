@@ -41,19 +41,24 @@ function aws_regional_raw_types() {
 	);
 }
 
-function aws_global_raw_types() {
+function global_raw_types() {
 	return array(
-		"cloudfront" => 140,
+		"aws" => array (
+			"cloudfront" => 140,
+		),
+		"azure" => array (
+			"kubernetes" => 10,
+		),
 	);
 }
 
-function link_aws_global_raw_content($account, $type) {
+function link_global_raw_content($vendor, $account, $type) {
 	$enc = urlencode($account);
-	$file = "/var/cache/polynimbus/inventory/$type-$account.json";
-	$allowed = aws_global_raw_types();
+	$file = "/var/cache/polynimbus/inventory/raw-$vendor-$type-$account.json";
+	$allowed = global_raw_types();
 
-	if (isset($allowed[$type]) && file_exists($file) && filesize($file) > $allowed[$type])
-		return " - <a href=\"aws-raw-global.php?account=$enc&type=$type\">$type</a>";
+	if (isset($allowed[$vendor][$type]) && file_exists($file) && filesize($file) > $allowed[$vendor][$type])
+		return " - <a href=\"raw.php?vendor=$vendor&account=$enc&type=$type\">$type</a>";
 	else
 		return "";
 }
