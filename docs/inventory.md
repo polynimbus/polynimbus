@@ -13,7 +13,7 @@ Polynimbus Inventory and Polynimbus Panel subprojects aim specifically at workin
 
 Polynimbus Inventory is a crawler that analyzes resources (servers, databases, storage, domains, serverless objects etc.) created on all configured cloud accounts, and prepares an inventory, that can be used by eg. Polynimbus Panel.
 
-Polynimbus Panel (provided as a separate repository for security reason) provides a clean and simple web panel, showing all resources crawled by Polynimbus Inventory. Using this panel, you can avoid over 90% of switching your browser between accounts during typical DevOps/SRE work and dramatically increase your productivity.
+Polynimbus Panel (provided as a [separate repository](https://github.com/polynimbus/polynimbus-panel) for security reason) provides a clean and simple web panel, showing all resources crawled by Polynimbus Inventory. Using this panel, you can avoid over 90% of switching your browser between accounts during typical DevOps/SRE work and dramatically increase your productivity.
 
 Polynimbus supports the following cloud vendors:
 - Alibaba Cloud
