@@ -4,11 +4,12 @@
 
 ## Overview
 
-Polynimbus is a multi-cloud infrastructure management tool, designed to increase work efficiency with many separate cloud environments. It is composed from 3 subprojects:
+Polynimbus is a multi-cloud infrastructure management tool, designed to increase work efficiency with many separate cloud environments. It is composed from 4 subprojects:
 
  1. [**Polynimbus API**](docs/api.md) - consistent command line API to manage server instances during their full lifecycle, from launching and software provisioning, through normal operation, until decommissioning.
- 2. [**Polynimbus Inventory**](docs/inventory.md) - clean and simple web panel, showing all servers, databases, object storage, domains, serverless objects etc., created across all accounts. Using this panel, you can avoid over 90% of switching your browser between accounts and dramatically increase your productivity.
- 3. [**Polynimbus Backup**](docs/backup.md) - fully automatic local backup for object storage. Provided as separate repository, to allow installing Backup subproject on separate storage hardware, with minimal dependencies.
+ 2. [**Polynimbus Inventory**](docs/inventory.md) - crawler that analyzes resources (servers, databases, storage, domains, serverless objects etc.) created on all configured cloud accounts, and prepares an inventory, that can be used by eg. Polynimbus Panel.
+ 3. [**Polynimbus Panel**](https://github.com/polynimbus/polynimbus-panel) - clean and simple web panel, showing all servers, databases, storage, domains, serverless objects etc., created across all configured cloud accounts. Using this panel, you can avoid over 90% of switching your browser between accounts during typical DevOps/SRE work and dramatically increase your productivity. Provided as separate repository for security reason.
+ 4. [**Polynimbus Backup**](https://github.com/polynimbus/polynimbus-backup) - fully automatic local backup for object storage. Provided as separate repository, to allow installing Backup subproject on separate storage hardware, with minimal dependencies.
 
 #### Polynimbus supports the following cloud vendors:
 

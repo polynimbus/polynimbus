@@ -7,13 +7,15 @@
 
 Polynimbus is a multi-cloud infrastructure management tool.
 
-Polynimbus Inventory subproject aims specifically at working with many separate cloud environments belonging to many different organizations (which is not possible using eg. AWS Organizations). It is intended primarily for:
+Polynimbus Inventory and Polynimbus Panel subprojects aim specifically at working with many separate cloud environments belonging to many different organizations (which is not possible using eg. AWS Organizations). They are intended primarily for:
 - IT outsourcing companies
 - software houses working with multiple clients
 
-It provides a clean and simple web panel, showing all servers, databases, object storage, domains, serverless objects etc., created across all connected accounts. Using this panel, you can avoid over 90% of switching your browser between accounts during typical DevOps/SRE work and dramatically increase your productivity.
+Polynimbus Inventory is a crawler that analyzes resources (servers, databases, storage, domains, serverless objects etc.) created on all configured cloud accounts, and prepares an inventory, that can be used by eg. Polynimbus Panel.
 
-It supports the following cloud vendors:
+Polynimbus Panel (provided as a separate repository for security reason) provides a clean and simple web panel, showing all resources crawled by Polynimbus Inventory. Using this panel, you can avoid over 90% of switching your browser between accounts during typical DevOps/SRE work and dramatically increase your productivity.
+
+Polynimbus supports the following cloud vendors:
 - Alibaba Cloud
 - Amazon Web Services
 - Beyond e24cloud.com
@@ -33,13 +35,11 @@ Polynimbus was designed to support IT outsourcing business - where our employees
 
 ## Architecture and security aspects
 
-Polynimbus Inventory is divided into 2 separate parts, that share a local filesystem directory:
-- crawler, that scans all connected accounts each day, enumerating users, groups, permissions, and all allocated resources (servers, databases etc.)
-- web panel, which presents data collected by crawler
+Polynimbus Inventory and Polynimbus Panel are divided into 2 separate parts, that share a local `/var/cache/polynimbus` directory.
 
 Crawler part is written as a collection of shell scripts, run using crontab. It is continuously tested on Debian (currently Stretch and Buster), and Ubuntu 18.04 LTS. It also uses several PHP scripts, run with `php-cli`.
 
-Web panel part is written as PHP application, with very minimal CSS/JS using jQuery. In both parts, all PHP scripts are written to be compatible with PHP 5.2 or later. No databases are required.
+Panel part is written as PHP application, with very minimal CSS/JS using jQuery. In both parts, all PHP scripts are written to be compatible with PHP 5.2 or later. No databases are required.
 
 ### Security model
 
@@ -47,7 +47,7 @@ All data exchange between crawler and web panel is performed through local files
 - `/var/cache/polynimbus/inventory` - everything except of object storage file lists
 - `/var/cache/polynimbus/storage`
 
-Thanks to this, web panel is completely separated from the actual account credentials, and can be even run from a different host (assuming that these directories are shared over NFS, rsync-ed etc.).
+Thanks to this, web panel is completely separated from the actual account credentials, and can be run on separate hosts (assuming that these directories are shared over NFS, rsync-ed etc.).
 
 ### Data versioning
 
@@ -97,29 +97,8 @@ git clone https://github.com/polynimbus/polynimbus /opt/polynimbus
 
 Note that this script will first invoke `/opt/polynimbus/install.sh` for basic configuration. Next, you can adjust crontab entries for `/opt/polynimbus/inventory/cron/*.sh` scripts in `/etc/crontab` file.
 
-Web panel part can be run on the same, or completely different host - in both cases, it requires separate, manual installation:
-- installing classic Apache2/PHP, or Nginx/PHP stack (it is tested using Apache2 with Debian-style configuration, but it should work everywhere, probably even on Windows)
-- setting up a new vhost, or just symlinking `/opt/polynimbus/inventory/web` directory somewhere inside existing vhost
-- setting up proper security measures (eg. password protection) to prevent sharing sensitive data with anyone
+See https://github.com/polynimbus/polynimbus-panel for Polynimbus Panel installation instructions.
 
-### Basic vhost configuration for Apache2
-
-This is the simplest possible vhost configuration, with **no security at all**:
-- no password protection
-- no IP protection
-- no SSL
-- no server hardening
-```
-<VirtualHost *:80>
-    ServerName polynimbus.yournet.internal
-    DocumentRoot /opt/polynimbus/inventory/web
-    <Directory /opt/polynimbus/inventory/web>
-        Options FollowSymLinks
-        Order allow,deny
-        Allow from all
-    </Directory>
-</VirtualHost>
-```
 
 ## Relations betwen Polynimbus subprojects
 
