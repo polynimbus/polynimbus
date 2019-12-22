@@ -47,7 +47,7 @@ All data exchange between crawler and web panel is performed through local files
 - `/var/cache/polynimbus/inventory` - everything except of object storage file lists
 - `/var/cache/polynimbus/storage`
 
-Thanks to this, web panel is completely separated from the actual account credentials, and can be run on separate hosts (assuming that these directories are shared over NFS, rsync-ed etc.).
+Thanks to this, web panel is completely separated from the actual account credentials, and can be run on separate hosts (assuming that these directories are shared over NFS, rsynced using `/opt/polynimbus/inventory/cron/sync-panel-data.sh` script etc.).
 
 ### Data versioning
 
