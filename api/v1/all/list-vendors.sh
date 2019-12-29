@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ls /opt/polynimbus/drivers
+ls /opt/polynimbus/drivers |grep -v godaddy

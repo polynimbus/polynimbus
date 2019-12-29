@@ -34,3 +34,23 @@ for account in $accounts; do
 			|/opt/polynimbus/common/save.sh 120 $out raw-azure-zone-$account-$domain.export
 	done
 done
+
+
+map=`cat $out/zones.list |grep ^godaddy |awk '{ print $2 ":" $4 }'`
+for entry in $map; do
+
+	account="${entry%:*}"
+	domain="${entry##*:}"
+
+	/opt/polynimbus/drivers/godaddy/list-records.sh $account $domain \
+		|/opt/polynimbus/common/save.sh 10 $out zone-godaddy-$account-$domain.zone
+
+	/opt/polynimbus/drivers/godaddy/dns/get-details.sh $account $domain \
+		|/opt/polynimbus/common/save.sh 10 $out raw-godaddy-domain-$account-$domain.json
+done
+
+accounts=`/opt/polynimbus/api/v1/account/list.sh godaddy`
+for account in $accounts; do
+	/opt/polynimbus/drivers/godaddy/list-zones.sh $account --raw \
+		|/opt/polynimbus/common/save.sh 10 $out raw-godaddy-alldomains-$account.json
+done

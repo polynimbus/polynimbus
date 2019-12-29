@@ -22,6 +22,7 @@ Polynimbus is a multi-cloud infrastructure management tool, designed to increase
 - Microsoft Azure
 - Oracle Cloud
 - Rackspace Cloud
+- GoDaddy (domains and DNS only)
 
 ## Why Polynimbus?
 
