@@ -13,6 +13,6 @@ for entry in $pools; do
 	poolid="${entry##*:}"
 	region="${poolid%_*}"
 
-	/opt/polynimbus/drivers/aws/list-cognito-users.php $account $poolid $region \
+	/opt/polynimbus/drivers/aws/database/list-cognito-users.php $account $poolid $region \
 		|/opt/polynimbus/common/save.sh 0 $out cognito-$poolid.list
 done

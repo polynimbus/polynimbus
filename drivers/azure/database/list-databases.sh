@@ -10,7 +10,7 @@ fi
 
 account=$1
 region=$2
-LIST=/opt/polynimbus/drivers/azure/list-databases-by-engine.sh
+LIST=/opt/polynimbus/drivers/azure/database/list-databases-by-engine.sh
 
 if [ "$region" != "" ]; then
 	$LIST $account mssql |grep $region

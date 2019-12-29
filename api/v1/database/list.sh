@@ -11,8 +11,8 @@ fi
 vendor=$1
 shift
 
-if [ -x /opt/polynimbus/drivers/$vendor/list-databases.php ]; then
-	/opt/polynimbus/drivers/$vendor/list-databases.php $@
+if [ -x /opt/polynimbus/drivers/$vendor/database/list-databases.php ]; then
+	/opt/polynimbus/drivers/$vendor/database/list-databases.php $@
 else
-	/opt/polynimbus/drivers/$vendor/list-databases.sh $@
+	/opt/polynimbus/drivers/$vendor/database/list-databases.sh $@
 fi
