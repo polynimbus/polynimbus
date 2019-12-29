@@ -3,7 +3,7 @@
 
 function request($account, $storage, $share, $path = "")
 {
-	$cmd = "/opt/polynimbus/drivers/azure/list-storage-files.sh $account $storage $share $path";
+	$cmd = "/opt/polynimbus/drivers/azure/storage/list-files.sh $account $storage $share $path";
 	$result = shell_exec($cmd);
 
 	if (!empty($result)) {

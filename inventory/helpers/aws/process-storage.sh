@@ -10,6 +10,6 @@ for entry in $buckets; do
 	account="${entry%:*}"
 	bucket="${entry##*:}"
 
-	/opt/polynimbus/drivers/aws/list-s3-objects.php $account $bucket \
+	/opt/polynimbus/drivers/aws/storage/list-s3-objects.php $account $bucket \
 		|/opt/polynimbus/common/save.sh 0 $out s3-$account-$bucket.list
 done

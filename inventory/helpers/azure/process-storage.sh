@@ -14,7 +14,7 @@ for account in $accounts; do
 		storage="${entry%:*}"
 		share="${entry##*:}"
 
-		/opt/polynimbus/drivers/azure/list-storage-files-recursive.php $account $storage $share \
+		/opt/polynimbus/drivers/azure/storage/list-files-recursive.php $account $storage $share \
 			|/opt/polynimbus/common/save.sh 0 $out azfile-$account-$storage-$share.list
 	done
 
@@ -25,7 +25,7 @@ for account in $accounts; do
 		storage="${entry%:*}"
 		container="${entry##*:}"
 
-		/opt/polynimbus/drivers/azure/list-storage-blobs.sh $account $storage $container \
+		/opt/polynimbus/drivers/azure/storage/list-blobs.sh $account $storage $container \
 			|/opt/polynimbus/common/save.sh 0 $out azblob-$account-$storage-$container.list
 	done
 

@@ -9,8 +9,8 @@ list=/var/cache/polynimbus/inventory/object-storage.list
 accounts=`grep ^aws $list |grep ' s3 ' |cut -d' ' -f2 |sort |uniq`
 for account in $accounts; do
 
-	access=`/opt/polynimbus/drivers/aws/get-account-credentials.sh $account access`
-	secret=`/opt/polynimbus/drivers/aws/get-account-credentials.sh $account secret`
+	access=`/opt/polynimbus/drivers/aws/storage/get-account-credentials.sh $account access`
+	secret=`/opt/polynimbus/drivers/aws/storage/get-account-credentials.sh $account secret`
 
 	buckets=`grep "^aws $account s3 " $list |cut -d' ' -f5`
 	for bucket in $buckets; do
@@ -18,7 +18,7 @@ for account in $accounts; do
 		file="/var/cache/polynimbus/aws/s3cmd/$account-$bucket.ini"
 		if [ ! -f $file ]; then
 
-			region=`/opt/polynimbus/drivers/aws/get-s3-region.php $account $bucket`
+			region=`/opt/polynimbus/drivers/aws/storage/get-s3-region.php $account $bucket`
 			echo "configuring new S3 bucket: $account/$bucket (region $region, access key $access)"
 			echo "[default]
 access_key = $access
