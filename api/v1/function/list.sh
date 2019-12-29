@@ -11,8 +11,8 @@ fi
 vendor=$1
 shift
 
-if [ -x /opt/polynimbus/drivers/$vendor/list-functions.php ]; then
-	/opt/polynimbus/drivers/$vendor/list-functions.php $@
+if [ -x /opt/polynimbus/drivers/$vendor/serverless/list-functions.php ]; then
+	/opt/polynimbus/drivers/$vendor/serverless/list-functions.php $@
 else
-	/opt/polynimbus/drivers/$vendor/list-functions.sh $@
+	/opt/polynimbus/drivers/$vendor/serverless/list-functions.sh $@
 fi
