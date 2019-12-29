@@ -14,5 +14,5 @@ shift
 if [ "$vendor" = "e24" ]; then
 	echo "m1.small"
 else
-	/opt/polynimbus/drivers/$vendor/list-instance-types.sh $@
+	/opt/polynimbus/drivers/$vendor/compute/list-instance-types.sh $@
 fi

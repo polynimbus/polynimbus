@@ -11,8 +11,8 @@ fi
 vendor=$1
 shift
 
-if [ -x /opt/polynimbus/drivers/$vendor/delete-instance.php ]; then
-	/opt/polynimbus/drivers/$vendor/delete-instance.php $@
+if [ -x /opt/polynimbus/drivers/$vendor/compute/delete-instance.php ]; then
+	/opt/polynimbus/drivers/$vendor/compute/delete-instance.php $@
 else
-	/opt/polynimbus/drivers/$vendor/delete-instance.sh $@
+	/opt/polynimbus/drivers/$vendor/compute/delete-instance.sh $@
 fi

@@ -20,6 +20,8 @@ if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
 	exit 0
 fi
 
+# TODO: allow zone from $3 instead of GCE_REGION
+
 . /etc/polynimbus/google/$account.sh
 
 gcloud compute instances delete $name --configuration $account --zone $GCE_REGION --quiet

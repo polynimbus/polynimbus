@@ -15,4 +15,4 @@ type=$4
 image=$5
 region=$6
 
-/opt/polynimbus/drivers/$vendor/create-instance.sh $account $key $type $image $region
+/opt/polynimbus/drivers/$vendor/compute/create-instance.sh $account $key $type $image $region
