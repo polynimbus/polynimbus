@@ -30,7 +30,7 @@ for account in $accounts; do
 		domain="${entry%:*}"
 		group="${entry##*:}"
 
-		/opt/polynimbus/drivers/azure/list-records.sh $account $domain $group \
+		/opt/polynimbus/api/v1/zone/list-records.sh azure $account $domain $group \
 			|/opt/polynimbus/common/save.sh 120 $out raw-azure-zone-$account-$domain.export
 	done
 done
@@ -42,7 +42,7 @@ for entry in $map; do
 	account="${entry%:*}"
 	domain="${entry##*:}"
 
-	/opt/polynimbus/drivers/godaddy/list-records.sh $account $domain \
+	/opt/polynimbus/api/v1/zone/list-records.sh godaddy $account $domain \
 		|/opt/polynimbus/common/save.sh 10 $out zone-godaddy-$account-$domain.zone
 
 	/opt/polynimbus/drivers/godaddy/dns/get-details.sh $account $domain \
@@ -51,6 +51,6 @@ done
 
 accounts=`/opt/polynimbus/api/v1/account/list.sh godaddy`
 for account in $accounts; do
-	/opt/polynimbus/drivers/godaddy/list-zones.sh $account --raw \
+	/opt/polynimbus/api/v1/zone/list.sh godaddy $account --raw \
 		|/opt/polynimbus/common/save.sh 10 $out raw-godaddy-alldomains-$account.json
 done

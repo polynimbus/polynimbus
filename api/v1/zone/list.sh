@@ -11,8 +11,8 @@ fi
 vendor=$1
 shift
 
-if [ -x /opt/polynimbus/drivers/$vendor/list-zones.php ]; then
-	/opt/polynimbus/drivers/$vendor/list-zones.php $@
+if [ -x /opt/polynimbus/drivers/$vendor/dns/list-zones.php ]; then
+	/opt/polynimbus/drivers/$vendor/dns/list-zones.php $@
 else
-	/opt/polynimbus/drivers/$vendor/list-zones.sh $@
+	/opt/polynimbus/drivers/$vendor/dns/list-zones.sh $@
 fi
