@@ -9,7 +9,7 @@ for account in $accounts; do
 done
 
 
-for vendor in `/opt/polynimbus/api/v1/all/list-vendors.sh |egrep -v "(aws|azure)"`; do
+for vendor in `/opt/polynimbus/api/v1/all/list-vendors.sh compute |egrep -v "(aws|azure)"`; do
 	accounts=`/opt/polynimbus/api/v1/account/list.sh $vendor`
 	for account in $accounts; do
 		/opt/polynimbus/api/v1/instance/list.sh $vendor $account |sed -e "s/^/$vendor $account /"

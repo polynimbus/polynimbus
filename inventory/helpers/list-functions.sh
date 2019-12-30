@@ -8,7 +8,7 @@ for account in $accounts; do
 	done
 done
 
-for vendor in `/opt/polynimbus/api/v1/all/list-vendors.sh |grep -v aws`; do
+for vendor in `/opt/polynimbus/api/v1/all/list-vendors.sh serverless |grep -v aws`; do
 	accounts=`/opt/polynimbus/api/v1/account/list.sh $vendor`
 	for account in $accounts; do
 		/opt/polynimbus/api/v1/function/list.sh $vendor $account |sort |sed -e "s/^/$vendor $account /"
