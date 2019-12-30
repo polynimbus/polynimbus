@@ -11,18 +11,20 @@ Polynimbus is a multi-cloud infrastructure management tool, designed to increase
  3. [**Polynimbus Panel**](https://github.com/polynimbus/polynimbus-panel) - clean and simple web panel, showing all servers, databases, storage, domains, serverless objects etc., created across all configured cloud accounts. Using this panel, you can avoid over 90% of switching your browser between accounts during typical DevOps/SRE work and dramatically increase your productivity. Provided as separate repository for security reason.
  4. [**Polynimbus Backup**](https://github.com/polynimbus/polynimbus-backup) - fully automatic local backup for object storage. Provided as separate repository, to allow installing Backup subproject on separate storage hardware, with minimal dependencies.
 
-#### Polynimbus supports the following cloud vendors:
+#### Polynimbus supports the following services and functionalities:
 
-- Alibaba Cloud
-- Amazon Web Services
-- Beyond e24cloud.com
-- Google Cloud Platform
-- Hetzner Cloud
-- Hetzner Online (classic dedicated servers)
-- Microsoft Azure
-- Oracle Cloud
-- Rackspace Cloud
-- GoDaddy (domains and DNS only)
+|                       | compute | database | dns     | serverless | storage  |  access management |
+|-----------------------|---------|----------|---------|------------|----------|:------------------:|
+| Alibaba Cloud         | r/o     |          |         |            |          |                    |
+| Amazon Web Services   | full    | r/o      | r/o     | r/o        | S3-only  | detailed           |
+| Beyond e24cloud.com   | full    |          |         |            |          |                    |
+| GoDaddy               |         |          | r/o     |            |          |                    |
+| Google Cloud Platform | full    |          | planned |            | planned  | basic              |
+| Hetzner Cloud         | full    |          |         |            |          |                    |
+| Hetzner Online        | r/o     |          |         |            |          |                    |
+| Microsoft Azure       | full    | sql-only | r/o     | r/o        | all r/o  | detailed           |
+| Oracle Cloud          | full    |          |         |            |          |                    |
+| Rackspace Cloud       | full    |          |         |            |          |                    |
 
 ## Why Polynimbus?
 
