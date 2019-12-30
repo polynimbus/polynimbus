@@ -15,7 +15,7 @@ for account in $accounts; do
 		domain="${entry%:*}"
 		zoneid="${entry##*:}"
 
-		/opt/polynimbus/drivers/aws/list-records.php $account $zoneid \
+		/opt/polynimbus/api/v1/zone/list-records.sh aws $account $zoneid \
 			|/opt/polynimbus/common/save.sh 14 $out zone-aws-$account-$domain.zone
 	done
 done

@@ -5,8 +5,10 @@ if [ "$3" = "" ]; then
 	exit 1
 fi
 
+# TODO: pass region/compartment as arguments to this script
+
 region=`/opt/polynimbus/drivers/oracle/compute/get-configured-region.sh`
-compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
+compartment=`/opt/polynimbus/drivers/oracle/compute/get-compartment-id.sh`
 
 vcn=$2
 avdomain=$3

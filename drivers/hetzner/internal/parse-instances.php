@@ -3,7 +3,7 @@
 
 function execute($script, $account, $param)
 {
-	$path = "/opt/polynimbus/drivers/hetzner";
+	$path = "/opt/polynimbus/drivers/hetzner/compute";
 	$_account = escapeshellarg($account);
 	$_param = escapeshellarg($param);
 	return trim(shell_exec("$path/$script $_account $_param"));

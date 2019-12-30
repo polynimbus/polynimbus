@@ -1,6 +1,6 @@
 #!/bin/sh
 
-compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
+compartment=`/opt/polynimbus/drivers/oracle/compute/get-compartment-id.sh`
 
 file=/var/cache/polynimbus/oracle/instance-types.cache
 

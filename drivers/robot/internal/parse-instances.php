@@ -3,7 +3,7 @@
 
 function execute($script, $account, $param)
 {
-	$path = "/opt/polynimbus/drivers/robot";
+	$path = "/opt/polynimbus/drivers/robot/compute";
 	$_account = escapeshellarg($account);
 	$_param = escapeshellarg($param);
 	return trim(shell_exec("$path/$script $_account $_param"));

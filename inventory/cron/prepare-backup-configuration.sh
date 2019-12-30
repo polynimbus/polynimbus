@@ -37,7 +37,7 @@ for entry in $entries; do
 
 	account="${entry%:*}"
 	storage="${entry##*:}"
-	password=`/opt/polynimbus/drivers/azure/get-storage-account-key.sh $account $storage`
+	password=`/opt/polynimbus/drivers/azure/storage/get-storage-account-key.sh $account $storage`
 
 	file="/var/cache/polynimbus/azure/storage-accounts/$account-$storage.cifs"
 	if [ ! -f $file ]; then

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cat /root/.oci/config |grep ^region= |cut -d= -f2
+grep ^region= /root/.oci/config |cut -d= -f2

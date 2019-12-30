@@ -6,7 +6,7 @@ if [ ! -s /root/.oci/config ]; then
 fi
 
 echo "OCI client configured, now enter this key in the user configuration:"
-cat `/opt/polynimbus/drivers/oracle/get-signing-key.sh`
+cat `/opt/polynimbus/drivers/oracle/compute/get-signing-key.sh`
 
 if [ -f /etc/polynimbus/oracle/default.sh ]; then
 	exit 0

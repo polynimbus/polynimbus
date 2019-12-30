@@ -2,7 +2,7 @@
 
 function execute($script, $param)
 {
-	$path = "/opt/polynimbus/drivers/oracle";
+	$path = "/opt/polynimbus/drivers/oracle/compute";
 	$_param = escapeshellarg($param);
 	return trim(shell_exec("$path/$script $_param"));
 }

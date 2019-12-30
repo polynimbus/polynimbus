@@ -20,10 +20,13 @@ if [ ! -f $pubkey ]; then
 	exit 0
 fi
 
-path=/opt/polynimbus/drivers/oracle
+path=/opt/polynimbus/drivers/oracle/compute
 
-region=`$path/compute/get-configured-region.sh`
+region=`$path/get-configured-region.sh`
 compartment=`$path/get-compartment-id.sh`
+
+# TODO: pass region/compartment as arguments to below scripts
+
 vcn=`$path/list-virtual-networks.sh`
 avdomain=`$path/list-availability-domains.sh |head -n1`
 subnet=`$path/list-subnets.sh $unused $vcn $avdomain`
