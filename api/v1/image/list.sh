@@ -11,8 +11,8 @@ fi
 vendor=$1
 shift
 
-if [ -x /opt/polynimbus/drivers/$vendor/list-images.php ]; then
-	/opt/polynimbus/drivers/$vendor/list-images.php $@
+if [ -x /opt/polynimbus/drivers/$vendor/compute/list-images.php ]; then
+	/opt/polynimbus/drivers/$vendor/compute/list-images.php $@
 else
-	/opt/polynimbus/drivers/$vendor/list-images.sh $@
+	/opt/polynimbus/drivers/$vendor/compute/list-images.sh $@
 fi

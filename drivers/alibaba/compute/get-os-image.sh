@@ -11,4 +11,4 @@ fi
 account=$1
 osname=$2
 
-/opt/polynimbus/drivers/alibaba/list-images.sh $account |grep $osname |tail -n1
+/opt/polynimbus/drivers/alibaba/compute/list-images.sh $account |grep $osname |tail -n1

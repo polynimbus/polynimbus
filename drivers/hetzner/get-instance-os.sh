@@ -8,4 +8,4 @@ elif [ ! -f /etc/polynimbus/hetzner/$1.sh ]; then
 	exit 1
 fi
 
-/opt/polynimbus/drivers/hetzner/describe-instance.sh $1 $2 |grep Name: |egrep "(ubuntu|debian|centos|fedora)" |awk '{ print $2 }'
+/opt/polynimbus/drivers/hetzner/compute/describe-instance.sh $1 $2 |grep Name: |egrep "(ubuntu|debian|centos|fedora)" |awk '{ print $2 }'

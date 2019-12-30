@@ -8,5 +8,5 @@ elif [ ! -f /etc/polynimbus/hetzner/$1.sh ]; then
 	exit 1
 fi
 
-rawdate=`/opt/polynimbus/drivers/hetzner/describe-instance.sh $1 $2 |grep Created: |head -n1 |sed s/Created://g`
+rawdate=`/opt/polynimbus/drivers/hetzner/compute/describe-instance.sh $1 $2 |grep Created: |head -n1 |sed s/Created://g`
 date +%Y-%m-%d -d "$rawdate"

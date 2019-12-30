@@ -8,4 +8,4 @@ elif [ ! -f /etc/polynimbus/robot/$1.ini ]; then
 	exit 1
 fi
 
-/opt/polynimbus/drivers/robot/describe-instance.sh $1 $2 |grep "name:" |sed s/name://g
+/opt/polynimbus/drivers/robot/compute/describe-instance.sh $1 $2 |grep "name:" |sed s/name://g

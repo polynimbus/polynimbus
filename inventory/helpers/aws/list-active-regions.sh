@@ -3,7 +3,7 @@
 account=$1
 
 (
-/opt/polynimbus/drivers/aws/get-configured-region.sh $account
+/opt/polynimbus/drivers/aws/compute/get-configured-region.sh $account
 
 if [ -f /var/cache/polynimbus/inventory/instances.list ]; then
 	cat /var/cache/polynimbus/inventory/instances.list |grep "^aws $account " |cut -d' ' -f6 |sed 's/.$//'

@@ -9,8 +9,6 @@ elif ! grep -q "\[$1\]" /root/.aws/credentials; then
 fi
 
 account=$1
-version="18.04"
+region=`/opt/polynimbus/drivers/aws/compute/get-configured-region.sh $account`
 
-region=`/opt/polynimbus/drivers/aws/get-configured-region.sh $account`
-
-/opt/polynimbus/drivers/aws/get-ami-id.sh $region $version
+/opt/polynimbus/drivers/aws/compute/list-ami-raw-data.sh |grep $region |egrep -o 'ami-[0-9a-f]{8,17}' |uniq

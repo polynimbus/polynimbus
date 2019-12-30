@@ -22,7 +22,7 @@ fi
 
 path=/opt/polynimbus/drivers/oracle
 
-region=`$path/get-configured-region.sh`
+region=`$path/compute/get-configured-region.sh`
 compartment=`$path/get-compartment-id.sh`
 vcn=`$path/list-virtual-networks.sh`
 avdomain=`$path/list-availability-domains.sh |head -n1`

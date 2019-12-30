@@ -1,6 +1,6 @@
 #!/bin/sh
 
-region=`/opt/polynimbus/drivers/oracle/get-configured-region.sh`
+region=`/opt/polynimbus/drivers/oracle/compute/get-configured-region.sh`
 compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
 
 file=/var/cache/polynimbus/oracle/availability-domains-$region.cache

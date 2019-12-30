@@ -11,4 +11,4 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/get-configured-region.sh $@
+/opt/polynimbus/drivers/$vendor/compute/get-configured-region.sh $@
