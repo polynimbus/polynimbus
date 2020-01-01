@@ -9,9 +9,7 @@ elif [ ! -f /etc/polynimbus/godaddy/$1.sh ]; then
 fi
 
 account=$1
-. /etc/polynimbus/godaddy/$account.sh
-
-result=`curl -sS -H "Authorization: sso-key $GODADDY_API_KEY:$GODADDY_API_SECRET" -H "Accept: application/json" https://api.godaddy.com/v1/domains/agreements |grep MISSING_VALUE`
+result=`/opt/polynimbus/drivers/godaddy/get.sh $account domains/agreements |grep MISSING_VALUE`
 
 if [ "$result" = "" ]; then
 	echo "error: GoDaddy account \"$1\" has invalid credentials"

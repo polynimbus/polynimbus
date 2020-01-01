@@ -11,10 +11,9 @@ fi
 account=$1
 domain=$2
 file=/var/cache/polynimbus/godaddy/records-$account-$domain.cache
-. /etc/polynimbus/godaddy/$account.sh
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 minutes' +%s` ]; then
-	curl -sS -H "Authorization: sso-key $GODADDY_API_KEY:$GODADDY_API_SECRET" -H "Accept: application/json" https://api.godaddy.com/v1/domains/$domain/records >$file
+	/opt/polynimbus/drivers/godaddy/get.sh $account domains/$domain/records >$file
 fi
 
 if ! grep -q UNKNOWN_DOMAIN $file; then
