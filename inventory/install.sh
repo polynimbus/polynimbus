@@ -32,7 +32,7 @@ touch \
 if ! grep -q /opt/polynimbus/inventory/cron /etc/crontab; then
 	echo "setting up crontab entries"
 	echo "$((RANDOM%60))  */6 * * * root /opt/polynimbus/inventory/cron/process-compute-instances.sh" >>/etc/crontab
-	echo "$((RANDOM%60))  */4 * * * root /opt/polynimbus/inventory/cron/process-object-storage.sh" >>/etc/crontab
+	echo "$((RANDOM%60))  */4 * * * root /opt/polynimbus/inventory/cron/process-storage.sh" >>/etc/crontab
 	echo "$((RANDOM%60)) 7,17 * * * root /opt/polynimbus/inventory/cron/process-dns.sh" >>/etc/crontab
 	echo "$((RANDOM%60)) 7,17 * * * root /opt/polynimbus/inventory/cron/process-pools.sh" >>/etc/crontab
 	echo "$((RANDOM%60)) 7,17 * * * root /opt/polynimbus/inventory/cron/process-databases.sh" >>/etc/crontab
