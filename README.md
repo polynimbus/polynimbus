@@ -18,6 +18,7 @@ Polynimbus is a multi-cloud infrastructure management tool, designed to increase
 | Alibaba Cloud         | r/o     |          |         |            |          |                    |
 | Amazon Web Services   | full    | r/o      | r/o     | r/o        | S3-only  | detailed           |
 | Beyond e24cloud.com   | full    |          |         |            |          |                    |
+| Cloudflare            |         |          | r/o     |            |          | detailed/raw       |
 | GoDaddy               |         |          | r/o     |            |          |                    |
 | Google Cloud Platform | full    |          | planned |            | planned  | basic              |
 | Hetzner Cloud         | full    |          |         |            |          |                    |

@@ -8,31 +8,17 @@ out=/var/cache/polynimbus/inventory
 
 accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-zones.blacklist`
 for account in $accounts; do
-
-	map=`cat $out/zones.list |grep "^aws $account " |awk '{ print $3 ":" $4 }'`
-	for entry in $map; do
-
-		domain="${entry%:*}"
-		zoneid="${entry##*:}"
-
-		/opt/polynimbus/api/v1/zone/list-records.sh aws $account $zoneid \
-			|/opt/polynimbus/common/save.sh 14 $out zone-aws-$account-$domain.zone
-	done
+	/opt/polynimbus/inventory/helpers/aws/process-dns.sh $account
 done
-
 
 accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
 for account in $accounts; do
+	/opt/polynimbus/inventory/helpers/azure/process-dns.sh $account
+done
 
-	map=`cat $out/zones.list |grep "^azure $account " |awk '{ print $3 ":" $6 }'`
-	for entry in $map; do
-
-		domain="${entry%:*}"
-		group="${entry##*:}"
-
-		/opt/polynimbus/api/v1/zone/list-records.sh azure $account $domain $group \
-			|/opt/polynimbus/common/save.sh 120 $out raw-azure-zone-$account-$domain.export
-	done
+accounts=`/opt/polynimbus/api/v1/account/list.sh cloudflare`
+for account in $accounts; do
+	/opt/polynimbus/inventory/helpers/cloudflare/process-dns.sh $account
 done
 
 
@@ -45,7 +31,7 @@ for entry in $map; do
 	/opt/polynimbus/api/v1/zone/list-records.sh godaddy $account $domain \
 		|/opt/polynimbus/common/save.sh 10 $out zone-godaddy-$account-$domain.zone
 
-	/opt/polynimbus/drivers/godaddy/dns/get-details.sh $account $domain \
+	/opt/polynimbus/drivers/godaddy/get.sh $account domains/$domain |python -m json.tool \
 		|/opt/polynimbus/common/save.sh 10 $out raw-godaddy-domain-$account-$domain.json
 done
 
