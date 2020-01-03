@@ -4,8 +4,7 @@
 # Dallas-Fort Worth (DFW)
 # Chicago (ORD)
 # Northern Virginia (IAD)
-# London (LON)
 # Sydney (SYD)
 # Hong Kong (HKG)
 
-echo "DFW\nORD\nIAD\nLON\nSYD\nHKG"
+echo "DFW\nORD\nIAD\nSYD\nHKG"
