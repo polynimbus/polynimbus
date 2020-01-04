@@ -27,3 +27,10 @@ for account in $accounts; do
 	az aks list --subscription $AZURE_SUBSCRIPTION \
 		|/opt/polynimbus/common/save.sh 0 $out raw-azure-kubernetes-$account.json
 done
+
+
+accounts=`/opt/polynimbus/api/v1/account/list.sh b2`
+for account in $accounts; do
+	/opt/polynimbus/drivers/b2/client.sh $account get-account-info \
+		|/opt/polynimbus/common/save.sh 10 $out raw-b2-user-$account.json
+done

@@ -11,3 +11,8 @@ accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
 for account in $accounts; do
 	/opt/polynimbus/inventory/helpers/azure/list-storage.sh $account |sed -e "s/^/azure $account /"
 done
+
+accounts=`/opt/polynimbus/api/v1/account/list.sh b2`
+for account in $accounts; do
+	/opt/polynimbus/drivers/b2/storage/list-buckets.sh $account |sed -e "s/^/backblaze $account b2 /"
+done
