@@ -14,5 +14,5 @@ account=$1
 result=`/opt/polynimbus/drivers/cloudflare/get.sh $account zones |grep activated_on`
 
 if [ "$result" = "" ]; then
-	echo "error: Cloudflare account \"$1\" has invalid credentials"
+	echo "error: Cloudflare account \"$account\" has invalid credentials"
 fi

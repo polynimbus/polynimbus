@@ -12,5 +12,5 @@ account=$1
 result=`/opt/polynimbus/drivers/godaddy/get.sh $account domains/agreements |grep MISSING_VALUE`
 
 if [ "$result" = "" ]; then
-	echo "error: GoDaddy account \"$1\" has invalid credentials"
+	echo "error: GoDaddy account \"$account\" has invalid credentials"
 fi
