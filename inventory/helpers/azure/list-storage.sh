@@ -11,11 +11,11 @@ for contract in $contracts; do
 
 	shares=`/opt/polynimbus/drivers/azure/storage/list-shares.sh $account $storage share |cut -d' ' -f1`
 	for share in $shares; do
-		echo "files $region $share $created $storage"
+		echo "azure $account files $region $share $created $storage"
 	done
 
 	blobs=`/opt/polynimbus/drivers/azure/storage/list-shares.sh $account $storage container |cut -d' ' -f1`
 	for blob in $blobs; do
-		echo "blobs $region $blob $created $storage"
+		echo "azure $account blobs $region $blob $created $storage"
 	done
 done

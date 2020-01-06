@@ -9,4 +9,4 @@ elif [ ! -f /etc/polynimbus/b2/$1.db ]; then
 fi
 
 account=$1
-/opt/polynimbus/drivers/b2/client.sh $account list-buckets |awk '{ print "- " $3 " - -" }'
+/opt/polynimbus/drivers/b2/client.sh $account list-buckets |awk '{ print $3 }'

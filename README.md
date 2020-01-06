@@ -21,7 +21,7 @@ Polynimbus is a multi-cloud infrastructure management tool, designed to increase
 | Beyond e24cloud.com   | full    |          |         |            |          |                    |
 | Cloudflare            |         |          | r/o     |            |          | detailed/raw       |
 | GoDaddy               |         |          | r/o     |            |          |                    |
-| Google Cloud Platform | full    |          | planned |            | planned  | basic              |
+| Google Cloud Platform | full    | planned  | planned |            | GS-only  | basic              |
 | Hetzner Cloud         | full    |          |         |            |          |                    |
 | Hetzner Online        | r/o     |          |         |            |          |                    |
 | Microsoft Azure       | full    | sql-only | r/o     | r/o        | all r/o  | detailed           |

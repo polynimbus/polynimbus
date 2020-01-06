@@ -27,6 +27,7 @@ touch \
 	/var/cache/polynimbus/aws/list-serverless.blacklist \
 	/var/cache/polynimbus/aws/s3-backup.blacklist \
 	/var/cache/polynimbus/google/api.blacklist \
+	/var/cache/polynimbus/google/storage.blacklist \
 	/var/cache/polynimbus/google/get-iam-policy.blacklist
 
 if ! grep -q /opt/polynimbus/inventory/cron /etc/crontab; then
