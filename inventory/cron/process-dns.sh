@@ -21,6 +21,11 @@ for account in $accounts; do
 	/opt/polynimbus/inventory/helpers/cloudflare/process-dns.sh $account
 done
 
+accounts=`/opt/polynimbus/api/v1/account/list.sh linode`
+for account in $accounts; do
+	/opt/polynimbus/inventory/helpers/linode/process-dns.sh $account
+done
+
 
 map=`cat $out/zones.list |grep ^godaddy |awk '{ print $2 ":" $4 }'`
 for entry in $map; do

@@ -13,20 +13,21 @@ Polynimbus is a multi-cloud infrastructure management tool, designed to increase
 
 #### Polynimbus supports the following services and functionalities:
 
-|                       | compute | database | dns     | serverless | storage  |  access management |
-|-----------------------|---------|----------|---------|------------|----------|--------------------|
-| Alibaba Cloud         | r/o     |          |         |            |          |                    |
-| Amazon Web Services   | full    | r/o      | r/o     | r/o        | S3-only  | detailed           |
-| Backblaze B2          |         |          |         |            | all r/o  |                    |
-| Beyond e24cloud.com   | full    |          |         |            |          |                    |
-| Cloudflare            |         |          | r/o     |            |          | detailed/raw       |
-| GoDaddy               |         |          | r/o     |            |          |                    |
-| Google Cloud Platform | full    | planned  | planned |            | GS-only  | basic              |
-| Hetzner Cloud         | full    |          |         |            |          |                    |
-| Hetzner Online        | r/o     |          |         |            |          |                    |
-| Microsoft Azure       | full    | sql-only | r/o     | r/o        | all r/o  | detailed           |
-| Oracle Cloud          | full    |          |         |            |          |                    |
-| Rackspace Cloud       | full    |          |         |            |          |                    |
+|                       | compute | database | dns     | serverless | storage       |  access management |
+|-----------------------|---------|----------|---------|------------|---------------|--------------------|
+| Alibaba Cloud         | r/o     |          |         |            |               |                    |
+| Amazon Web Services   | full    | r/o      | r/o     | r/o        | S3-only       | detailed           |
+| Backblaze B2          |         |          |         |            | all r/o       |                    |
+| Beyond e24cloud.com   | full    |          |         |            |               |                    |
+| Cloudflare            |         |          | r/o     |            |               | detailed/raw       |
+| GoDaddy               |         |          | r/o     |            |               |                    |
+| Google Cloud Platform | full    | planned  | planned |            | GS-only       | basic              |
+| Hetzner Cloud         | full    |          |         |            |               |                    |
+| Hetzner Online        | r/o     |          |         |            |               |                    |
+| Linode                | planned |          | r/o     |            | beta/no files |                    |
+| Microsoft Azure       | full    | sql-only | r/o     | r/o        | all r/o       | detailed           |
+| Oracle Cloud          | full    |          |         |            |               |                    |
+| Rackspace Cloud       | full    |          |         |            |               |                    |
 
 ## Why Polynimbus?
 
