@@ -17,8 +17,14 @@ key=$2
 type=$3
 osver=$4
 
+privkey=`/opt/polynimbus/drivers/google/ssh/get-key-path.sh $key`
+metakey=$privkey.meta
+
 if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
 	echo "error: API disabled for account $account"
+	exit 0
+elif [ "$privkey" = "-" ] || [ ! -f $metakey ]; then
+	echo "error: ssh key for \"$key\" not found"
 	exit 0
 fi
 
@@ -41,7 +47,7 @@ id=`echo "$instance" |cut -f6 -d' '`
 gcloud compute instances add-metadata $id \
 	--configuration $account \
 	--zone $GCE_REGION \
-	--metadata-from-file ssh-keys=/etc/polynimbus/ssh/id_google_$key.meta 2>/dev/null
+	--metadata-from-file ssh-keys=$metakey 2>/dev/null
 
 echo $instance
 

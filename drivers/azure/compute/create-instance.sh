@@ -19,12 +19,13 @@ if [ "$region" = "" ]; then
 	region=$AZURE_LOCATION
 fi
 
-pubkey=/etc/polynimbus/ssh/id_azure_$key.pub
+privkey=`/opt/polynimbus/drivers/azure/ssh/get-key-path.sh $key`
+pubkey=$privkey.pub
 random=`date +%s |md5sum |head -c 4`
 alias=$key-$random
 
-if [ ! -f $pubkey ]; then
-	echo "error: ssh public key for \"$key\" not found"
+if [ "$privkey" = "-" ] || [ ! -f $pubkey ]; then
+	echo "error: ssh key for \"$key\" not found"
 	exit 0
 fi
 

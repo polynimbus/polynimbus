@@ -11,12 +11,13 @@ key=$2
 type=$3
 image=$4
 
-pubkey=/etc/polynimbus/ssh/id_oracle_$key.pub
+privkey=`/opt/polynimbus/drivers/oracle/ssh/get-key-path.sh $key`
+pubkey=$privkey.pub
 random=`date +%s |md5sum |head -c 4`
 alias=$key-$random
 
-if [ ! -f $pubkey ]; then
-	echo "error: ssh public key for \"$key\" not found"
+if [ "$privkey" = "-" ] || [ ! -f $pubkey ]; then
+	echo "error: ssh key for \"$key\" not found"
 	exit 0
 fi
 
