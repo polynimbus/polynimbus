@@ -9,8 +9,6 @@ elif [ ! -f /etc/polynimbus/cloudflare/$1.sh ]; then
 fi
 
 account=$1
-. /etc/polynimbus/cloudflare/$account.sh
-
 result=`/opt/polynimbus/drivers/cloudflare/get.sh $account zones |grep activated_on`
 
 if [ "$result" = "" ]; then
