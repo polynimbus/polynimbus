@@ -11,4 +11,4 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/compute/create-ssh-key.sh $1 $2
+/opt/polynimbus/drivers/$vendor/ssh/create-key.sh $1 $2

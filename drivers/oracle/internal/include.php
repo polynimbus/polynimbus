@@ -2,7 +2,7 @@
 
 function execute($script, $param)
 {
-	$path = "/opt/polynimbus/drivers/oracle/compute";
+	$path = "/opt/polynimbus/drivers/oracle";
 	$_param = escapeshellarg($param);
 	return trim(shell_exec("$path/$script $_param"));
 }
@@ -36,15 +36,15 @@ function decode_instance($instance)
 
 	$rawkey = $instance["metadata"]["ssh_authorized_keys"];
 	$tmp = explode(" ", $rawkey);
-	$key = execute("get-key-name-by-content.sh", $tmp[1]);
+	$key = execute("ssh/get-key-name-by-content.sh", $tmp[1]);
 
 	$id = $instance["id"];
-	$host = execute("get-instance-ip.sh", $id);
+	$host = execute("compute/get-instance-ip.sh", $id);
 	if (empty($host))
 		$host = "-";
 
 	$image = $instance["image-id"];
-	$version = execute("get-ubuntu-version-by-image-id.sh", $image);
+	$version = execute("compute/get-ubuntu-version-by-image-id.sh", $image);
 	if (empty($version))
 		$version = $image;
 

@@ -11,4 +11,4 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/compute/get-key-path.sh $@
+/opt/polynimbus/drivers/$vendor/ssh/get-key-path.sh $@

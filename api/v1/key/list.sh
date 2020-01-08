@@ -11,8 +11,8 @@ fi
 vendor=$1
 shift
 
-if [ -x /opt/polynimbus/drivers/$vendor/compute/list-ssh-keys.php ]; then
-	/opt/polynimbus/drivers/$vendor/compute/list-ssh-keys.php $@
+if [ -x /opt/polynimbus/drivers/$vendor/ssh/list-keys.php ]; then
+	/opt/polynimbus/drivers/$vendor/ssh/list-keys.php $@
 else
-	/opt/polynimbus/drivers/$vendor/compute/list-ssh-keys.sh $@
+	/opt/polynimbus/drivers/$vendor/ssh/list-keys.sh $@
 fi
