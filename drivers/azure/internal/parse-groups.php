@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-require_once "/opt/polynimbus/drivers/azure/internal/include.php";
+require_once "/opt/polynimbus/common/include.php";
 
 $groups = parse_stdin_json_data();
 

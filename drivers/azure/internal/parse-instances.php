@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-require_once "/opt/polynimbus/drivers/azure/internal/include.php";
+require_once "/opt/polynimbus/common/include.php";
 
 function replace_unicode($text) {
 	$unicode = array(
