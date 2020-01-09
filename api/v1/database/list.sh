@@ -13,6 +13,6 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/database/list-databases.php ]; then
 	/opt/polynimbus/drivers/$vendor/database/list-databases.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/database/list-databases.sh ]; then
 	/opt/polynimbus/drivers/$vendor/database/list-databases.sh $@
 fi

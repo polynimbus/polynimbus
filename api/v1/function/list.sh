@@ -13,6 +13,6 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/serverless/list-functions.php ]; then
 	/opt/polynimbus/drivers/$vendor/serverless/list-functions.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/serverless/list-functions.sh ]; then
 	/opt/polynimbus/drivers/$vendor/serverless/list-functions.sh $@
 fi

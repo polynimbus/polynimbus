@@ -13,6 +13,9 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/dns/list-records.php ]; then
 	/opt/polynimbus/drivers/$vendor/dns/list-records.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/dns/list-records.sh ]; then
 	/opt/polynimbus/drivers/$vendor/dns/list-records.sh $@
+else
+	echo "error: cloud vendor \"$vendor\" does not support DNS records"
+	exit 1
 fi

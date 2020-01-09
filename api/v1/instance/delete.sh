@@ -13,6 +13,9 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/compute/delete-instance.php ]; then
 	/opt/polynimbus/drivers/$vendor/compute/delete-instance.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/compute/delete-instance.sh ]; then
 	/opt/polynimbus/drivers/$vendor/compute/delete-instance.sh $@
+else
+	echo "error: cloud vendor \"$vendor\" does not support deleting compute instances"
+	exit 1
 fi

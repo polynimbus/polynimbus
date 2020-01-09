@@ -13,6 +13,6 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/dns/list-zones.php ]; then
 	/opt/polynimbus/drivers/$vendor/dns/list-zones.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/dns/list-zones.sh ]; then
 	/opt/polynimbus/drivers/$vendor/dns/list-zones.sh $@
 fi

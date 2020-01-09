@@ -13,6 +13,6 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/compute/list-instances.php ]; then
 	/opt/polynimbus/drivers/$vendor/compute/list-instances.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/compute/list-instances.sh ]; then
 	/opt/polynimbus/drivers/$vendor/compute/list-instances.sh $@
 fi

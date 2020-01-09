@@ -13,6 +13,6 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/infrastructure/list-images.php ]; then
 	/opt/polynimbus/drivers/$vendor/infrastructure/list-images.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/infrastructure/list-images.sh ]; then
 	/opt/polynimbus/drivers/$vendor/infrastructure/list-images.sh $@
 fi

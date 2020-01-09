@@ -13,6 +13,6 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/infrastructure/list-available-regions.php ]; then
 	/opt/polynimbus/drivers/$vendor/infrastructure/list-available-regions.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/infrastructure/list-available-regions.sh ]; then
 	/opt/polynimbus/drivers/$vendor/infrastructure/list-available-regions.sh $@
 fi

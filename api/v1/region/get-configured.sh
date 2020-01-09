@@ -11,4 +11,6 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/infrastructure/get-configured-region.sh $@
+if [ -x /opt/polynimbus/drivers/$vendor/infrastructure/get-configured-region.sh ]; then
+	/opt/polynimbus/drivers/$vendor/infrastructure/get-configured-region.sh $@
+fi

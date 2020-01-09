@@ -11,4 +11,8 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/ssh/get-key-path.sh $@
+if [ -x /opt/polynimbus/drivers/$vendor/ssh/get-key-path.sh ]; then
+	/opt/polynimbus/drivers/$vendor/ssh/get-key-path.sh $@
+else
+	echo "-"
+fi

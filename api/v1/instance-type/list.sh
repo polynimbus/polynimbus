@@ -11,8 +11,6 @@ fi
 vendor=$1
 shift
 
-if [ "$vendor" = "e24" ]; then
-	echo "m1.small"
-else
+if [ -x /opt/polynimbus/drivers/$vendor/infrastructure/list-instance-types.sh ]; then
 	/opt/polynimbus/drivers/$vendor/infrastructure/list-instance-types.sh $@
 fi

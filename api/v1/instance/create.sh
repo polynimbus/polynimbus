@@ -15,4 +15,9 @@ type=$4
 image=$5
 region=$6
 
-/opt/polynimbus/drivers/$vendor/compute/create-instance.sh $account $key $type $image $region
+if [ -x /opt/polynimbus/drivers/$vendor/compute/create-instance.sh ]; then
+	/opt/polynimbus/drivers/$vendor/compute/create-instance.sh $account $key $type $image $region
+else
+	echo "error: cloud vendor \"$vendor\" does not support creating compute instances"
+	exit 1
+fi

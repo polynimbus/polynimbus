@@ -11,4 +11,9 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/ssh/create-key.sh $1 $2
+if [ -x /opt/polynimbus/drivers/$vendor/ssh/create-key.sh ]; then
+	/opt/polynimbus/drivers/$vendor/ssh/create-key.sh $@
+else
+	echo "error: cloud vendor \"$vendor\" does not support creating ssh keys"
+	exit 1
+fi

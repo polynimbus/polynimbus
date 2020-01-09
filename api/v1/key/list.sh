@@ -13,6 +13,6 @@ shift
 
 if [ -x /opt/polynimbus/drivers/$vendor/ssh/list-keys.php ]; then
 	/opt/polynimbus/drivers/$vendor/ssh/list-keys.php $@
-else
+elif [ -x /opt/polynimbus/drivers/$vendor/ssh/list-keys.sh ]; then
 	/opt/polynimbus/drivers/$vendor/ssh/list-keys.sh $@
 fi

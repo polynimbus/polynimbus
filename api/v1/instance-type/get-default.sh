@@ -11,4 +11,6 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/infrastructure/get-default-instance-type.sh $@
+if [ -x /opt/polynimbus/drivers/$vendor/infrastructure/get-default-instance-type.sh ]; then
+	/opt/polynimbus/drivers/$vendor/infrastructure/get-default-instance-type.sh $@
+fi
