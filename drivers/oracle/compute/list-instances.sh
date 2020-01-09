@@ -1,6 +1,6 @@
 #!/bin/sh
 
-compartment=`/opt/polynimbus/drivers/oracle/compute/get-compartment-id.sh`
+compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
 
 if [ "$1" = "--full" ]; then
 	oci compute instance list --compartment-id $compartment --all

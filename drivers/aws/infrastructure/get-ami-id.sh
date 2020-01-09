@@ -9,4 +9,4 @@ fi
 region=$1
 distro="$2"
 
-/opt/polynimbus/drivers/aws/compute/list-ami-raw-data.sh |grep $region |grep "$distro" |egrep -o 'ami-[0-9a-f]{8,17}' |head -n1
+/opt/polynimbus/drivers/aws/infrastructure/list-ami-raw-data.sh |grep $region |grep "$distro" |egrep -o 'ami-[0-9a-f]{8,17}' |head -n1

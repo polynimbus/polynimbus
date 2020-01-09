@@ -11,8 +11,8 @@ fi
 vendor=$1
 shift
 
-if [ -x /opt/polynimbus/drivers/$vendor/compute/list-available-regions.php ]; then
-	/opt/polynimbus/drivers/$vendor/compute/list-available-regions.php $@
+if [ -x /opt/polynimbus/drivers/$vendor/infrastructure/list-available-regions.php ]; then
+	/opt/polynimbus/drivers/$vendor/infrastructure/list-available-regions.php $@
 else
-	/opt/polynimbus/drivers/$vendor/compute/list-available-regions.sh $@
+	/opt/polynimbus/drivers/$vendor/infrastructure/list-available-regions.sh $@
 fi

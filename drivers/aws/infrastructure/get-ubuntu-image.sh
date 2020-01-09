@@ -11,6 +11,6 @@ fi
 account=$1
 version="18.04"
 
-region=`/opt/polynimbus/drivers/aws/compute/get-configured-region.sh $account`
+region=`/opt/polynimbus/drivers/aws/infrastructure/get-configured-region.sh $account`
 
-/opt/polynimbus/drivers/aws/compute/get-ami-id.sh $region $version
+/opt/polynimbus/drivers/aws/infrastructure/get-ami-id.sh $region $version

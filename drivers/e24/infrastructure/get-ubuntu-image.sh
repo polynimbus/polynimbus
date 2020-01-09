@@ -11,4 +11,4 @@ fi
 account=$1
 osver="18.04"
 
-/opt/polynimbus/drivers/e24/compute/list-images.php $account |grep Ubuntu |grep $osver |tail -n1 |awk '{ print $1 }'
+/opt/polynimbus/api/v1/image/list.sh e24 $account |grep Ubuntu |grep $osver |tail -n1 |awk '{ print $1 }'

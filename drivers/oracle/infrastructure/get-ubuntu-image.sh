@@ -6,4 +6,4 @@ if [ "$1" = "" ]; then
 fi
 
 osver="18.04"
-/opt/polynimbus/drivers/oracle/compute/list-images.sh $1 $osver |head -n1
+/opt/polynimbus/api/v1/image/list.sh oracle $1 $osver |head -n1

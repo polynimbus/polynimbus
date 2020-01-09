@@ -8,4 +8,4 @@ fi
 account=$1
 region=$2
 
-/opt/polynimbus/drivers/azure/compute/list-images.sh $account $region |grep -i ubuntu |tail -n1
+/opt/polynimbus/api/v1/image/list.sh azure $account $region |grep -i ubuntu |tail -n1

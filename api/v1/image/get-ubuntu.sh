@@ -11,4 +11,4 @@ fi
 vendor=$1
 shift
 
-/opt/polynimbus/drivers/$vendor/compute/get-ubuntu-image.sh $@
+/opt/polynimbus/drivers/$vendor/infrastructure/get-ubuntu-image.sh $@

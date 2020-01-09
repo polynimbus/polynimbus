@@ -6,7 +6,7 @@ if [ "$1" = "" ]; then
 	exit 1
 fi
 
-compartment=`/opt/polynimbus/drivers/oracle/compute/get-compartment-id.sh`
+compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
 
 #
 # 1. set caching details

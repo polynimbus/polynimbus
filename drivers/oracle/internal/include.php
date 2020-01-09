@@ -44,7 +44,7 @@ function decode_instance($instance)
 		$host = "-";
 
 	$image = $instance["image-id"];
-	$version = execute("compute/get-ubuntu-version-by-image-id.sh", $image);
+	$version = execute("infrastructure/get-ubuntu-version-by-image-id.sh", $image);
 	if (empty($version))
 		$version = $image;
 

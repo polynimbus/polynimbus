@@ -11,4 +11,4 @@ fi
 account=$1
 osver="18.04"
 
-/opt/polynimbus/drivers/rackspace/compute/list-images.sh $account |grep Ubuntu |grep PVHVM |grep $osver |head -n1
+/opt/polynimbus/api/v1/image/list.sh rackspace $account |grep Ubuntu |grep PVHVM |grep $osver |head -n1

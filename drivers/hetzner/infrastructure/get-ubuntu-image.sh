@@ -9,4 +9,4 @@ elif [ ! -f /etc/polynimbus/hetzner/$1.sh ]; then
 fi
 
 account=$1
-/opt/polynimbus/drivers/hetzner/compute/list-images.sh $account |grep ubuntu- |tail -n1 |awk '{ print $3 }'
+/opt/polynimbus/api/v1/image/list.sh hetzner $account |grep ubuntu- |tail -n1 |awk '{ print $3 }'

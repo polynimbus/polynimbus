@@ -6,7 +6,7 @@ if [ "$1" = "" ]; then
 fi
 
 account=$1
-result=`/opt/polynimbus/drivers/e24/compute/list-available-regions.php $account |grep poznan`
+result=`/opt/polynimbus/api/v1/region/list-available.sh e24 $account |grep poznan`
 
 if [ "$result" = "" ]; then
 	echo "error: e24cloud.com account \"$1\" has invalid credentials"

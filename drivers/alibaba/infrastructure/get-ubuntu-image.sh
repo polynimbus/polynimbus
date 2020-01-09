@@ -13,4 +13,4 @@ fi
 account=$1
 osname="ubuntu_16"
 
-/opt/polynimbus/drivers/alibaba/compute/get-os-image.sh $account $osname
+/opt/polynimbus/drivers/alibaba/infrastructure/get-os-image.sh $account $osname
