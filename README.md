@@ -24,7 +24,7 @@ Polynimbus is a multi-cloud infrastructure management tool, designed to increase
 | Google Cloud Platform | full    | planned  | planned |            | GS-only       | basic              |
 | Hetzner Cloud         | full    |          |         |            |               |                    |
 | Hetzner Online        | r/o     |          |         |            |               |                    |
-| Linode                | full    |          | r/o     |            | no filelists  |                    |
+| Linode                | full    |          | r/o     |            | no filelists  | detailed           |
 | Microsoft Azure       | full    | sql-only | r/o     | r/o        | all r/o       | detailed           |
 | Oracle Cloud          | full    |          |         |            |               |                    |
 | Rackspace Cloud       | full    |          |         |            |               |                    |
