@@ -8,6 +8,5 @@ elif [ ! -f /etc/polynimbus/linode/$1.sh ]; then
 	exit 1
 fi
 
-account=$1
-. /etc/polynimbus/linode/$account.sh
-echo $LINODE_DEFAULT_REGION
+. /etc/polynimbus/linode/$1.sh
+echo $LINODE_DEFAULT_INSTANCE_TYPE

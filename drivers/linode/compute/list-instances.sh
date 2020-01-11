@@ -9,5 +9,4 @@ elif [ ! -f /etc/polynimbus/linode/$1.sh ]; then
 fi
 
 account=$1
-. /etc/polynimbus/linode/$account.sh
-echo $LINODE_DEFAULT_REGION
+/opt/polynimbus/drivers/linode/get.sh $account v4/linode/instances |/opt/polynimbus/drivers/linode/internal/parse-instances.php
