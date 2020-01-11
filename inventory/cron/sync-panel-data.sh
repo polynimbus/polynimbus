@@ -11,6 +11,7 @@ rsync -e "ssh -i $key" -a --delete \
 	--exclude "*.tgz" \
 	--exclude "ssh/" \
 	--exclude "aws/s3cmd" \
+	--exclude "linode/s3cmd" \
 	--exclude "azure/storage-accounts" \
 	--exclude "aws/20*/" \
 	--exclude "inventory/20*/" \

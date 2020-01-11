@@ -8,6 +8,7 @@ mkdir -p -m 0700 \
 	/var/cache/polynimbus/inventory \
 	/var/cache/polynimbus/storage \
 	/var/cache/polynimbus/aws/s3cmd \
+	/var/cache/polynimbus/linode/s3cmd \
 	/var/cache/polynimbus/azure/storage-accounts
 
 chmod 0710 /var/cache/polynimbus
