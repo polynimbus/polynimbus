@@ -15,9 +15,9 @@ path=$4
 . /etc/polynimbus/azure/$account.sh
 
 if [ "$path" != "" ]; then
-	az storage file list --share-name $share --account-name $storage --subscription $AZURE_SUBSCRIPTION --path "$path" \
+	az storage file list --share-name $share --account-name $storage --subscription $AZURE_SUBSCRIPTION --path "$path" 2>/dev/null \
 		|/opt/polynimbus/drivers/azure/internal/parse-files.php "$path"
 else
-	az storage file list --share-name $share --account-name $storage --subscription $AZURE_SUBSCRIPTION \
+	az storage file list --share-name $share --account-name $storage --subscription $AZURE_SUBSCRIPTION 2>/dev/null \
 		|/opt/polynimbus/drivers/azure/internal/parse-files.php
 fi

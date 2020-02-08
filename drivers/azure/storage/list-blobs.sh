@@ -13,5 +13,5 @@ storage=$2
 container=$3
 . /etc/polynimbus/azure/$account.sh
 
-az storage blob list --container-name $container --account-name $storage --subscription $AZURE_SUBSCRIPTION \
+az storage blob list --container-name $container --account-name $storage --subscription $AZURE_SUBSCRIPTION 2>/dev/null \
 	|/opt/polynimbus/drivers/azure/internal/parse-files.php --plain
