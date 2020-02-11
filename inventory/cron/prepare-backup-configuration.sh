@@ -12,23 +12,25 @@ for account in $accounts; do
 	access=`/opt/polynimbus/drivers/aws/storage/get-account-credentials.sh $account access`
 	secret=`/opt/polynimbus/drivers/aws/storage/get-account-credentials.sh $account secret`
 
-	buckets=`grep "^aws $account s3 " $list |cut -d' ' -f5`
-	for bucket in $buckets; do
+	if [ ${access:0:4} != "ASIA" ]; then
+		buckets=`grep "^aws $account s3 " $list |cut -d' ' -f5`
+		for bucket in $buckets; do
 
-		file="/var/cache/polynimbus/aws/s3cmd/$account-$bucket.ini"
-		if [ ! -f $file ]; then
+			file="/var/cache/polynimbus/aws/s3cmd/$account-$bucket.ini"
+			if [ ! -f $file ]; then
 
-			region=`/opt/polynimbus/drivers/aws/storage/get-s3-region.php $account $bucket`
-			echo "configuring new S3 bucket: $account/$bucket (region $region, access key $access)"
-			echo "[default]
+				region=`/opt/polynimbus/drivers/aws/storage/get-s3-region.php $account $bucket`
+				echo "configuring new S3 bucket: $account/$bucket (region $region, access key $access)"
+				echo "[default]
 access_key = $access
 secret_key = $secret
 bucket_location = $region
 use_https = True
 stop_on_error = False
 " >$file
-		fi
-	done
+			fi
+		done
+	fi
 done
 
 

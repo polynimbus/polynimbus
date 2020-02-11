@@ -17,4 +17,4 @@ else
 	token="aws_access_key_id"
 fi
 
-egrep "^(\[|a)" /root/.aws/credentials |sed s/\ //g |grep -F -A2 "[$account]" |grep $token |cut -d= -f2
+egrep "^(\[|a)" /root/.aws/credentials |sed s/\ //g |grep -F -A3 "[$account]" |grep $token |cut -d= -f2
