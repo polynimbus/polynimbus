@@ -2,7 +2,7 @@
 
 accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-databases.blacklist`
 for account in $accounts; do
-	regions=`/opt/polynimbus/api/v1/region/list-available.sh aws $account`
+	regions=`/opt/polynimbus/drivers/aws/infrastructure/list-all-regions.sh $account`
 	for region in $regions; do
 		/opt/polynimbus/api/v1/database/list.sh aws $account $region |sed -e "s/^/aws $account /"
 	done
