@@ -9,10 +9,10 @@ elif ! grep -q "\[$1\]" /root/.aws/credentials; then
 fi
 
 account=$1
-file=/var/cache/polynimbus/aws/tmp/regions-$account.cache
+file=/var/cache/polynimbus/aws/regions-$account.list
 
-if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
-	aws --profile $account ec2 describe-regions >$file
+if [ ! -s $file ]; then
+	aws --profile $account ec2 describe-regions |jq -r '.Regions[].RegionName' |sort >$file
 fi
 
-grep RegionName $file |awk '{ print $2 }' |sed s/\"//g |sort
+cat $file
