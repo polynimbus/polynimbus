@@ -19,7 +19,7 @@ file=/var/cache/polynimbus/azure/$type-$account-$storage.cache
 . /etc/polynimbus/azure/$account.sh
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
-	az storage $type list --account-name $storage --subscription $AZURE_SUBSCRIPTION >$file
+	az storage $type list --account-name $storage --subscription $AZURE_SUBSCRIPTION >$file 2>/dev/null
 fi
 
 if [ "$mode" = "--raw" ]; then
