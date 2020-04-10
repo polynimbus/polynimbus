@@ -2,8 +2,9 @@
 
 key=$1
 target=$2
+port=$3
 
-rsync -e "ssh -i $key" -a --delete \
+rsync -e "ssh -i $key -p $port" -a --delete \
 	\
 	--exclude "*.7z" \
 	--exclude "*.xz" \
