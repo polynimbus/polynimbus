@@ -1,6 +1,6 @@
 #!/bin/sh
 
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 /opt/polynimbus/inventory/helpers/list-instances.sh \
 	|/opt/polynimbus/common/save.sh 14 $out instances.list

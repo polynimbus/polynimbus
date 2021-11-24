@@ -1,6 +1,6 @@
 #!/bin/bash
 
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 /opt/polynimbus/inventory/helpers/list-functions.sh \
 	|/opt/polynimbus/common/save.sh 0 $out functions.list

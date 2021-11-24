@@ -1,6 +1,6 @@
 #!/bin/sh
 
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 file=storage.list
 
 /opt/polynimbus/inventory/helpers/list-storage.sh \

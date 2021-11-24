@@ -44,22 +44,22 @@ Panel part is written as PHP application, with very minimal CSS/JS using jQuery.
 ### Security model
 
 All data exchange between crawler and web panel is performed through local filesystem directory - or 2 directories to be exact:
-- `/var/cache/polynimbus/inventory` - everything except of object storage file lists
-- `/var/cache/polynimbus/storage`
+- `~/.polynimbus/inventory` (for root, it should be symlink to `/var/cache/polynimbus/inventory`) - everything except of object storage file lists
+- `~/.polynimbus/storage` (for root, it should be symlink to `/var/cache/polynimbus/storage`)
 
 Thanks to this, web panel is completely separated from the actual account credentials, and can be run on separate hosts (assuming that these directories are shared over NFS, rsynced using `/opt/polynimbus/inventory/cron/sync-panel-data.sh` script etc.).
 
 ### Data versioning
 
 Files written by crawler are stored in 2 locations, main directory, and date-based subdirectory, eg.:
-- `/var/cache/polynimbus/inventory/databases.list`
-- `/var/cache/polynimbus/inventory/2019/201912/20191204/databases.list`
+- `~/.polynimbus/inventory/databases.list`
+- `~/.polynimbus/inventory/2019/201912/20191204/databases.list`
 
 Of course, the first one is overwritten with each new version of this file, however the second one stays forever (until manual cleanup). So you can always go back to historical versions and eg. compare particular file day-by-day to find out, when some event happened etc.
 
 ### Minimal file size requirement
 
-All new files are first stored as eg. `/var/cache/polynimbus/inventory/databases.list.new` and then linked to date-based subdirectory and renamed to the destination name, only if they met the minimal fize size, that is defined in particular script, eg. 10 bytes.
+All new files are first stored as eg. `~/.polynimbus/inventory/databases.list.new` and then linked to date-based subdirectory and renamed to the destination name, only if they met the minimal fize size, that is defined in particular script, eg. 10 bytes.
 
 This simple mechanism is used to prevent accidental data losses by overwriting last good version of some file with empty one eg. as a result of network failure.
 

@@ -4,13 +4,13 @@
 require_once "/opt/polynimbus/drivers/e24/internal/include.php";
 
 if ($argc < 3)
-	die("usage: $argv[0] <cloud-account> <ssh-key-name>\n");
+	die("usage: $argv[0] <cloud-account> <ssh-key-fullname>\n");
 
 $account = $argv[1];
-$name = $argv[2];
-$file = "/etc/polynimbus/ssh/id_e24_$name";
+$file = $argv[2];
+$name = basename($argv[2]);
 
-if (file_exists($name) || file_exists($file))
+if (file_exists($file))
 	die("warning: ssh key $name already exists\n");
 
 $e24 = e24client($account);

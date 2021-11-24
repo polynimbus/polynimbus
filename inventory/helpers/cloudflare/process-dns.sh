@@ -1,7 +1,7 @@
 #!/bin/bash
 
 account=$1
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 CF=/opt/polynimbus/drivers/cloudflare/get.sh
 SAVE=/opt/polynimbus/common/save.sh

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 account=$1
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 
 /opt/polynimbus/drivers/linode/users/list-users.sh $account \

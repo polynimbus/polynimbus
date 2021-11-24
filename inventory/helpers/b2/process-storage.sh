@@ -1,7 +1,7 @@
 #!/bin/bash
 
 file=$1
-out=/var/cache/polynimbus/storage
+out=~/.polynimbus/storage
 
 
 buckets=`grep ^backblaze $file |grep " b2 " |awk '{ print $2 ":" $5 }'`

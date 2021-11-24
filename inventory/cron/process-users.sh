@@ -1,6 +1,6 @@
 #!/bin/sh
 
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 
 /opt/polynimbus/inventory/helpers/aws/list-accounts.sh \

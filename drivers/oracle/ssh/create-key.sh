@@ -6,7 +6,7 @@ if [ "$2" = "" ]; then
 fi
 
 name=$2
-key=/etc/polynimbus/ssh/id_oracle_$name
+key=~/.polynimbus/ssh/id_oracle_$name
 
 if [ -f $name ] || [ -f $key ]; then
 	echo "warning: ssh key $key already exists"

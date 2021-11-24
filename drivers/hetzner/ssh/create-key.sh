@@ -10,7 +10,7 @@ fi
 
 account=$1
 name=$2
-key=/etc/polynimbus/ssh/id_hetzner_$name
+key=~/.polynimbus/ssh/id_hetzner_$name
 
 if [ -f $name ] || [ -f $key ]; then
 	echo "warning: ssh key $key already exists"

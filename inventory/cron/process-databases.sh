@@ -1,6 +1,6 @@
 #!/bin/sh
 
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 # TODO: add also queues and nosql data sources here
 

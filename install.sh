@@ -7,8 +7,10 @@ if [ "`which php 2>/dev/null`" = "" ]; then
 	exit 1
 fi
 
-echo "setting up Polynimbus directories"
-mkdir -p -m 0700 /etc/polynimbus /var/cache/polynimbus/ssh
+if [ ! -e ~/.polynimbus ]; then
+	echo "setting up Polynimbus directories"
+	mkdir -p -m 0700 ~/.polynimbus ~/.polynimbus/ssh
+fi
 
 for vendor in `ls /opt/polynimbus/drivers`; do
 	/opt/polynimbus/drivers/$vendor/install.sh

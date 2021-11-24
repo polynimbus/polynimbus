@@ -3,7 +3,7 @@
 account=$1
 . /etc/polynimbus/azure/$account.sh
 
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 SAVE=/opt/polynimbus/common/save.sh
 
 map=`cat $out/functions.list |grep "^azure $account " |awk '{ print $4 ":" $7 }'`

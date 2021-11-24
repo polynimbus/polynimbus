@@ -1,7 +1,7 @@
 #!/bin/bash
 
 file=$1
-out=/var/cache/polynimbus/storage
+out=~/.polynimbus/storage
 
 
 accounts=`grep ^azure $file |cut -d' ' -f2 |sort |uniq`

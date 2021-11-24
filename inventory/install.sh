@@ -4,16 +4,18 @@
 /opt/polynimbus/install.sh
 
 echo "setting up Polynimbus Inventory directories and files"
-mkdir -p -m 0700 \
-	/var/cache/polynimbus/inventory \
-	/var/cache/polynimbus/storage \
-	/var/cache/polynimbus/aws/s3cmd \
-	/var/cache/polynimbus/linode/s3cmd \
-	/var/cache/polynimbus/azure/storage-accounts
+if [ ! -e ~/.polynimbus/inventory ]; then
+	mkdir -p -m 0700 \
+		~/.polynimbus/inventory \
+		~/.polynimbus/storage \
+		/var/cache/polynimbus/aws/s3cmd \
+		/var/cache/polynimbus/linode/s3cmd \
+		/var/cache/polynimbus/azure/storage-accounts
+fi
 
-chmod 0710 /var/cache/polynimbus
-chown root:www-data /var/cache/polynimbus
-chown www-data:www-data /var/cache/polynimbus/inventory /var/cache/polynimbus/storage
+chmod 0710 ~/.polynimbus
+chown root:www-data ~/.polynimbus
+chown www-data:www-data ~/.polynimbus/inventory ~/.polynimbus/storage
 
 touch \
 	/var/cache/polynimbus/aws/list-nosql.blacklist \

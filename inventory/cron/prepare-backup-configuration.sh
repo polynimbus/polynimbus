@@ -3,7 +3,7 @@
 # files for Amazon S3 storage buckets, and Microsoft Azure Storage accounts, that
 # are used by separate polynimbus-backup subproject, possibly on another server.
 
-list=/var/cache/polynimbus/inventory/storage.list
+list=~/.polynimbus/inventory/storage.list
 
 
 accounts=`grep ^aws $list |grep ' s3 ' |cut -d' ' -f2 |sort |uniq`

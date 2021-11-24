@@ -12,7 +12,7 @@
 #
 account=`/opt/polynimbus/api/v1/account/list.sh aws |head -n1`
 AMIS1=`/opt/polynimbus/drivers/aws/infrastructure/list-ami-raw-data.sh --all |egrep -o 'ami-[0-9a-f]{8,17}' |uniq`
-AMIS2=`grep ^aws /var/cache/polynimbus/inventory/instances.list |awk '{ print $9 }' |sort |uniq`
+AMIS2=`grep ^aws ~/.polynimbus/inventory/instances.list |awk '{ print $9 }' |sort |uniq`
 for amiid in $AMIS1 $AMIS2; do
 	/opt/polynimbus/drivers/aws/infrastructure/get-ami-image-name.sh $account $amiid --quiet
 done

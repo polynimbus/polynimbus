@@ -2,7 +2,7 @@
 
 account=$1
 region=$2
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 GET=/opt/polynimbus/drivers/aws/get-raw.sh
 SAVE=/opt/polynimbus/common/save.sh

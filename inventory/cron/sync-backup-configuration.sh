@@ -10,5 +10,7 @@ rsync -e "ssh -i $key -p $port" -a --delete /var/cache/polynimbus/azure/storage-
 rsync -e "ssh -i $key -p $port" -a --delete /etc/polynimbus/b2 $target:/etc/polynimbus
 rsync -e "ssh -i $key -p $port" -a --delete /root/.gsutil $target:/root
 rsync -e "ssh -i $key -p $port" -a --delete /root/.config/gcloud $target:/root/.config
-scp -p -i $key -P $port /var/cache/polynimbus/inventory/storage.list $target:/var/cache/polynimbus/inventory
+
+# use /root/.polynimbus fixed path for Polynimbus Backup
+scp -p -i $key -P $port ~/.polynimbus/inventory/storage.list $target:/root/.polynimbus/inventory
 scp -p -i $key -P $port /var/cache/polynimbus/aws/s3-backup.blacklist $target:/var/cache/polynimbus/aws

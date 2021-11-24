@@ -1,6 +1,6 @@
 #!/bin/sh
 
-key=/etc/polynimbus/ssh/id_oracle_$1
+key=~/.polynimbus/ssh/id_oracle_$1
 
 if [ -f $key ]; then
 	echo $key

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 account=$1
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 map=`cat $out/zones.list |grep "^aws $account " |awk '{ print $3 ":" $4 }'`
 for entry in $map; do

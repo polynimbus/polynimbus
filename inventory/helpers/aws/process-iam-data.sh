@@ -1,7 +1,7 @@
 #!/bin/sh
 
 account=$1
-out=/var/cache/polynimbus/inventory
+out=~/.polynimbus/inventory
 
 
 /opt/polynimbus/drivers/aws/users/list-iam-users.php $account \
