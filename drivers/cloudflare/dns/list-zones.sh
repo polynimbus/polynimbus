@@ -9,7 +9,7 @@ elif [ ! -f /etc/polynimbus/cloudflare/$1.sh ]; then
 fi
 
 account=$1
-file=/var/cache/polynimbus/cloudflare/zones-$account.cache
+file=~/.polynimbus/cache/cloudflare/zones-$account.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-30 minutes' +%s` ]; then
 	/opt/polynimbus/drivers/cloudflare/get.sh $account zones >$file

@@ -2,7 +2,7 @@
 
 # TODO: support for other vendors
 
-accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-zones.blacklist`
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf ~/.polynimbus/settings/aws/list-zones.blacklist`
 for account in $accounts; do
 	/opt/polynimbus/api/v1/zone/list.sh aws $account |sed -e "s/^/aws $account /"
 done

@@ -15,8 +15,8 @@ if [ "$SUBSCRIPTION" = "" ]; then
 	exit 1
 fi
 
-if [ ! -f /var/cache/polynimbus/azure/locations.cache ]; then
-	az account list-locations >/var/cache/polynimbus/azure/locations.cache
+if [ ! -f ~/.polynimbus/cache/azure/locations.cache ]; then
+	az account list-locations >~/.polynimbus/cache/azure/locations.cache
 fi
 
 if [ -f /etc/polynimbus/azure/default.sh ]; then

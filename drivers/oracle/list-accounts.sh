@@ -1,5 +1,5 @@
 #!/bin/sh
 
-if [ -s /root/.oci/config ]; then
+if [ -s ~/.oci/config ]; then
 	echo "default"
 fi

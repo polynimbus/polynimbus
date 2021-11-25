@@ -5,7 +5,7 @@
 # An error occurred (InvalidAMIID.NotFound) when calling the DescribeImages operation: The image id '[ami-039950f07c4a0d878]' does not exist
 #
 # you should get only one error per ami-id - but if you get different errors, go
-# to /var/cache/polynimbus/aws/describe-images directory and remove empty files
+# to ~/.polynimbus/cache/aws/describe-images directory and remove empty files
 # (you can do it manually or by running clean-empty-describe-images.sh script)
 #
 # TODO: use proper region instead of default from aws-cli configuration

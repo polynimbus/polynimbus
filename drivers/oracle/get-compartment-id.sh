@@ -1,3 +1,3 @@
 #!/bin/sh
 
-grep ^tenancy= /root/.oci/config |cut -d= -f2
+grep ^tenancy= ~/.oci/config |cut -d= -f2

@@ -15,7 +15,7 @@ account=$1
 storage=$2
 type=$3
 mode=$4
-file=/var/cache/polynimbus/azure/$type-$account-$storage.cache
+file=~/.polynimbus/cache/azure/$type-$account-$storage.cache
 . /etc/polynimbus/azure/$account.sh
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then

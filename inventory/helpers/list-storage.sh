@@ -11,7 +11,7 @@
 # - created date (optional)
 # - group/contract/parent/other id (optional)
 
-accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-storage.blacklist`
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf ~/.polynimbus/settings/aws/list-storage.blacklist`
 for account in $accounts; do
 	/opt/polynimbus/drivers/aws/storage/list-s3-buckets.php $account |sed -e "s/^/aws $account s3 - /" -e "s/$/ -/"
 done

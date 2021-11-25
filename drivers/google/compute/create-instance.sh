@@ -20,7 +20,7 @@ osver=$4
 privkey=`/opt/polynimbus/drivers/google/ssh/get-key-path.sh $key`
 metakey=$privkey.meta
 
-if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+if grep -qxF $account ~/.polynimbus/settings/google/api.blacklist; then
 	echo "error: API disabled for account $account"
 	exit 0
 elif [ "$privkey" = "-" ] || [ ! -f $metakey ]; then

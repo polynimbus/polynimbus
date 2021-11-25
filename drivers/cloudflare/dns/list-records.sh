@@ -13,7 +13,7 @@ zoneid=$2
 page=1
 
 while [ $page -lt 10 ]; do
-	file=/var/cache/polynimbus/cloudflare/records-$account-$zoneid-$page.cache
+	file=~/.polynimbus/cache/cloudflare/records-$account-$zoneid-$page.cache
 
 	if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 minutes' +%s` ]; then
 		/opt/polynimbus/drivers/cloudflare/get.sh $account "zones/$zoneid/dns_records?page=$page&per_page=1000&order=type&direction=asc" >$file

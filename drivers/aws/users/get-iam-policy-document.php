@@ -3,7 +3,7 @@
 require_once "/opt/polynimbus/drivers/aws/internal/include.php";
 
 if ($argc < 5)
-	die("usage: $argv[0] <cloud-account> <user/group/managed> <name> <policy-name>\n");
+	die("usage: $argv[0] <cloud-account> <user/group/managed> <name> <policy-name> [cache-file]\n");
 
 $_name = escapeshellarg($argv[3]);
 $_policy = escapeshellarg($argv[4]);
@@ -21,10 +21,10 @@ if ($argv[2] == "user") {
 
 	$account = $argv[1];
 	$policyname = $argv[4];
+	$cache = $argv[5];
 	$arn = false;
-	$cache = "/var/cache/polynimbus/aws/tmp/attached-managed-policies-$account.cache";
 
-	if (!file_exists($cache))
+	if (empty($cache) || !file_exists($cache))
 		die("error: managed policies cache not populated for account $account\n");
 
 	$json = file_get_contents($cache);

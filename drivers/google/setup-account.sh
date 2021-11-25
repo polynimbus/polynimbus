@@ -13,7 +13,7 @@ fi
 account=$1
 if [ "$account" = "default" ]; then
 
-	if [ ! -d /root/.config/gcloud ]; then
+	if [ ! -d ~/.config/gcloud ]; then
 		gcloud init
 	fi
 
@@ -23,7 +23,7 @@ if [ "$account" = "default" ]; then
 
 else   # $account != default
 
-	if [ ! -d /root/.config/gcloud ] || [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
+	if [ ! -d ~/.config/gcloud ] || [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
 		echo "error: first configuration profile must be called \"default\""
 		exit 1
 	fi

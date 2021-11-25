@@ -1,3 +1,3 @@
 #!/bin/sh
 
-grep "^\[profile " /root/.aliyuncli/credentials |sed -e 's/\[profile\ //g' -e 's/\]//g'
+grep "^\[profile " ~/.aliyuncli/credentials |sed -e 's/\[profile\ //g' -e 's/\]//g'

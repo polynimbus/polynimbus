@@ -1,7 +1,7 @@
 #!/bin/sh
 . /opt/polynimbus/common/functions
 
-if [ ! -s /root/.oci/config ]; then
+if [ ! -s ~/.oci/config ]; then
 	oci setup config
 fi
 

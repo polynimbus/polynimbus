@@ -1,6 +1,6 @@
 #!/bin/sh
 
-accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-compute.blacklist`
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf ~/.polynimbus/settings/aws/list-compute.blacklist`
 for account in $accounts; do
 	regions=`/opt/polynimbus/api/v1/region/list-available.sh aws $account`
 	for region in $regions; do

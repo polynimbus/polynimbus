@@ -6,6 +6,6 @@
 #       "lifecycle-state": "ACTIVE",
 #
 
-if [ -s /root/.oci/config ] && [ "`oci iam compartment list 2>/dev/null |grep ACTIVE`" = "" ]; then
+if [ -s ~/.oci/config ] && [ "`oci iam compartment list 2>/dev/null |grep ACTIVE`" = "" ]; then
 	echo "error: Oracle Cloud account not configured, or without active subscriptions"
 fi

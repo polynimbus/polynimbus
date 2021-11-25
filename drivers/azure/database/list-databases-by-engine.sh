@@ -13,7 +13,7 @@ fi
 
 account=$1
 engine=$2
-file=/var/cache/polynimbus/azure/databases-$account-$engine.cache
+file=~/.polynimbus/cache/azure/databases-$account-$engine.cache
 . /etc/polynimbus/azure/$account.sh
 
 if [ "$engine" = "mssql" ]; then

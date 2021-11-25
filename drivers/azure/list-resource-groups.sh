@@ -16,7 +16,7 @@ if [ "$region" = "" ]; then
 	region=$AZURE_LOCATION
 fi
 
-file=/var/cache/polynimbus/azure/groups-$account-$region.cache
+file=~/.polynimbus/cache/azure/groups-$account-$region.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
 	az group list --subscription $AZURE_SUBSCRIPTION --query "[?location=='$region']" >$file

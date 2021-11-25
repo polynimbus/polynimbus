@@ -21,5 +21,5 @@ list=`/opt/polynimbus/drivers/azure/list-resource-groups.sh $account $region |gr
 
 if [ "$list" = "" ]; then
 	az group create --subscription $AZURE_SUBSCRIPTION --location $region --name $group
-	rm -f /var/cache/polynimbus/azure/groups-$account-$region.cache
+	rm -f ~/.polynimbus/cache/azure/groups-$account-$region.cache
 fi

@@ -2,7 +2,7 @@
 
 if [ "$1" = "" ]; then exit 0; fi
 instance=$1
-path=/var/cache/polynimbus/oracle
+path=~/.polynimbus/cache/oracle
 
 if [ "$2" != "--full" ]; then
 	grep $instance $path/images.map |cut -d: -f2

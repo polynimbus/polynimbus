@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rm -f /var/cache/polynimbus/aws/regions-*.list
+rm -f ~/.polynimbus/cache/aws/regions-*.list

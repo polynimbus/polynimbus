@@ -2,7 +2,7 @@
 
 # TODO: support for other vendors (even with empty implementations in drivers)
 
-accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-encryption.blacklist`
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf ~/.polynimbus/settings/aws/list-encryption.blacklist`
 for account in $accounts; do
 	regions=`/opt/polynimbus/api/v1/region/list-available.sh aws $account`
 	for region in $regions; do

@@ -13,7 +13,7 @@ compartment=`/opt/polynimbus/drivers/oracle/get-compartment-id.sh`
 vcn=$2
 avdomain=$3
 
-file=/var/cache/polynimbus/oracle/subnets-$region-$vcn-$avdomain.cache
+file=~/.polynimbus/cache/oracle/subnets-$region-$vcn-$avdomain.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-1 hour' +%s` ]; then
 	oci network subnet list --compartment-id $compartment --vcn-id $vcn --display-name "Public Subnet $avdomain" >$file

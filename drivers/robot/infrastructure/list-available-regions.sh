@@ -1,6 +1,6 @@
 #!/bin/sh
 
-file=/var/cache/polynimbus/robot/datacenters.cache
+file=~/.polynimbus/cache/robot/datacenters.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
 	curl -s https://wiki.hetzner.de/index.php/Rechenzentren_und_Anbindung/en >$file

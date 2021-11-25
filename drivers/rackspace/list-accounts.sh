@@ -1,3 +1,3 @@
 #!/bin/sh
 
-grep "^\[" /root/.rack/config |sed -e 's/\[//g' -e 's/\]//g'
+grep "^\[" ~/.rack/config |sed -e 's/\[//g' -e 's/\]//g'

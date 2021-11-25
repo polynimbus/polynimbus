@@ -1,6 +1,6 @@
 #!/bin/sh
 
-path=/var/cache/polynimbus/aws
+path=~/.polynimbus/cache/aws
 table=ubuntu-ec2-images.json
 
 if [ ! -s $path/$table ] || [ `stat -c %Y $path/$table` -le `date -d yesterday +%s` ]; then

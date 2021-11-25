@@ -1,6 +1,6 @@
 #!/bin/sh
 
-path=/var/cache/polynimbus/aws
+path=~/.polynimbus/cache/aws
 file=ec2-instance-types.html
 
 if [ ! -s $path/$file ] || [ `stat -c %Y $path/$file` -le `date -d yesterday +%s` ]; then

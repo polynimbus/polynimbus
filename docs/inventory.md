@@ -35,7 +35,7 @@ Polynimbus was designed to support IT outsourcing business - where our employees
 
 ## Architecture and security aspects
 
-Polynimbus Inventory and Polynimbus Panel are divided into 2 separate parts, that share a local `/var/cache/polynimbus` directory.
+Polynimbus Inventory and Polynimbus Panel are divided into 2 separate parts, that share a local `/var/cache/.polynimbus` directory.
 
 Crawler part is written as a collection of shell scripts, run using crontab. It is continuously tested on Debian (currently Stretch and Buster), and Ubuntu 18.04 LTS. It also uses several PHP scripts, run with `php-cli`.
 
@@ -83,7 +83,7 @@ There are separate blacklists for:
 - IAM (per project)
 - overall API access (except getting list of available projects for particular account)
 
-Blacklist files are named eg. `/var/cache/polynimbus/aws/list-compute.blacklist` and contain account names, one per line (except where stated otherwise).
+Blacklist files are named eg. `~/.polynimbus/settings/aws/list-compute.blacklist` and contain account names, one per line (except where stated otherwise).
 
 
 ## Installation
@@ -112,4 +112,4 @@ Polynimbus Inventory relies on API layer where possible. Both API and Inventory 
 
 [Polynimbus Backup](../docs/backup.md) subproject is a fully automatic local backup for object storage (S3 only for now). It is provided in a separate repository, to allow installing Backup subproject on separate storage hardware, with minimal dependencies (without Polynimbus itself).
 
-Backup relies on `/opt/polynimbus/inventory/cron/prepare-backup-configuration.sh` script from Inventory part - this script is responsible for writing configuration profiles for Amazon S3 buckets (for `s3cmd` tool), and Azure Storage Shares (using `cifs-utils` and `rsync`; Azure Storage Blobs are not supported yet). These profiles are stored respectively in `/var/cache/polynimbus/aws/s3cmd` and `/var/cache/polynimbus/azure/storage-accounts` directories - these directories should be exposed to Polynimbus Backup in any way (NFS, rsync etc. - you can optionally use `/opt/polynimbus/inventory/cron/sync-backup-configuration.sh` script for that).
+Backup relies on `/opt/polynimbus/inventory/cron/prepare-backup-configuration.sh` script from Inventory part - this script is responsible for writing configuration profiles for Amazon S3 buckets (for `s3cmd` tool), and Azure Storage Shares (using `cifs-utils` and `rsync`; Azure Storage Blobs are not supported yet). These profiles are stored respectively in `~/.polynimbus/cache/aws/s3cmd` and `~/.polynimbus/cache/azure/storage-accounts` directories - these directories should be exposed to Polynimbus Backup in any way (NFS, rsync etc. - you can optionally use `/opt/polynimbus/inventory/cron/sync-backup-configuration.sh` script for that).

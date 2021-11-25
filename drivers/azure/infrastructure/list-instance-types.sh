@@ -16,7 +16,7 @@ if [ "$region" = "" ]; then
 	region=$AZURE_LOCATION
 fi
 
-file=/var/cache/polynimbus/azure/sizes-$account-$region.cache
+file=~/.polynimbus/cache/azure/sizes-$account-$region.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
 	az vm list-sizes --subscription $AZURE_SUBSCRIPTION --location $region >$file

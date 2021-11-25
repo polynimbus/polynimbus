@@ -10,7 +10,7 @@ fi
 
 account=$1
 domain=$2
-file=/var/cache/polynimbus/godaddy/records-$account-$domain.cache
+file=~/.polynimbus/cache/godaddy/records-$account-$domain.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 minutes' +%s` ]; then
 	/opt/polynimbus/drivers/godaddy/get.sh $account domains/$domain/records >$file

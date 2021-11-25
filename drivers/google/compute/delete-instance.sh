@@ -15,7 +15,7 @@ fi
 account=$1
 name=$2
 
-if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+if grep -qxF $account ~/.polynimbus/settings/google/api.blacklist; then
 	echo "error: API disabled for account $account"
 	exit 0
 fi

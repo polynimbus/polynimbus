@@ -9,7 +9,7 @@ elif [ ! -f /etc/polynimbus/godaddy/$1.sh ]; then
 fi
 
 account=$1
-file=/var/cache/polynimbus/godaddy/domains-$account.cache
+file=~/.polynimbus/cache/godaddy/domains-$account.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-30 minutes' +%s` ]; then
 	/opt/polynimbus/drivers/godaddy/get.sh $account domains >$file

@@ -15,7 +15,7 @@ fi
 account=$1
 project=`/opt/polynimbus/drivers/google/get-configured-project.sh $account`
 
-if grep -qxF $account /var/cache/polynimbus/google/api.blacklist; then
+if grep -qxF $account ~/.polynimbus/settings/google/api.blacklist; then
 	exit 0
 fi
 

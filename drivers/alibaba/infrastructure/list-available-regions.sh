@@ -4,13 +4,13 @@
 if [ "$1" = "" ]; then
 	echo "usage: $0 <cloud-account>"
 	exit 1
-elif ! grep -q "\[profile $1\]" /root/.aliyuncli/credentials; then
+elif ! grep -q "\[profile $1\]" ~/.aliyuncli/credentials; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
 
 account=$1
-file=/var/cache/polynimbus/alibaba/regions.$account.cache
+file=~/.polynimbus/cache/alibaba/regions.$account.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
 	aliyuncli ecs DescribeRegions --profile $account >$file

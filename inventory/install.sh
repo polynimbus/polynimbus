@@ -8,9 +8,13 @@ if [ ! -e ~/.polynimbus/inventory ]; then
 	mkdir -p -m 0700 \
 		~/.polynimbus/inventory \
 		~/.polynimbus/storage \
-		/var/cache/polynimbus/aws/s3cmd \
-		/var/cache/polynimbus/linode/s3cmd \
-		/var/cache/polynimbus/azure/storage-accounts
+		~/.polynimbus/settings \
+		~/.polynimbus/settings/aws \
+		~/.polynimbus/settings/google \
+		~/.polynimbus/cache/aws/tmp \
+		~/.polynimbus/cache/aws/s3cmd \
+		~/.polynimbus/cache/linode/s3cmd \
+		~/.polynimbus/cache/azure/storage-accounts
 fi
 
 chmod 0710 ~/.polynimbus
@@ -18,20 +22,20 @@ chown root:www-data ~/.polynimbus
 chown www-data:www-data ~/.polynimbus/inventory ~/.polynimbus/storage
 
 touch \
-	/var/cache/polynimbus/aws/list-nosql.blacklist \
-	/var/cache/polynimbus/aws/list-users.blacklist \
-	/var/cache/polynimbus/aws/list-zones.blacklist \
-	/var/cache/polynimbus/aws/list-trails.blacklist \
-	/var/cache/polynimbus/aws/list-cognito.blacklist \
-	/var/cache/polynimbus/aws/list-compute.blacklist \
-	/var/cache/polynimbus/aws/list-storage.blacklist \
-	/var/cache/polynimbus/aws/list-databases.blacklist \
-	/var/cache/polynimbus/aws/list-encryption.blacklist \
-	/var/cache/polynimbus/aws/list-serverless.blacklist \
-	/var/cache/polynimbus/aws/s3-backup.blacklist \
-	/var/cache/polynimbus/google/api.blacklist \
-	/var/cache/polynimbus/google/storage.blacklist \
-	/var/cache/polynimbus/google/get-iam-policy.blacklist
+	~/.polynimbus/settings/aws/list-nosql.blacklist \
+	~/.polynimbus/settings/aws/list-users.blacklist \
+	~/.polynimbus/settings/aws/list-zones.blacklist \
+	~/.polynimbus/settings/aws/list-trails.blacklist \
+	~/.polynimbus/settings/aws/list-cognito.blacklist \
+	~/.polynimbus/settings/aws/list-compute.blacklist \
+	~/.polynimbus/settings/aws/list-storage.blacklist \
+	~/.polynimbus/settings/aws/list-databases.blacklist \
+	~/.polynimbus/settings/aws/list-encryption.blacklist \
+	~/.polynimbus/settings/aws/list-serverless.blacklist \
+	~/.polynimbus/settings/aws/s3-backup.blacklist \
+	~/.polynimbus/settings/google/api.blacklist \
+	~/.polynimbus/settings/google/storage.blacklist \
+	~/.polynimbus/settings/google/get-iam-policy.blacklist
 
 if ! grep -q /opt/polynimbus/inventory/cron /etc/crontab; then
 	echo "setting up crontab entries"

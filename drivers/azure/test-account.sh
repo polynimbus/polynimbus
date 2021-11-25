@@ -5,7 +5,7 @@ if [ "`which az 2>/dev/null`" = "" ]; then
 	exit 0
 fi
 
-if [ ! -f /root/.azure/accessTokens.json ]; then
+if [ ! -f ~/.azure/accessTokens.json ]; then
 	exit 0
 fi
 

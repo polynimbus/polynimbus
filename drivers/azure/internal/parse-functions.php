@@ -4,8 +4,7 @@ require_once "/opt/polynimbus/common/include.php";
 
 $functions = parse_stdin_json_data();
 
-function reverse_location_name($location) {
-	$file = "/var/cache/polynimbus/azure/locations.cache";
+function reverse_location_name($location, $file) {
 	if (file_exists($file)) {
 		$json = file_get_contents($file);
 		$data = json_decode($json, true);
@@ -19,7 +18,7 @@ function reverse_location_name($location) {
 }
 
 foreach ($functions as $function) {
-	$region = reverse_location_name($function["location"]);
+	$region = reverse_location_name($function["location"], $argv[1]);
 	$name = $function["name"];
 	$runtime = $function["kind"];
 	$modified = substr($function["lastModifiedTimeUtc"], 0, 10);

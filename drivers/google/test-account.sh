@@ -4,6 +4,6 @@ if [ "`which gcloud 2>/dev/null`" = "" ] && [ -f /root/google-cloud-sdk/path.bas
 	. /root/google-cloud-sdk/path.bash.inc
 fi
 
-if [ -d /root/.config/gcloud ] && [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
+if [ -d ~/.config/gcloud ] && [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
 	echo "error: Google Cloud account not configured, or without active projects"
 fi

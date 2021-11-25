@@ -3,7 +3,7 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <ssh-key-name>"
 	exit 1
-elif ! grep -q "\[profile $1\]" /root/.aliyuncli/credentials; then
+elif ! grep -q "\[profile $1\]" ~/.aliyuncli/credentials; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi

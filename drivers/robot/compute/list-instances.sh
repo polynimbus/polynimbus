@@ -13,4 +13,4 @@ hetznerctl list -c /etc/polynimbus/robot/$account.ini \
 	|grep -v ^None \
 	|tr '[:upper:]' '[:lower:]' \
 	|sed -e s/[\(\),]//g \
-	|/opt/polynimbus/drivers/robot/internal/parse-instances.php $account /var/cache/polynimbus/robot/created.list
+	|/opt/polynimbus/drivers/robot/internal/parse-instances.php $account ~/.polynimbus/cache/robot/created.list

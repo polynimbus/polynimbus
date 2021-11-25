@@ -15,7 +15,7 @@ fi
 account=$1
 project=$2
 
-if grep -qxF $project /var/cache/polynimbus/google/storage.blacklist; then
+if grep -qxF $project ~/.polynimbus/settings/google/storage.blacklist; then
 	exit 0
 fi
 

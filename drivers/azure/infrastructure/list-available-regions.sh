@@ -1,6 +1,6 @@
 #!/bin/sh
 
-file=/var/cache/polynimbus/azure/locations.cache
+file=~/.polynimbus/cache/azure/locations.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
 	az account list-locations >$file

@@ -11,7 +11,7 @@ fi
 account=$1
 name=$2
 
-path=/var/cache/polynimbus/hetzner/describe
+path=~/.polynimbus/cache/hetzner/describe
 mkdir -p $path
 
 file=$path/$account-$name.cache

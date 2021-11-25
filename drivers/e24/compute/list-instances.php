@@ -7,6 +7,7 @@ if ($argc < 2)
 	die("usage: $argv[0] <cloud-account>\n");
 
 $account = $argv[1];
+$home = getenv("HOME");
 
 $e24 = e24client($account);
 $response = $e24->describe_instances();
@@ -23,7 +24,7 @@ foreach ($response->body->reservationSet->item as $item) {
 
 	$sshkey = "-";
 	$region = "-";
-	$cache  = "/var/cache/polynimbus/e24/$account-$id.dump";
+	$cache  = "$home/.polynimbus/cache/e24/$account-$id.dump";
 
 	if (file_exists($cache)) {
 		$json = file_get_contents($cache);

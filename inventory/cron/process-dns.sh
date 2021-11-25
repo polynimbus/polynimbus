@@ -6,7 +6,7 @@ out=~/.polynimbus/inventory
 	|/opt/polynimbus/common/save.sh 0 $out zones.list
 
 
-accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf /var/cache/polynimbus/aws/list-zones.blacklist`
+accounts=`/opt/polynimbus/api/v1/account/list.sh aws |grep -vxFf ~/.polynimbus/settings/aws/list-zones.blacklist`
 for account in $accounts; do
 	/opt/polynimbus/inventory/helpers/aws/process-dns.sh $account
 done

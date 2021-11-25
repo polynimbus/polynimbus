@@ -12,8 +12,9 @@ account=$1
 key=$2
 type=$3
 amiid=$4
+dump=~/.polynimbus/cache/e24/$account-$id.dump
 
-/opt/polynimbus/drivers/e24/internal/create-instance.php $account $key $type $amiid
+/opt/polynimbus/drivers/e24/internal/create-instance.php $account $key $type $amiid $dump
 
 # example output:
 # - pending test2018 eu-poland-1poznan m1.small 5c7254cb-5cba-42a8-a481-aaaafc6e5919 ami-00000bb7

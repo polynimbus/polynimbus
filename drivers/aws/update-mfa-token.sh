@@ -3,7 +3,7 @@
 if [ "$5" = "" ]; then
 	echo "usage: $0 <cloud-account> <new-profile> <role-arn> <mfa-arn> <mfa-token>"
 	exit 1
-elif ! grep -q "\[$1\]" /root/.aws/credentials; then
+elif ! grep -q "\[$1\]" ~/.aws/credentials; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 elif ! [[ $5 =~ ^[0-9]{6}$ ]]; then
@@ -28,7 +28,7 @@ aws sts assume-role \
 	--output json >$tmpfile
 
 if [ $? -eq 0 ]; then
-	sed -i -e "/\[$profile\]/,+3 d" /root/.aws/credentials
+	sed -i -e "/\[$profile\]/,+3 d" ~/.aws/credentials
 
 	AWS_SESSION_TOKEN=`cat $tmpfile |jq -r '.Credentials.SessionToken'`
 	AWS_ACCESS_KEY_ID=`cat $tmpfile |jq -r '.Credentials.AccessKeyId'`
@@ -38,7 +38,7 @@ if [ $? -eq 0 ]; then
 aws_session_token = ${AWS_SESSION_TOKEN}
 aws_access_key_id = ${AWS_ACCESS_KEY_ID}
 aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
-" >>/root/.aws/credentials
+" >>~/.aws/credentials
 fi
 
 rm -f $tmpfile

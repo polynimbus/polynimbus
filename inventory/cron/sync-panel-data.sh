@@ -18,4 +18,4 @@ rsync -e "ssh -i $key -p $port" -a --delete \
 	--exclude "inventory/20*/" \
 	--exclude "storage/20*/" \
 	\
-	/var/cache/polynimbus $target:/var/cache
+	~/.polynimbus/cache $target:/var/cache/.polynimbus

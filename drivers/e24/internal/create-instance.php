@@ -3,13 +3,14 @@
 
 require_once "/opt/polynimbus/drivers/e24/internal/include.php";
 
-if ($argc < 5)
-	die("usage: $argv[0] <cloud-account> <ssh-key-name> <instance-type> <ami-id>\n");
+if ($argc < 6)
+	die("usage: $argv[0] <cloud-account> <ssh-key-name> <instance-type> <ami-id> <cache-file>\n");
 
 $account = $argv[1];
 $name = $argv[2];
 $type = $argv[3];
 $ami_id = $argv[4];
+$cache = $argv[5];
 
 
 $e24 = e24client($account);
@@ -42,7 +43,6 @@ $date = date("Y-m-d");
 echo "$host $state $name $region $type $id $image $date -\n";
 
 
-$cache = "/var/cache/polynimbus/e24/$account-$id.dump";
 $data = array(
 	"ssh" => $name,
 	"region" => $region,

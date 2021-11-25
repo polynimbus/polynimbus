@@ -10,7 +10,7 @@ fi
 
 account=$1
 region=$2
-file=/var/cache/polynimbus/azure/storage-$account.cache
+file=~/.polynimbus/cache/azure/storage-$account.cache
 . /etc/polynimbus/azure/$account.sh
 
 if [ "$region" = "" ]; then

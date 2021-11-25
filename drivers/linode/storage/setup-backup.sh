@@ -13,7 +13,7 @@ apikey=$2
 secret=$3
 . /etc/polynimbus/linode/$account.sh
 
-file=/var/cache/polynimbus/linode/s3cmd/$account.ini
+file=~/.polynimbus/cache/linode/s3cmd/$account.ini
 
 if [ -f $file ]; then
 	echo "error: account \"$account\" already configured"

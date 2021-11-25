@@ -9,7 +9,7 @@ elif [ ! -f /etc/polynimbus/azure/$1.sh ]; then
 fi
 
 account=$1
-file=/var/cache/polynimbus/azure/functions-$account.cache
+file=~/.polynimbus/cache/azure/functions-$account.cache
 . /etc/polynimbus/azure/$account.sh
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-30 minutes' +%s` ]; then
@@ -19,5 +19,5 @@ fi
 if [ "$2" = "--raw" ]; then
 	cat $file
 else
-	cat $file |/opt/polynimbus/drivers/azure/internal/parse-functions.php
+	cat $file |/opt/polynimbus/drivers/azure/internal/parse-functions.php ~/.polynimbus/cache/azure/locations.cache
 fi

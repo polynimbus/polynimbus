@@ -16,7 +16,7 @@ for account in $accounts; do
 		buckets=`grep "^aws $account s3 " $list |cut -d' ' -f5`
 		for bucket in $buckets; do
 
-			file="/var/cache/polynimbus/aws/s3cmd/$account-$bucket.ini"
+			file=~/.polynimbus/cache/aws/s3cmd/$account-$bucket.ini
 			if [ ! -f $file ]; then
 
 				region=`/opt/polynimbus/drivers/aws/storage/get-s3-region.php $account $bucket`
@@ -41,7 +41,7 @@ for entry in $entries; do
 	storage="${entry##*:}"
 	password=`/opt/polynimbus/drivers/azure/storage/get-storage-account-key.sh $account $storage`
 
-	file="/var/cache/polynimbus/azure/storage-accounts/$account-$storage.cifs"
+	file=~/.polynimbus/cache/azure/storage-accounts/$account-$storage.cifs
 	if [ ! -f $file ]; then
 		echo "configuring new Azure Storage account: $account/$storage"
 		echo "username=$storage

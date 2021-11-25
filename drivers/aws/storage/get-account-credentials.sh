@@ -3,7 +3,7 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <type>"
 	exit 1
-elif ! grep -q "\[$1\]" /root/.aws/credentials; then
+elif ! grep -q "\[$1\]" ~/.aws/credentials; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -17,4 +17,4 @@ else
 	token="aws_access_key_id"
 fi
 
-egrep "^(\[|a)" /root/.aws/credentials |sed s/\ //g |grep -F -A3 "[$account]" |grep $token |cut -d= -f2
+egrep "^(\[|a)" ~/.aws/credentials |sed s/\ //g |grep -F -A3 "[$account]" |grep $token |cut -d= -f2

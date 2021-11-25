@@ -1,6 +1,6 @@
 #!/bin/sh
 
-file=/var/cache/polynimbus/robot/hardware.cache
+file=~/.polynimbus/cache/robot/hardware.cache
 
 if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d yesterday +%s` ]; then
 	curl -s https://wiki.hetzner.de/index.php/Root_Server_Hardware/en >$file
