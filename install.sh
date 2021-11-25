@@ -16,8 +16,9 @@ for vendor in `ls /opt/polynimbus/drivers`; do
 	/opt/polynimbus/drivers/$vendor/install.sh
 done
 
-if ! grep -q /opt/polynimbus/common /etc/crontab; then
+crontab=`/opt/polynimbus/common/get-crontab-name.sh`
+if ! grep -q /opt/polynimbus/common $crontab; then
 	echo "setting up crontab entries"
-	echo "$((RANDOM%60)) */8 * * * root /opt/polynimbus/common/cron-test-accounts.sh" >>/etc/crontab
-	echo "$((RANDOM%60)) 8 * * * root /opt/polynimbus/common/cron-daily.sh" >>/etc/crontab
+	echo "$((RANDOM%60)) */8 * * * root /opt/polynimbus/common/cron-test-accounts.sh" >>$crontab
+	echo "$((RANDOM%60)) 8 * * * root /opt/polynimbus/common/cron-daily.sh" >>$crontab
 fi
