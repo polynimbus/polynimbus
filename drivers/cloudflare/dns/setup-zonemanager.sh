@@ -12,14 +12,14 @@ account=$1
 domain=$2
 . ~/.polynimbus/accounts/cloudflare/$account.sh
 
-file=/etc/local/.cloudflare/$domain.headers
+file=~/.zonemanager/accounts/cloudflare/$domain.headers
 
 if [ -f $file ]; then
 	echo "error: domain \"$domain\" already configured"
 	exit 1
 fi
 
-mkdir -p -m 0700 /etc/local/.cloudflare
+mkdir -p -m 0700 ~/.zonemanager/accounts/cloudflare
 echo "X-Auth-Email: $CLOUDFLARE_EMAIL" >$file
 echo "X-Auth-Key: $CLOUDFLARE_KEY" >>$file
 chmod 0400 $file
