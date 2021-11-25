@@ -3,7 +3,7 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <domain>"
 	exit 1
-elif [ ! -f /etc/polynimbus/godaddy/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/godaddy/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi

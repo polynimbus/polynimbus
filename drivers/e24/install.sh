@@ -2,7 +2,7 @@
 
 /opt/polynimbus/common/install-packages.sh php-curl php-simplexml
 
-mkdir -p /etc/polynimbus/e24 ~/.polynimbus/cache/e24
+mkdir -p ~/.polynimbus/accounts/e24 ~/.polynimbus/cache/e24
 chmod 0700 ~/.polynimbus/cache/e24
 
 if [ ! -d /usr/share/php/sdk-1.6.2 ]; then

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ls /etc/polynimbus/linode |sed s/.sh//g
+ls ~/.polynimbus/accounts/linode |sed s/.sh//g

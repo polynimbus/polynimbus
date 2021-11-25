@@ -1,7 +1,7 @@
 #!/bin/sh
 # https://docs.microsoft.com/pl-pl/cli/azure/install-azure-cli-apt?view=azure-cli-latest
 
-mkdir -p /etc/polynimbus/azure ~/.polynimbus/cache/azure
+mkdir -p ~/.polynimbus/accounts/azure ~/.polynimbus/cache/azure
 chmod 0700 ~/.polynimbus/cache/azure
 touch ~/.polynimbus/cache/azure/created.list
 

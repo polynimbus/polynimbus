@@ -2,6 +2,6 @@
 
 accounts=`/opt/polynimbus/api/v1/account/list.sh azure`
 for account in $accounts; do
-	. /etc/polynimbus/azure/$account.sh
+	. ~/.polynimbus/accounts/azure/$account.sh
 	echo "$account $AZURE_SUBSCRIPTION"
 done

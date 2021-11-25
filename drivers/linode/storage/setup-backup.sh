@@ -3,7 +3,7 @@
 if [ "$3" = "" ]; then
 	echo "usage: $0 <cloud-account> <api-key> <secret-key>"
 	exit 1
-elif [ ! -f /etc/polynimbus/linode/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/linode/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -11,7 +11,7 @@ fi
 account=$1
 apikey=$2
 secret=$3
-. /etc/polynimbus/linode/$account.sh
+. ~/.polynimbus/accounts/linode/$account.sh
 
 file=~/.polynimbus/cache/linode/s3cmd/$account.ini
 

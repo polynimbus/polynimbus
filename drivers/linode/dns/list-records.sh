@@ -3,7 +3,7 @@
 if [ "$3" = "" ]; then
 	echo "usage: $0 <cloud-account> <zone-id> <domain>"
 	exit 1
-elif [ ! -f /etc/polynimbus/linode/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/linode/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 elif ! [[ $2 =~ ^[0-9]+$ ]]; then

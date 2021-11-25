@@ -7,7 +7,7 @@ fi
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <instance-name>"
 	exit 1
-elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/google/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -22,6 +22,6 @@ fi
 
 # TODO: allow zone from $3 instead of GCE_REGION
 
-. /etc/polynimbus/google/$account.sh
+. ~/.polynimbus/accounts/google/$account.sh
 
 gcloud compute instances delete $name --configuration $account --zone $GCE_REGION --quiet

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mkdir -p /etc/polynimbus/oracle ~/.polynimbus/cache/oracle
+mkdir -p ~/.polynimbus/accounts/oracle ~/.polynimbus/cache/oracle
 chmod 0700 ~/.polynimbus/cache/oracle

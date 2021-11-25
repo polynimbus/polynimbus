@@ -3,7 +3,7 @@
 if [ "$3" = "" ]; then
 	echo "usage: $0 <cloud-account> <instance-name> <new-instance-type> [region]"
 	exit 1
-elif [ ! -f /etc/polynimbus/azure/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/azure/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -12,7 +12,7 @@ account=$1
 name=$2
 type=$3
 region=$4
-. /etc/polynimbus/azure/$account.sh
+. ~/.polynimbus/accounts/azure/$account.sh
 
 if [ "$region" = "" ]; then
 	region=$AZURE_LOCATION

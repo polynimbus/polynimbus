@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ls /etc/polynimbus/godaddy |sed s/.sh//g
+ls ~/.polynimbus/accounts/godaddy |sed s/.sh//g

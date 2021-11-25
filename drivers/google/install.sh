@@ -1,7 +1,7 @@
 #!/bin/bash
 # https://cloud.google.com/sdk/downloads
 
-mkdir -p /etc/polynimbus/google ~/.polynimbus/cache/google
+mkdir -p ~/.polynimbus/accounts/google ~/.polynimbus/cache/google
 chmod 0700 ~/.polynimbus/cache/google
 
 if [ "`which gcloud 2>/dev/null`" = "" ] && [ -f /root/google-cloud-sdk/path.bash.inc ]; then

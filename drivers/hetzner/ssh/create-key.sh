@@ -3,7 +3,7 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <ssh-key-name>"
 	exit 1
-elif [ ! -f /etc/polynimbus/hetzner/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/hetzner/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -19,5 +19,5 @@ fi
 
 ssh-keygen -q -t rsa -f $key -b 4096 -N ""
 
-. /etc/polynimbus/hetzner/$account.sh
+. ~/.polynimbus/accounts/hetzner/$account.sh
 /opt/polynimbus/drivers/hetzner/support/hcloud ssh-key create --name $name --public-key-from-file $key.pub

@@ -37,14 +37,14 @@ else   # $account != default
 	fi
 fi
 
-if [ -f /etc/polynimbus/google/$account.sh ]; then
+if [ -f ~/.polynimbus/accounts/google/$account.sh ]; then
 	exit 0
 fi
 
 REGION="`input \"enter Google Compute Engine region to use\" europe-west1-c`"
 DEFAULT_INSTANCE_TYPE="`input \"enter Google Compute Engine default instance type\" n1-standard-1`"
 
-mkdir -p /etc/polynimbus/google
+mkdir -p ~/.polynimbus/accounts/google
 echo "#!/bin/sh
 #
 # Default region to use:
@@ -59,5 +59,5 @@ export GCE_PROJECT=ubuntu-os-cloud
 # (use list-instance-types.sh script to discover all instance types):
 #
 export GCE_DEFAULT_INSTANCE_TYPE=$DEFAULT_INSTANCE_TYPE
-" >/etc/polynimbus/google/$account.sh
-chmod 0600 /etc/polynimbus/google/$account.sh
+" >~/.polynimbus/accounts/google/$account.sh
+chmod 0600 ~/.polynimbus/accounts/google/$account.sh

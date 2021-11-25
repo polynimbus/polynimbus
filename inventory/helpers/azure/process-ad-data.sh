@@ -1,7 +1,7 @@
 #!/bin/sh
 
 account=$1
-. /etc/polynimbus/azure/$account.sh
+. ~/.polynimbus/accounts/azure/$account.sh
 
 out=~/.polynimbus/inventory
 SAVE=/opt/polynimbus/common/save.sh

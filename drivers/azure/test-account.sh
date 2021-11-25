@@ -15,12 +15,12 @@ else
 	account=default
 fi
 
-if [ ! -f /etc/polynimbus/azure/$account.sh ]; then
+if [ ! -f ~/.polynimbus/accounts/azure/$account.sh ]; then
 	echo "error: cloud account \"$account\" not configured"
 	exit 1
 fi
 
-. /etc/polynimbus/azure/$account.sh
+. ~/.polynimbus/accounts/azure/$account.sh
 az account set --subscription $AZURE_SUBSCRIPTION
 
 if [ "`az account list-locations`" = "" ]; then

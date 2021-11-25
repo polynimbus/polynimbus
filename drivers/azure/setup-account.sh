@@ -19,12 +19,12 @@ if [ ! -f ~/.polynimbus/cache/azure/locations.cache ]; then
 	az account list-locations >~/.polynimbus/cache/azure/locations.cache
 fi
 
-if [ -f /etc/polynimbus/azure/default.sh ]; then
+if [ -f ~/.polynimbus/accounts/azure/default.sh ]; then
 	echo "error: cloud account \"default\" already configured"
 	exit 1
 fi
 
-mkdir -p /etc/polynimbus/azure
+mkdir -p ~/.polynimbus/accounts/azure
 echo "#!/bin/sh
 #
 # Default region to use.
@@ -35,5 +35,5 @@ export AZURE_LOCATION=westeurope
 # of configuring this account. Use \"az account list\" to see all profiles.
 #
 export AZURE_SUBSCRIPTION=$SUBSCRIPTION
-" >/etc/polynimbus/azure/default.sh
-chmod 0600 /etc/polynimbus/azure/default.sh
+" >~/.polynimbus/accounts/azure/default.sh
+chmod 0600 ~/.polynimbus/accounts/azure/default.sh

@@ -3,14 +3,14 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <domain>"
 	exit 1
-elif [ ! -f /etc/polynimbus/cloudflare/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/cloudflare/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
 
 account=$1
 domain=$2
-. /etc/polynimbus/cloudflare/$account.sh
+. ~/.polynimbus/accounts/cloudflare/$account.sh
 
 file=/etc/local/.cloudflare/$domain.headers
 

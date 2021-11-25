@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir -p /etc/polynimbus/robot ~/.polynimbus/cache/robot
+mkdir -p ~/.polynimbus/accounts/robot ~/.polynimbus/cache/robot
 chmod 0700 ~/.polynimbus/cache/robot
 
 # TODO: these package names are good for Debian/Ubuntu only

@@ -7,7 +7,7 @@ fi
 if [ "$4" = "" ]; then
 	echo "usage: $0 <cloud-account> <ssh-key-name> <instance-type> <image-name>"
 	exit 1
-elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/google/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -28,7 +28,7 @@ elif [ "$privkey" = "-" ] || [ ! -f $metakey ]; then
 	exit 0
 fi
 
-. /etc/polynimbus/google/$account.sh
+. ~/.polynimbus/accounts/google/$account.sh
 
 random=`date +%s |md5sum |head -c 4`
 name=$key-$random

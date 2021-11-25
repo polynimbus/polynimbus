@@ -35,7 +35,7 @@ Polynimbus was designed to support IT outsourcing business - where our employees
 
 ## Architecture and security aspects
 
-Polynimbus Inventory and Polynimbus Panel are divided into 2 separate parts, that share a local `/var/cache/.polynimbus` directory.
+Polynimbus Inventory and Polynimbus Panel are divided into 2 separate parts, that share a local `/var/cache/polynimbus` directory.
 
 Crawler part is written as a collection of shell scripts, run using crontab. It is continuously tested on Debian (currently Stretch and Buster), and Ubuntu 18.04 LTS. It also uses several PHP scripts, run with `php-cli`.
 

@@ -7,7 +7,7 @@ fi
 if [ "$1" = "" ]; then
 	echo "usage: $0 <cloud-account> [--full]"
 	exit 1
-elif [ ! -f /etc/polynimbus/google/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/google/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -18,7 +18,7 @@ if grep -qxF $account ~/.polynimbus/settings/google/api.blacklist; then
 	exit 0
 fi
 
-. /etc/polynimbus/google/$account.sh
+. ~/.polynimbus/accounts/google/$account.sh
 
 if [ "$2" = "--full" ]; then
 	gcloud compute machine-types list --configuration $account --quiet |egrep "($GCE_REGION|DEPRECATED)"

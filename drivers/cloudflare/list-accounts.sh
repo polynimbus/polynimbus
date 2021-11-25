@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ls /etc/polynimbus/cloudflare |sed s/.sh//g
+ls ~/.polynimbus/accounts/cloudflare |sed s/.sh//g

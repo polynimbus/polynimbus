@@ -114,7 +114,7 @@ where:
 - `yourvendor` is one of: `alibaba`, `aws`, `azure`, `e24`, `google`, `hetzner`, `oracle`, `rackspace` or `robot`
 - `youraccount` is the name of your configured account
 
-Once you finished the initial setup, you can always manually edit files inside `/etc/polynimbus` directory to make sure that your vendor is properly configured.
+Once you finished the initial setup, you can always manually edit files inside `~/.polynimbus/accounts` directory to make sure that your vendor is properly configured.
 
 Additional notes:
 

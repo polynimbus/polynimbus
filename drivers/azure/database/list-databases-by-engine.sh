@@ -6,7 +6,7 @@ if [ "$2" = "" ]; then
 elif [ "$2" != "mssql" ] && [ "$2" != "mysql" ] && [ "$2" != "mariadb" ] && [ "$2" != "postgres" ]; then
 	echo "error: invalid database engine type"
 	exit 1
-elif [ ! -f /etc/polynimbus/azure/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/azure/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -14,7 +14,7 @@ fi
 account=$1
 engine=$2
 file=~/.polynimbus/cache/azure/databases-$account-$engine.cache
-. /etc/polynimbus/azure/$account.sh
+. ~/.polynimbus/accounts/azure/$account.sh
 
 if [ "$engine" = "mssql" ]; then
 	type="sql"

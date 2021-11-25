@@ -1,5 +1,5 @@
 #!/bin/bash
-. /etc/polynimbus/oracle/default.sh
+. ~/.polynimbus/accounts/oracle/default.sh
 
 if [ "$1" = "" ]; then
 	echo "usage: $0 <unused> [system-version] [--full]"

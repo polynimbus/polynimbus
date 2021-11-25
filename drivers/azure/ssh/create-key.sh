@@ -3,7 +3,7 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <ssh-key-name>"
 	exit 1
-elif [ ! -f /etc/polynimbus/azure/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/azure/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi

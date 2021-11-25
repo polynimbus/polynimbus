@@ -3,7 +3,7 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <ssh-key-name>"
 	exit 1
-elif [ ! -f /etc/polynimbus/linode/$1.sh ]; then
+elif [ ! -f ~/.polynimbus/accounts/linode/$1.sh ]; then
 	echo "error: cloud account \"$1\" not configured"
 	exit 1
 fi
@@ -20,7 +20,7 @@ fi
 ssh-keygen -q -t rsa -f $key -b 4096 -N ""
 public="`cat $key.pub`"
 
-. /etc/polynimbus/linode/$account.sh
+. ~/.polynimbus/accounts/linode/$account.sh
 curl -sS -X POST \
 	-H "Authorization: Bearer $LINODE_API_TOKEN" \
 	-H "Content-Type: application/json" \

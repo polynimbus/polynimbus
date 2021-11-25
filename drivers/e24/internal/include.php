@@ -5,8 +5,9 @@ require_once "sdk-1.6.2/sdk.class.php";
 
 function read_variable($account, $var)
 {
+	$home = getenv("HOME");
 	$_account = escapeshellarg($account);
-	return trim(shell_exec(". /etc/polynimbus/e24/$_account.sh; echo \$$var"));
+	return trim(shell_exec(". $home/.polynimbus/accounts/e24/$_account.sh; echo \$$var"));
 }
 
 function e24client($account)

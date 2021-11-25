@@ -1,5 +1,5 @@
 #!/bin/sh
-. /etc/polynimbus/oracle/default.sh
+. ~/.polynimbus/accounts/oracle/default.sh
 
 if [ "$4" = "" ]; then
 	echo "usage: $0 <unused> <ssh-key-name> <instance-type> <image-name>"

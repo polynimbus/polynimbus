@@ -8,13 +8,13 @@ fi
 echo "OCI client configured, now enter this key in the user configuration:"
 cat `/opt/polynimbus/drivers/oracle/get-signing-key.sh`
 
-if [ -f /etc/polynimbus/oracle/default.sh ]; then
+if [ -f ~/.polynimbus/accounts/oracle/default.sh ]; then
 	exit 0
 fi
 
 DEFAULT_INSTANCE_TYPE="`input \"enter Oracle Cloud default instance type\" VM.Standard1.1`"
 
-mkdir -p /etc/polynimbus/oracle
+mkdir -p ~/.polynimbus/accounts/oracle
 echo "#!/bin/sh
 #
 # Filter for Ubuntu images (mostly you don't need to change this):
@@ -25,5 +25,5 @@ export OCI_SYSTEM=\"Canonical Ubuntu\"
 # (use list-instance-types.sh script to discover all instance types):
 #
 export OCI_DEFAULT_INSTANCE_TYPE=$DEFAULT_INSTANCE_TYPE
-" >/etc/polynimbus/oracle/default.sh
-chmod 0600 /etc/polynimbus/oracle/default.sh
+" >~/.polynimbus/accounts/oracle/default.sh
+chmod 0600 ~/.polynimbus/accounts/oracle/default.sh
