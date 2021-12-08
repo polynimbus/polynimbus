@@ -16,6 +16,7 @@ if grep -qFx $REL /opt/polynimbus/drivers/aws/config/awscli-system-repo.conf; th
 	/opt/polynimbus/common/install-packages.sh awscli
 else
 	# TODO: these package names are good for Debian/Ubuntu only
-	/opt/polynimbus/common/install-packages.sh libyaml-dev libpython-dev python-yaml python-pip
+	/opt/polynimbus/common/install-packages.sh libyaml-dev libpython2-dev python2
+	/opt/polynimbus/compat/python2/install-compat-pip2.sh
 	/opt/polynimbus/common/install-pip.sh awscli
 fi
