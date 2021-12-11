@@ -36,7 +36,7 @@ for entry in $map; do
 	/opt/polynimbus/api/v1/zone/list-records.sh godaddy $account $domain \
 		|/opt/polynimbus/common/save.sh 10 $out zone-godaddy-$account-$domain.zone
 
-	/opt/polynimbus/drivers/godaddy/get.sh $account domains/$domain |python -m json.tool \
+	/opt/polynimbus/drivers/godaddy/get.sh $account domains/$domain |python2 -m json.tool \
 		|/opt/polynimbus/common/save.sh 10 $out raw-godaddy-domain-$account-$domain.json
 done
 

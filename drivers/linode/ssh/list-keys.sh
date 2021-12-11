@@ -9,4 +9,4 @@ elif [ ! -f ~/.polynimbus/accounts/linode/$1.sh ]; then
 fi
 
 account=$1
-/opt/polynimbus/drivers/linode/get.sh $account v4/profile/sshkeys |python -m json.tool |grep '"label"' |awk '{ print $2 }' |tr -d '"' |tr -d ','
+/opt/polynimbus/drivers/linode/get.sh $account v4/profile/sshkeys |python2 -m json.tool |grep '"label"' |awk '{ print $2 }' |tr -d '"' |tr -d ','

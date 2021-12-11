@@ -14,4 +14,4 @@ instance=$2
 
 curl -sS -X DELETE \
 	-H "Authorization: Bearer $LINODE_API_TOKEN" \
-	https://api.linode.com/v4/linode/instances/$instance |python -m json.tool
+	https://api.linode.com/v4/linode/instances/$instance |python2 -m json.tool

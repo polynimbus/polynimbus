@@ -25,4 +25,4 @@ curl -sS -X POST \
 	-H "Authorization: Bearer $LINODE_API_TOKEN" \
 	-H "Content-Type: application/json" \
 	-d "{\"label\": \"$name\", \"ssh_key\": \"$public\"}" \
-	https://api.linode.com/v4/profile/sshkeys |python -m json.tool
+	https://api.linode.com/v4/profile/sshkeys |python2 -m json.tool

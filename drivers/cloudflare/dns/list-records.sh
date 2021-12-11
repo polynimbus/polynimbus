@@ -23,7 +23,7 @@ while [ $page -lt 10 ]; do
 	if [ "$3" != "--raw" ]; then
 		cat $file |/opt/polynimbus/drivers/cloudflare/internal/parse-records.php
 	elif [ $page -eq 1 ]; then
-		cat $file |python -m json.tool
+		cat $file |python2 -m json.tool
 	fi
 
 	total=`cat $file |/opt/polynimbus/drivers/cloudflare/internal/parse-pages.php`

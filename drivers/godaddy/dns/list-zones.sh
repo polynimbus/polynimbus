@@ -16,7 +16,7 @@ if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-30 minutes' +%s` ]; the
 fi
 
 if [ "$2" = "--raw" ]; then
-	cat $file |python -m json.tool
+	cat $file |python2 -m json.tool
 else
 	cat $file |/opt/polynimbus/drivers/godaddy/internal/parse-zones.php
 fi

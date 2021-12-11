@@ -16,7 +16,7 @@ for entry in $map; do
 
 	if [ "$restricted" = 1 ]; then
 		/opt/polynimbus/drivers/linode/users/list-grants.sh $account $username \
-			|python -m json.tool \
+			|python2 -m json.tool \
 			|/opt/polynimbus/common/save.sh 10 $out raw-linode-grants-$account-$username.json
 	fi
 done

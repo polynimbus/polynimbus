@@ -16,7 +16,7 @@ if [ ! -s $file ] || [ `stat -c %Y $file` -le `date -d '-4 hours' +%s` ]; then
 fi
 
 if [ "$2" = "--raw" ]; then
-	cat $file |python -m json.tool
+	cat $file |python2 -m json.tool
 else
 	cat $file |/opt/polynimbus/drivers/cloudflare/internal/parse-accounts.php
 fi
